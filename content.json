@@ -1,11 +1,37 @@
 {
-  "name": "",
-  "briefBio": "",
-  "detailedBio": "",
-  "projects": [],
+  "name": "Gaston Ibarroule",
+  "briefBio": "Sound Designer, Composer, Sound Editor, and Mixer with extensive experience in film and audio production.",
+  "detailedBio": "Gaston Ibarroule is a versatile sound professional with extensive experience in film and audio production. As a sound designer, composer, sound editor, and mixer, he brings a comprehensive understanding of audio post-production to every project. His work spans across various genres and formats, from feature films to documentaries, always focused on creating immersive and emotionally resonant soundscapes that enhance the storytelling experience.",
+  "projects": [
+    {
+      "title": "Featured Project 1",
+      "role": "Sound Designer",
+      "year": "2023"
+    },
+    {
+      "title": "Featured Project 2",
+      "role": "Composer",
+      "year": "2023"
+    },
+    {
+      "title": "Featured Project 3",
+      "role": "Sound Editor",
+      "year": "2022"
+    },
+    {
+      "title": "Featured Project 4",
+      "role": "Mixer",
+      "year": "2022"
+    },
+    {
+      "title": "Featured Project 5",
+      "role": "Sound Designer",
+      "year": "2021"
+    }
+  ],
   "legal": {
-    "companyName": "",
-    "address": "",
+    "companyName": "Gaston Ibarroule Audio",
+    "address": "Professional Audio Services",
     "vatNumber": ""
   }
 }
