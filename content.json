@@ -3,31 +3,34 @@
   "briefBio": "Sound Designer, Composer, Sound Editor, and Mixer with extensive experience in film and audio production.",
   "detailedBio": "Gaston Ibarroule is a versatile sound professional with extensive experience in film and audio production. As a sound designer, composer, sound editor, and mixer, he brings a comprehensive understanding of audio post-production to every project. His work spans across various genres and formats, from feature films to documentaries, always focused on creating immersive and emotionally resonant soundscapes that enhance the storytelling experience.",
   "projects": [
-    {
-      "title": "Featured Project 1",
-      "role": "Sound Designer",
-      "year": "2023"
-    },
-    {
-      "title": "Featured Project 2",
-      "role": "Composer",
-      "year": "2023"
-    },
-    {
-      "title": "Featured Project 3",
-      "role": "Sound Editor",
-      "year": "2022"
-    },
-    {
-      "title": "Featured Project 4",
-      "role": "Mixer",
-      "year": "2022"
-    },
-    {
-      "title": "Featured Project 5",
-      "role": "Sound Designer",
-      "year": "2021"
-    }
+    { "title": "Prekid Vatre – Ceasefire", "role": "Sound Designer, Composer, Mixer", "year": "2025" },
+    { "title": "Boards on Zalando", "role": "Composer, Sound Designer, Mixer", "year": "2025" },
+    { "title": "Kacken an der Havel (Netflix Series)", "role": "Dialogue Editor", "year": "2025" },
+    { "title": "Dann passiert das Leben", "role": "Dialogue Editor", "year": "2025" },
+    { "title": "Señora Bien", "role": "Sound Designer, Mixer", "year": "2025" },
+
+    { "title": "The Empress (Netflix Series)", "role": "Dialogue Editor", "year": "2024" },
+    { "title": "Prekit Vatra", "role": "Sound Designer, Mixer, Composer", "year": "2024" },
+    { "title": "Out of body (Film Art Installation)", "role": "Sound Designer, Mixer", "year": "2024" },
+    { "title": "Please don’t shoot (Feature Documentary)", "role": "Mixer", "year": "2024" },
+    { "title": "Señora Bien (Shortfilm)", "role": "Sound Designer, Mixer", "year": "2024" },
+
+    { "title": "Home Sweet Home", "role": "Sound Designer, Composer, Mixer", "year": "2023" },
+    { "title": "The Signal (Netflix Series)", "role": "Dialogue Editor", "year": "2023" },
+    { "title": "El Caso Freytter", "role": "Sound Designer, Mixer", "year": "2023" },
+    { "title": "Omni (Shortfilm)", "role": "Sound Designer, Mixer", "year": "2023" },
+    { "title": "Warm Decembers (Film Art Installation)", "role": "Sound Designer, Mixer", "year": "2023" },
+    { "title": "Flush (Film Art Installation)", "role": "Sound Designer, Mixer", "year": "2023" },
+    { "title": "Reproductive Exile (Film Art Installation)", "role": "Mixer, Composer", "year": "2023" },
+
+    { "title": "1899 (Netflix Series)", "role": "Supervising Production Sound Editor", "year": "2022" },
+    { "title": "Primer paquete para Honduras", "role": "Sound Designer, Mixer", "year": "2022" },
+    { "title": "La fragilidad de lo real", "role": "Sound Designer, Mixer", "year": "2022" },
+    { "title": "In Limbo (Shortfilm)", "role": "Dialogue Editor", "year": "2022" },
+    { "title": "Indeseables (Shortfilm)", "role": "Sound Designer, Mixer", "year": "2022" },
+
+    { "title": "Dark (Seasons 2–3, Netflix)", "role": "Production Sound Editor", "year": "2019" },
+    { "title": "Untitled Days (Short Film)", "role": "Sound Designer, Mixer", "year": "2018" }
   ],
   "legal": {
     "companyName": "Gaston Ibarroule Audio",
