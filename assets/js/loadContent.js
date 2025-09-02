@@ -1,7 +1,7 @@
 // Load content from content.json and populate the page
 document.addEventListener('DOMContentLoaded', function() {
   setActiveNav();
-  fetch('content.json')
+  fetch('data/content.json')
     .then(response => {
       if (!response.ok) {
         throw new Error('Failed to load content');
