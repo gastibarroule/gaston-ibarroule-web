@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Gaston Ibarroule</title>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-nav">
+      <div class="brand">Gaston Ibarroule</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container">
+    <h1 id="name"></h1>
+    <p id="bio" class="lead"></p>
+    <div class="filters" id="roleFilters">
+      <button type="button" class="filter-btn active" data-role="all">All</button>
+      <button type="button" class="filter-btn" data-role="Composer">Composer</button>
+      <button type="button" class="filter-btn" data-role="Mixer">Mixer</button>
+      <button type="button" class="filter-btn" data-role="Dialogue Editor">Dialogue Editor</button>
+    </div>
+    <section id="projects">
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container" id="legalFooter"></div>
+  </footer>
+  <div class="page-overlay" id="pageOverlay"></div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="assets/js/loadContent.js"></script>
+</body>
+</html>

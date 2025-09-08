@@ -3,6 +3,7 @@ backups/
 
 # node
 webapp/node_modules/
+node_modules/
 
 # next build output
 webapp/.next/
@@ -17,3 +18,9 @@ webapp/npm-debug.log*
 
 # prevent Next.js conflict
 webapp/src/app/favicon.ico
+
+# env
+.env
+
+# editor
+cursor_metrics.md
