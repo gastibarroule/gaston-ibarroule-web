@@ -1,0 +1,16 @@
+# local backups
+backups/
+
+# node
+webapp/node_modules/
+
+# next build output
+webapp/.next/
+webapp/out/
+
+# logs
+*.log
+webapp/npm-debug.log*
+
+# macOS
+.DS_Store

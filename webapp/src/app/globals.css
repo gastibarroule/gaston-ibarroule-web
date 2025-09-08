@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utilities to match exported site */
+.container-max { max-width: 72rem; }
+.text-muted { color: rgba(255,255,255,0.7); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.card { box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset; }
+.p-responsive { max-width: 60ch; }
+/* Prevent page from scrolling when horizontal scrollers are hovered */
+.overscroll-contain { overscroll-behavior-inline: contain; overscroll-behavior-x: contain; }
+.scroll-x { touch-action: pan-x; }
+
+/* Button and link opacities to match export */
+a.opacity-90, button.opacity-90 { opacity: 0.9; }
+a.opacity-90:hover, button.opacity-90:hover { opacity: 1; }

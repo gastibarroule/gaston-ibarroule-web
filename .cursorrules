@@ -1,0 +1,29 @@
+# Cursor Project Rules
+
+## Goals
+- The `docs/` folder is the deploy target for GitHub Pages and must not be deleted.
+- The `webapp/` folder contains the Next.js source used for local development and rebuilds.
+
+## Editing Rules
+1. Do not remove or rename `docs/` or its `CNAME`.
+2. When changing projects or content:
+   - Update `webapp/src/data/projects.json` or re-run `npm run extract` in `webapp/`.
+   - Verify `http://localhost:3000/projects` and a few project detail pages.
+3. Before exporting/building for Pages:
+   - From `webapp/`: `npm run build && npx next export` (or configured export script).
+   - Sync `webapp/out/` → `docs/` using rsync (do not delete `docs/CNAME`).
+4. Backups:
+   - Run `npm run backup` at repo root before replacing `docs/`.
+5. Do not create `src/app/favicon.ico` in Next.js; keep only `public/favicon.ico`.
+6. For dynamic routes in Next 15, await params:
+   - `export default async function Page({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; }`
+
+## Local Run
+- Built site (1:1 live): `npx http-server docs -p 3000 -e html -c-1`
+- Source app: `cd webapp && npm install && npm run dev`
+
+## Structure
+- Keep `webapp/` as source of truth for future edits.
+- Keep `docs/` as generated static output; do not hand-edit except index copies for clean URLs.
+
+
