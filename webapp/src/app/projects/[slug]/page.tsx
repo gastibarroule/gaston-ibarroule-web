@@ -26,17 +26,52 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function toEmbedUrl(raw?: string | null): string | null {
+  if (!raw) return null;
+  const u = raw.trim();
+  try {
+    const url = new URL(u);
+    const host = url.hostname.toLowerCase();
+    // YouTube variants → embed
+    if (host.includes("youtube.com") || host.includes("youtu.be")) {
+      if (u.includes("/embed/")) return u; // already embed
+      let id = "";
+      if (host.includes("youtu.be")) {
+        id = url.pathname.replace(/^\//, "");
+      } else {
+        id = url.searchParams.get("v") || "";
+        if (!id && url.pathname.startsWith("/shorts/")) {
+          const parts = url.pathname.split("/");
+          id = parts[2] || "";
+        }
+      }
+      return id ? `https://www.youtube.com/embed/${id}` : u;
+    }
+    // Vimeo page → player
+    if (host.includes("vimeo.com")) {
+      if (host.includes("player.vimeo.com")) return u;
+      const m = url.pathname.match(/\/(\d+)/);
+      if (m && m[1]) return `https://player.vimeo.com/video/${m[1]}`;
+      return u;
+    }
+  } catch (_) {
+    // fall through and return original
+  }
+  return u;
+}
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = (projects as Project[]).find((p) => p.slug === slug);
   if (!project) {
     return <div>Not found</div>;
   }
+  const embedUrl = toEmbedUrl(project.videoUrl);
   return (
     <article className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
         <div className="self-center flex justify-center order-1">
-          <div className="aspect-[4/5] h-[8cm] bg-neutral-200 dark:bg-neutral-800 rounded overflow-hidden">
+          <div className="aspect-[4/5] h-[8cm] lg:h-[16cm] bg-neutral-200 dark:bg-neutral-800 rounded overflow-hidden">
             {project.poster ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={project.poster} alt={project.title} className="w-full h-full object-cover" />
@@ -61,12 +96,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         </div>
         <div className="order-4">
-          {project.videoUrl ? (
+          {embedUrl ? (
             <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
               <iframe
-                src={project.videoUrl}
+                src={embedUrl}
                 className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 title="Project video"
               />

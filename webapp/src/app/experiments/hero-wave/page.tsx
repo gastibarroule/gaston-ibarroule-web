@@ -1,7 +1,8 @@
-import styles from "./experiments/hero-wave/styles.module.css";
-import { HoverWords } from "./experiments/hero-wave/HoverWords";
+import styles from "./styles.module.css";
+import { HoverWords } from "./HoverWords";
 import site from "@/data/site.json";
 import projects from "@/data/projects.json";
+// Removed experiment nav to avoid duplication with site header
 
 export const metadata = {
   title: "Hero Wave Experiment",
@@ -38,6 +39,8 @@ export default function Page() {
   const intro = (site as { homeIntro?: string }).homeIntro || "";
   return (
     <main className={styles.wrapper}>
+      {/* Use global header; no local nav here */}
+
       <section className={styles.hero}>
         <div className={styles.copy}>
           <HoverWords text={intro} />
@@ -45,6 +48,10 @@ export default function Page() {
       </section>
 
       <FeaturedFromData />
+
+      {/* footer removed per request */}
     </main>
   );
 }
+
+

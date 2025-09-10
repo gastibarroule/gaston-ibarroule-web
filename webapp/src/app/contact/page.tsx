@@ -2,10 +2,13 @@ import site from "@/data/site.json";
 
 export const metadata = { title: "Contact" };
 
+type ContactLinks = { linkedin?: string; instagram?: string; imdb?: string; ['crew-united']?: string };
+type ContactData = { email?: string; emailUser?: string; emailDomain?: string; links?: ContactLinks };
+
 export default function ContactPage() {
-  const contact = (site as any).contact || {};
+  const contact = (site as unknown as { contact?: ContactData }).contact || {};
   const email = contact.email || (contact.emailUser && contact.emailDomain ? `${contact.emailUser}@${contact.emailDomain}` : null);
-  const links = contact.links || {};
+  const links = (contact.links || {}) as ContactLinks;
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Contact</h1>

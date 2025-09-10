@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { HeaderClient } from "./HeaderClient";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
               <Link href="/about" className="opacity-90 hover:opacity-100">About</Link>
               <Link href="/contact" className="opacity-90 hover:opacity-100">Contact</Link>
             </nav>
+            <HeaderClient />
           </div>
         </header>
         <main className="flex-1 container-max mx-auto w-full px-6 py-8">{children}</main>

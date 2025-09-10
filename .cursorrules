@@ -12,11 +12,32 @@
 3. Before exporting/building for Pages:
    - From `webapp/`: `npm run build && npx next export` (or configured export script).
    - Sync `webapp/out/` → `docs/` using rsync (do not delete `docs/CNAME`).
-4. Backups:
-   - Run `npm run backup` at repo root before replacing `docs/`.
+4. Backups (MANDATORY before any push):
+   - Run `npm run backup` at repo root before any `git push`.
+   - Backups under `backups/` are immutable: never delete, modify, or rewrite existing archives.
+   - If a push is needed without a backup (e.g., CI), abort and create the backup first.
 5. Do not create `src/app/favicon.ico` in Next.js; keep only `public/favicon.ico`.
 6. For dynamic routes in Next 15, await params:
    - `export default async function Page({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; }`
+
+## Safety & Quality Gates
+- Do not force-push to `main` unless explicitly approved and after a fresh backup.
+- Pages deploy target: `main` branch `/docs` folder ONLY (no alternatives). Keep `docs/.nojekyll` present.
+- Never remove `docs/.nojekyll`; `_next/**` assets require it on Pages.
+- Verify locally before export:
+  - `http://localhost:3001` (Next dev)
+  - `http://localhost:3000` (static `docs/`)
+- Prevent favicon conflicts: only `webapp/public/favicon.ico` is allowed.
+- Lint/types must pass on build: fix or suppress intentionally with rationale.
+- Scrolling UX: do not reintroduce global scroll hijacking. Rows must use native overflow with snap.
+- Images in static export must be under `webapp/public/**` and referenced with absolute public paths.
+
+## Push Checklist
+1) `./scripts/backup.sh` executed successfully (new archives created).
+2) Build/export done and `docs/` synced (preserve `docs/CNAME`).
+3) `.nojekyll` exists in `docs/`.
+4) Local verification on 3000/3001 is green.
+5) Commit with clear message; push to feature branch or `main` as appropriate.
 
 ## Local Run
 - Built site (1:1 live): `npx http-server docs -p 3000 -e html -c-1`
@@ -27,3 +48,5 @@
 - Keep `docs/` as generated static output; do not hand-edit except index copies for clean URLs.
 
 
+## Home Page
+- When working on the experimental homepage, you only work in '/experiments/hero-wave' 
