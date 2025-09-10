@@ -3,8 +3,11 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
 
+import Link from "next/link";
+
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <button
@@ -20,12 +23,10 @@ export function MobileMenu() {
         <span className="sr-only">Toggle navigation</span>
       </button>
       <div id="exp-mobile-menu" className={`${styles.mobileMenuPanel} ${open ? styles.mobileMenuPanelOpen : ""}`}>
-        <a href="/projects" onClick={() => setOpen(false)}>Projects</a>
-        <a href="/about" onClick={() => setOpen(false)}>About</a>
-        <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
+        <Link href="/projects" onClick={() => setOpen(false)}>Projects</Link>
+        <Link href="/about" onClick={() => setOpen(false)}>About</Link>
+        <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
       </div>
     </>
   );
 }
-
-

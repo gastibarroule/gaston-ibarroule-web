@@ -2,6 +2,7 @@ import styles from "./experiments/hero-wave/styles.module.css";
 import { HoverWords } from "./experiments/hero-wave/HoverWords";
 import site from "@/data/site.json";
 import projects from "@/data/projects.json";
+import Link from "next/link";
 
 export const metadata = {
   title: "Hero Wave Experiment",
@@ -16,18 +17,18 @@ function FeaturedFromData() {
     <section className={styles.featured}>
       <div className={styles.featuredHeaderRow}>
         <h2 className={styles.featuredTitle}>Featured</h2>
-        <a className={styles.featuredButton} href="/projects">Show all projects</a>
+        <Link className={styles.featuredButton} href="/projects">Show all projects</Link>
       </div>
       <div className={styles.featuredDivider} />
       <div className={styles.featuredGrid}>
         {list.map((p) => (
-          <a key={p.slug} className={styles.card} href={`/projects/${p.slug}`}>
+          <Link key={p.slug} className={styles.card} href={`/projects/${p.slug}`}>
             <img className={styles.cardImg} src={p.poster || ""} alt={p.title} />
             <div className={styles.cardMeta}>
               <div className={styles.cardTitle}>{p.title}</div>
               <div className={styles.cardSub}>{p.role}{p.year ? ` • ${p.year}` : ""}</div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </section>

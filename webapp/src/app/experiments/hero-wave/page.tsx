@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import { HoverWords } from "./HoverWords";
 import site from "@/data/site.json";
 import projects from "@/data/projects.json";
+import Link from "next/link";
 // Removed experiment nav to avoid duplication with site header
 
 export const metadata = {
@@ -17,22 +18,22 @@ function FeaturedFromData() {
     <section className={styles.featured}>
       <div className={styles.featuredHeaderRow}>
         <h2 className={styles.featuredTitle}>Featured</h2>
-        <a className={styles.featuredButton} href="/projects">Show all projects</a>
-      </div>
-      <div className={styles.featuredDivider} />
-      <div className={styles.featuredGrid}>
-        {list.map((p) => (
-          <a key={p.slug} className={styles.card} href={`/projects/${p.slug}`}>
-            <img className={styles.cardImg} src={p.poster || ""} alt={p.title} />
-            <div className={styles.cardMeta}>
-              <div className={styles.cardTitle}>{p.title}</div>
+<Link className={styles.featuredButton} href="/projects">Show all projects</Link>
+</div>
+<div className={styles.featuredDivider} />
+<div className={styles.featuredGrid}>
+  {list.map((p) => (
+    <Link key={p.slug} className={styles.card} href={`/projects/${p.slug}`}>
+      <img className={styles.cardImg} src={p.poster || ""} alt={p.title} />
+      <div className={styles.cardMeta}>
+        <div className={styles.cardTitle}>{p.title}</div>
               <div className={styles.cardSub}>{p.role}{p.year ? ` • ${p.year}` : ""}</div>
             </div>
-          </a>
-        ))}
-      </div>
-    </section>
-  );
+        </Link>
+      ))}
+    </div>
+  </section>
+);
 }
 
 export default function Page() {
@@ -53,5 +54,3 @@ export default function Page() {
     </main>
   );
 }
-
-

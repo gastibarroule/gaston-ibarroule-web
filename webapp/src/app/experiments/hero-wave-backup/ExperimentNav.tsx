@@ -2,29 +2,29 @@
 
 import { useState } from "react";
 import styles from "./styles.module.css";
+import Link from "next/link";
 
 export function ExperimentNav() {
   const [open, setOpen] = useState(false);
+
   return (
     <div className={styles.navWrap}>
       <div className={styles.navBar}>
-        <a href="/" className={styles.brand}>Gaston Ibarroule</a>
+        <Link href="/" className={styles.brand}>Gaston Ibarroule</Link>
         <nav className={styles.navLinks}>
-          <a href="/projects">Projects</a>
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
+          <Link href="/projects">Projects</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
         <button className={styles.menuBtn} onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-controls="exp-menu">
           Menu
         </button>
       </div>
       <div id="exp-menu" className={`${styles.menuPanel} ${open ? styles.menuPanelOpen : ""}`}>
-        <a href="/projects" onClick={() => setOpen(false)}>Projects</a>
-        <a href="/about" onClick={() => setOpen(false)}>About</a>
-        <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
+        <Link href="/projects" onClick={() => setOpen(false)}>Projects</Link>
+        <Link href="/about" onClick={() => setOpen(false)}>About</Link>
+        <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
       </div>
     </div>
   );
 }
-
-

@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+import Link from "next/link";
+
 export function HeaderClient() {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="md:hidden relative">
       <button
@@ -24,12 +27,10 @@ export function HeaderClient() {
         id="global-mobile-menu"
         className={`absolute right-0 top-[calc(100%+8px)] w-48 overflow-hidden border border-white/10 rounded-md backdrop-blur bg-[rgba(28,28,30,0.7)] transition-[opacity,transform] duration-200 ${open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"}`}
       >
-        <a href="/projects" className="block px-4 py-3 opacity-90 hover:opacity-100">Projects</a>
-        <a href="/about" className="block px-4 py-3 opacity-90 hover:opacity-100">About</a>
-        <a href="/contact" className="block px-4 py-3 opacity-90 hover:opacity-100">Contact</a>
+        <Link href="/projects" className="block px-4 py-3 opacity-90 hover:opacity-100">Projects</Link>
+        <Link href="/about" className="block px-4 py-3 opacity-90 hover:opacity-100">About</Link>
+        <Link href="/contact" className="block px-4 py-3 opacity-90 hover:opacity-100">Contact</Link>
       </div>
     </div>
   );
 }
-
-
