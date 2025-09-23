@@ -53,11 +53,16 @@
 .hero {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 64px 20px 40px;
+  padding: 48px 20px 24px;
   display: block;
 }
 
-@media (max-width: 900px) {}
+@media (max-width: 900px) {
+  .hero { padding: 28px 20px 16px; }
+}
+@media (min-width: 900px) {
+  .hero { padding: 56px 20px 28px; }
+}
 
 .copy {}
 
@@ -107,7 +112,7 @@
 }
 .featuredHeaderRow { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .featuredTitle { font-size: 20px; margin: 0; letter-spacing: 0.02em; color: var(--text); font-weight: 600; }
-.featuredButton { color: var(--text-dim); text-decoration: none; font-size: 14px; border: 1px solid var(--border); padding: 6px 10px; border-radius: 999px; transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
+.featuredButton { color: var(--text-dim); text-decoration: none; font-size: 14px; border: 1px solid var(--border); padding: 6px 10px; border-radius: 30px; transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
 .featuredButton:hover { background: color-mix(in oklab, var(--bg), white 4%); color: var(--text); border-color: color-mix(in oklab, var(--border), white 8%); }
 .featuredDivider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent); margin: 10px 0 14px; }
 .featuredGrid {
@@ -126,27 +131,85 @@
 .cardSub { font-size: 12px; color: var(--text-dim); }
 
 .words {
-  font-size: clamp(20px, 3.36vw, 44.8px); /* ~30% smaller than before */
-  line-height: 1.2;
+  font-size: clamp(22px, 3.5vw, 48px);
+  line-height: 1.18;
   letter-spacing: -0.01em;
-  font-weight: 500;
+  font-weight: 600;
   opacity: 0; transform: translateY(8px);
   transition: opacity 400ms ease, transform 400ms ease;
 }
+
+/* Variants for different contexts */
+.wordsMd { font-size: clamp(18px, 2.2vw, 32px); line-height: 1.35; letter-spacing: -0.01em; font-weight: 500; }
+.wordsSm { font-size: clamp(16px, 2.0vw, 26px); line-height: 1.4; letter-spacing: -0.005em; font-weight: 500; }
+/* Softer scaling for smaller variants to improve readability */
+.wordsMd .word.isActive { transform: translateZ(0) scale(1.3); }
+.wordsSm .word.isActive { transform: translateZ(0) scale(1.2); }
+
 .inView { opacity: 1; transform: translateY(0); }
+
+/* Mobile: disable interactivity and selection */
+@media (hover: none) and (pointer: coarse) {
+  .words {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+}
+.noInteractive {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.noInteractive .wordActive:hover {
+  transform: none !important;
+  padding-inline: 0 !important;
+}
+.noInteractive.words:has(.wordActive:hover) .word {
+  filter: none !important;
+  opacity: 1 !important;
+}
+.noInteractive .wordFlag:hover .wordFaceText { opacity: 1 !important; transform: none !important; }
+.noInteractive .wordFlag:hover .wordFaceEmoji { opacity: 0 !important; transform: translateY(10%) !important; }
 .word {
   display: inline-block;
   transform: translateZ(0) scale(1);
-  transition: transform 160ms ease, padding 160ms ease, filter 200ms ease, opacity 200ms ease;
+  transition: transform 200ms ease, padding 200ms ease, filter 200ms ease, opacity 200ms ease;
   padding-inline: 0;
 }
-.wordActive:hover {
+
+.word.isActive {
   transform: translateZ(0) scale(1.5);
   padding-inline: 0.17em;
+  filter: none;
+  opacity: 1;
 }
-/* Blur siblings when any word is hovered */
-.words:has(.wordActive:hover) .word { filter: blur(5px); opacity: 0.6; }
-.words:has(.wordActive:hover) .wordActive:hover { filter: none; opacity: 1; }
+
+/* exported by CSS Modules for JS toggling */
+.isActive {}
+.wordActive {}
+.sequencing {}
+
+/* Blur siblings when sequence is active */
+.words:has(.isActive) .word { filter: blur(5px); opacity: 0.6; }
+.words:has(.isActive) .word.isActive { filter: none; opacity: 1; }
+/* Fallback for browsers without :has support: toggled by JS */
+.sequencing .word { filter: blur(5px); opacity: 0.6; }
+.sequencing .word.isActive { filter: none; opacity: 1; }
+
+/* Desktop: restore hover behavior and blur */
+@media (hover: hover) and (pointer: fine) {
+  .wordActive:hover {
+    transform: translateZ(0) scale(1.5);
+    padding-inline: 0.17em;
+  }
+  .words:has(.wordActive:hover) .word { filter: blur(5px); opacity: 0.6; }
+  .words:has(.wordActive:hover) .wordActive:hover { filter: none; opacity: 1; }
+  .wordFlag:hover .wordFaceText { opacity: 0; transform: translateY(-10%); }
+  .wordFlag:hover .wordFaceEmoji { opacity: 1; transform: translateY(0%); }
+}
+
 /* Morph "Argentina" to 🇦🇷 on hover */
 .wordFlag { position: relative; display: inline-block; }
 .wordFaceText, .wordFaceEmoji {
@@ -162,12 +225,12 @@
   opacity: 0;
   transform: translateY(10%);
 }
-.wordFlag:hover .wordFaceText { opacity: 0; transform: translateY(-10%); }
-.wordFlag:hover .wordFaceEmoji { opacity: 1; transform: translateY(0%); }
+.wordFlag.isActive .wordFaceText { opacity: 0; transform: translateY(-10%); }
+.wordFlag.isActive .wordFaceEmoji { opacity: 1; transform: translateY(0%); }
 
 .wordFlag { position: relative; }
 @media (prefers-reduced-motion: reduce) {
   .word { transition: none; }
-  .word:hover { transform: none; }
+  .word.isActive { transform: none; }
   .wordFaceText, .wordFaceEmoji { transition: none; }
 }

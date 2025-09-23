@@ -23,27 +23,25 @@ export default function ContactPage() {
       <div className="flex gap-3">
         {links.linkedin ? (
           <a href={links.linkedin} target="_blank" rel="noreferrer" aria-label="linkedin">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/20 text-xs uppercase">in</span>
+            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter">in</span>
           </a>
         ) : null}
         {links.instagram ? (
           <a href={links.instagram} target="_blank" rel="noreferrer" aria-label="instagram">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/20 text-xs uppercase">ig</span>
+            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter right">ig</span>
           </a>
         ) : null}
         {links.imdb ? (
           <a href={links.imdb} target="_blank" rel="noreferrer" aria-label="imdb">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/20 text-xs uppercase">db</span>
+            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter">db</span>
           </a>
         ) : null}
         {links['crew-united'] ? (
           <a href={links['crew-united']} target="_blank" rel="noreferrer" aria-label="crewunited">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-full border border-white/20 text-xs uppercase">cu</span>
+            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter right">cu</span>
           </a>
         ) : null}
       </div>
     </div>
   );
 }
-
-

@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "extract": "node scripts/extract.js",
-    "export": "next build --turbopack && next export",
+    "export": "next build --turbopack",
     "content": "node scripts/content.js"
   },
   "dependencies": {

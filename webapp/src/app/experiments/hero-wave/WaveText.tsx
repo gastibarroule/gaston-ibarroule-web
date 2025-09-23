@@ -36,15 +36,16 @@ export function WaveText({ text, intensity = 0.04, maxLines = 3 }: WaveTextProps
       setFallback(true);
       return;
     }
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    const canvasEl = canvasRef.current;
+    const containerEl = containerRef.current;
+    if (!canvasEl || !containerEl) return;
 
-    const gl = canvas.getContext("webgl", { antialias: true, premultipliedAlpha: true, powerPreference: "high-performance" });
-    if (!gl) {
+    const maybeGl = canvasEl.getContext("webgl", { antialias: true, premultipliedAlpha: true, powerPreference: "high-performance" });
+    if (!maybeGl) {
       setFallback(true);
       return;
     }
+    const gl = maybeGl as WebGLRenderingContext;
 
     // Offscreen canvas to draw the text texture
     const textCanvas = document.createElement("canvas");
@@ -133,22 +134,23 @@ export function WaveText({ text, intensity = 0.04, maxLines = 3 }: WaveTextProps
 
     function onEnter() { targetHover = 1; }
     function onLeave() { targetHover = 0; }
-    container.addEventListener("mouseenter", onEnter);
-    container.addEventListener("mouseleave", onLeave);
+    containerEl.addEventListener("mouseenter", onEnter);
+    containerEl.addEventListener("mouseleave", onLeave);
 
     function layoutAndDrawText() {
-      const rect = container.getBoundingClientRect();
+      if (!containerEl || !canvasEl) return;
+      const rect = containerEl.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const width = Math.max(320, Math.floor(rect.width));
       const height = Math.max(160, Math.floor(rect.height));
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
-      canvas.style.width = `${width}px`;
-      canvas.style.height = `${height}px`;
-      gl.viewport(0, 0, canvas.width, canvas.height);
+      canvasEl.width = Math.floor(width * dpr);
+      canvasEl.height = Math.floor(height * dpr);
+      canvasEl.style.width = `${width}px`;
+      canvasEl.style.height = `${height}px`;
+      gl.viewport(0, 0, canvasEl.width, canvasEl.height);
 
-      textCanvas.width = canvas.width;
-      textCanvas.height = canvas.height;
+      textCanvas.width = canvasEl.width;
+      textCanvas.height = canvasEl.height;
       tctx.setTransform(1, 0, 0, 1, 0, 0);
       tctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
 
@@ -217,8 +219,8 @@ export function WaveText({ text, intensity = 0.04, maxLines = 3 }: WaveTextProps
 
     return () => {
       window.removeEventListener("resize", onResize);
-      container.removeEventListener("mouseenter", onEnter);
-      container.removeEventListener("mouseleave", onLeave);
+      containerEl.removeEventListener("mouseenter", onEnter);
+      containerEl.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
     };
   }, [text, intensity, maxLines]);
@@ -239,5 +241,3 @@ export function WaveText({ text, intensity = 0.04, maxLines = 3 }: WaveTextProps
     </div>
   );
 }
-
-

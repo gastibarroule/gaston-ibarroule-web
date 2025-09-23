@@ -1,8 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light fallback (site is primarily dark; keep for completeness) */
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --elev-1: #eef0f3;
+  --line: rgba(20, 30, 40, 0.15);
+
+  --text: #171717;
+  --muted: #5b6672;
+
+  /* Accent family (grey tones) */
+  --accent: #A9B0BA;
+  --accent-600: #959DA7;
+  --accent-700: #818A94;
+
+  /* Electric blue for focus/links */
+  --electric: #3BB7FF;
+  --focus: var(--electric);
+  --ring: color-mix(in oklab, var(--electric) 60%, white);
+
+  /* Map legacy vars used by Tailwind theme */
+  --background: var(--bg);
+  --foreground: var(--text);
 }
 
 @theme inline {
@@ -14,15 +34,54 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Deep cinematic dark with warm accents */
+    --bg: #0B0E12;          /* hsl(220 20% 5%) */
+    --surface: #151A22;     /* hsl(220 14% 10%) */
+    --elev-1: #1A2029;      /* hsl(220 12% 13%) */
+    --line: rgba(42, 52, 66, 0.6); /* hsl(220 14% 20% / .6) */
+
+    --text: #EAECEE;        /* hsl(220 15% 92%) */
+    --muted: #A9B0BA;       /* hsl(220 10% 70%) */
+
+    /* Chosen accent: grey tones */
+    --accent: #A9B0BA;
+    --accent-600: #959DA7;
+    --accent-700: #818A94;
+
+    --electric: #3BB7FF;
+    --focus: var(--electric);
+    --ring: color-mix(in oklab, var(--electric) 60%, white);
+
+    /* Map legacy vars */
+    --background: var(--bg);
+    --foreground: var(--text);
   }
 }
+
+html { scrollbar-gutter: stable both-edges; }
+html, body { overflow-x: hidden; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  overflow-y: scroll;
+}
+
+.header-bleed { /* header element is sticky already; keep positioning for stacking context */ }
+
+.header-bleed::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  background: rgba(28,28,30,0.6); /* full-bleed background band */
+  border-bottom: 1px solid rgba(255,255,255,0.1); /* full-bleed bottom border */
+  pointer-events: none; /* no interaction */
+  z-index: -1; /* sit behind header content */
 }
 
 /* Utilities to match exported site */
@@ -39,3 +98,133 @@ body {
 /* Button and link opacities to match export */
 a.opacity-90, button.opacity-90 { opacity: 0.9; }
 a.opacity-90:hover, button.opacity-90:hover { opacity: 1; }
+
+/* FX: slide-in silver fill with subtle 3D pop (inspired by ".icon-enter") */
+/* Global button rounding */
+button, 
+.button,
+a[role="button"],
+[class*="rounded"] {
+  border-radius: 10px !important;
+}
+
+.fx-enter {
+  position: relative;
+  isolation: isolate; /* allow z-index:-1 for layers without leaking */
+  overflow: hidden; /* mask the fill to the button shape */
+  z-index: 0; /* create stacking context so ::before sits under content */
+  /* Tunable vars */
+  --fx-enter-bg: color-mix(in oklab, #C9CCD1, transparent 70%);
+  --fx-enter-bg-strong: color-mix(in oklab, #E6E7EA, transparent 74%);
+  --fx-enter-outline: color-mix(in oklab, #FFFFFF, transparent 85%);
+  --fx-enter-radius: 10px;
+  border-radius: var(--fx-enter-radius);
+}
+.fx-enter::after,
+.fx-enter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--fx-enter-radius);
+  z-index: -1; /* sit behind content but above page bg */
+  pointer-events: none; /* prevent hover flicker from pseudo layers */
+}
+.fx-enter::after {
+  /* single silver outline only */
+  box-shadow: inset 0 0 0 1px var(--fx-enter-outline);
+  transition: box-shadow 200ms ease;
+}
+.fx-enter::before {
+  /* sliding silver fill with gentle vertical gradient */
+  background: linear-gradient(
+    to bottom,
+    var(--fx-enter-bg-strong),
+    var(--fx-enter-bg)
+  );
+  transform: translateX(-101%);
+  opacity: 0;
+  transition: transform 260ms ease, opacity 160ms ease;
+  will-change: transform;
+}
+.fx-enter:hover::before,
+.fx-enter:focus-visible::before { transform: translateX(0%); opacity: 1; }
+.fx-enter:hover,
+.fx-enter:focus-visible {
+  /* subtle lift for a 3D pop on dark backgrounds */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.28);
+}
+
+.fx-enter.right::before { transform: translateX(101%); }
+.fx-enter.right:hover::before,
+.fx-enter.right:focus-visible::before { transform: translateX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-enter,
+  .fx-enter::before,
+  .fx-enter::after { transition: none !important; }
+}
+
+/* Design system: tokens helpers and components */
+.text-muted { color: var(--muted); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+.btn-outline {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: transparent;
+}
+.btn-outline:hover { background: var(--elev-1); }
+.btn-solid {
+  background: var(--accent);
+  color: var(--text);
+  border: 1px solid color-mix(in oklab, var(--accent), black 20%);
+}
+.btn-solid:hover { background: var(--accent-600); }
+.btn-solid:active { background: var(--accent-700); }
+.btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.chip {
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: transparent;
+  transition: transform 260ms ease, font-weight 260ms ease;
+}
+.chip:hover { background: var(--elev-1); }
+.chip--active {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+  font-weight: 600;
+  transform: scale(1.02);
+}
+.scale-up {
+  font-weight: 600;
+  transform: scale(1.02);
+}
+
+.arrow-btn {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: color-mix(in oklab, black 30%, var(--bg));
+}
+.arrow-btn:hover {
+  background: color-mix(in oklab, black 40%, var(--bg));
+}
+.arrow-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

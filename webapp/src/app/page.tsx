@@ -17,7 +17,7 @@ function FeaturedFromData() {
     <section className={styles.featured}>
       <div className={styles.featuredHeaderRow}>
         <h2 className={styles.featuredTitle}>Featured</h2>
-        <Link className={styles.featuredButton} href="/projects">Show all projects</Link>
+        <Link className="btn btn-outline fx-enter" href="/projects">Show all projects</Link>
       </div>
       <div className={styles.featuredDivider} />
       <div className={styles.featuredGrid}>
@@ -41,7 +41,7 @@ export default function Page() {
     <main className={styles.wrapper}>
       <section className={styles.hero}>
         <div className={styles.copy}>
-          <HoverWords text={intro} />
+          <HoverWords text={intro} interactive={false} sequence="none" />
         </div>
       </section>
 

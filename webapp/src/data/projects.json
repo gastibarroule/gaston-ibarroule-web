@@ -27,20 +27,12 @@
     "slug": "kacken-an-der-havel-netflix-series",
     "role": "Dialogue Editor",
     "year": "2025",
-    "poster": null,
-    "videoUrl": null,
+    "poster": "/posters/kacken-an-der-havel-netflix-series.jpg",
+    "videoUrl": "",
     "images": [],
-    "content": ""
-  },
-  {
-    "title": "Prekid Vatre – Ceasefire",
-    "slug": "prekid-vatre-ceasefire",
-    "role": "Sound Designer, Composer, Mixer",
-    "year": "2025",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "content": "Seit Toni (Anton Schneider aka Fatoni) denken konnte, wollte er nichts anderes, als sein Heimatdorf Kacken (an der Havel) zu verlassen und großer Rapper  werden. Aber auch nach 18 Jahren Berlin lässt die Karriere auf sich warten und Toni verdient sein Geld als Pizzabäcker.\n\nBis sein Leben auf den Kopf gestellt wird, als seine Mutter bei der Rettung einer Ente stirbt und Toni zurück nach Kacken muss. Er bekommt unverhofft die Karrierechance seines Lebens, während er sich mit seinem jüngeren Stiefvater Johnny Carrera (Dimitrij Schaad), der sprechenden Babyente Tupac (gesprochen von Jella Haase) und den anderen eigenwilligen Dorfbewohnern herumschlagen muss. Und plötzlich steht auch noch sein 13-jähriger Sohn Charly (Sky Arndt) vor ihm, von dem er nie etwas wusste.",
+    "category": "",
+    "featured": true
   },
   {
     "title": "Señora Bien",
@@ -78,24 +70,30 @@
     "content": ""
   },
   {
-    "title": "Prekit Vatra",
-    "slug": "prekit-vatra",
+    "title": "Prekid Vatre (Ceasefire)",
+    "slug": "prekid-vatre",
     "role": "Sound Designer, Mixer, Composer",
     "year": "2024",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/prekid-vatre.jpg",
+    "videoUrl": "https://vimeo.com/1044614695",
+    "images": [
+      "/galleries/prekid-vatre/thumb-1.jpg"
+    ],
+    "content": "Hazira survived Srebrenica. She has lived in the Ježevac refugee camp near Tuzla for almost 30 years. She has never been able to return to her home village in the mountains above Srebrenica. Today, it is in Republika Srpska, the Serbian part of Bosnia and Herzegovina. Put on hold by political and social conditions, her days are marked by survival routines—collecting firewood, cleaning obsessively, and navigating the harsh conditions of camp life. Through dark humor and quiet resilience, Hazira copes with the trauma of a war that continues to define her life.\n\n‍\nTo keep it from becoming too painful, Hazira is in constant motion, always running from her memories, her situation, and the fear that it could start all over again. This standstill is symbolic of the situation in Bosnia and Herzegovina today. Hazira’s portrait serves as a reminder of the enduring impact of war, showing how people like her navigate a world that seems to have forgotten them.\n\n2025 marks the genocide in Srebrenica and the end of the war in former Yugoslavia for the 30th time. This film pays tribute to those who are still suffering from the consequences of this war.\n\nLength: 30min\n\nGermany, Italy, Slovenia\n\nScript, Direction, Cinematography, Sound Recording: Jakob Krese\n\nResearch and Assistance: Meta Krese\n\nEditing: Annika Mayer\n\nSound-Design, Music, Sound-Mix: Gaston Ibarroule\n\nColor Grading: Arne Büttner\n\nArchive Research: Ivana Naceva\n\nVFX: Gabriela Garrido\n\nPoster Design: Ivan Lastra\n\nProduction: Annika Mayer, Jakob Krese, Ivana Naceva",
+    "category": "",
+    "featured": true
   },
   {
     "title": "Señora Bien (Shortfilm)",
     "slug": "senora-bien-shortfilm",
     "role": "Sound Designer, Mixer",
     "year": "2024",
-    "poster": null,
-    "videoUrl": null,
+    "poster": "",
+    "videoUrl": "",
     "images": [],
-    "content": ""
+    "content": "",
+    "category": "",
+    "featured": true
   },
   {
     "title": "The Empress (Netflix Series)",
@@ -143,12 +141,14 @@
     "role": "Sound Designer, Mixer",
     "year": "2023",
     "poster": "/posters/omni-shortfilm.jpg",
-    "videoUrl": null,
+    "videoUrl": "https://vimeo.com/1109988313",
     "images": [
       "/galleries/omni-shortfilm/omni-shortfilm_image1.webp",
       "/galleries/omni-shortfilm/omni-shortfilm_image2.webp"
     ],
-    "content": "A teenage girl creatively counters the inappropriate advances of a stranger only to spark judgement and jealousy among her peers.\nWritten and directed by Eva Rini May\nProduced by Carver Diserens\nCinematography by Marc Patterson\nIn association with Desert Island Studios\nAlexa Mini / 14 minutes\nNarrative Short Film"
+    "content": "A teenage girl creatively counters the inappropriate advances of a stranger only to spark judgement and jealousy among her peers.\nWritten and directed by Eva Rini May\nProduced by Carver Diserens\nCinematography by Marc Patterson\nIn association with Desert Island Studios\nAlexa Mini / 14 minutes\nNarrative Short Film",
+    "category": "",
+    "featured": false
   },
   {
     "title": "Reproductive Exile (Film Art Installation)",

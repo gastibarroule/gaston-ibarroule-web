@@ -5,11 +5,16 @@ import styles from "./styles.module.css";
 
 type HoverWordsProps = {
   text: string;
+  variant?: 'md' | 'sm';
+  className?: string;
+  interactive?: boolean;
+  sequence?: 'always' | 'mobile' | 'none';
 };
 
-export function HoverWords({ text }: HoverWordsProps) {
+export function HoverWords({ text, variant, className, interactive = true, sequence = 'mobile' }: HoverWordsProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
+  const hasRun = useRef(false);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -31,7 +36,137 @@ export function HoverWords({ text }: HoverWordsProps) {
       { root: null, rootMargin: "0px 0px -20% 0px", threshold: 0.15 }
     );
     io.observe(el);
+    // Immediate visibility check for cases where IO may not fire initially (mobile)
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      setInView(true);
+      io.disconnect();
+    }
     return () => io.disconnect();
+  }, []);
+
+  // One-time sequential activation of animated words, top-to-bottom
+  useEffect(() => {
+    if (!inView || hasRun.current) return;
+    if (sequence === 'none') return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    // Run sequence on mobile-like environments or small viewports
+    // Broaden beyond strict AND to catch devices that report only one of the features,
+    // and also trigger on small screens.
+    const mqHoverNone = window.matchMedia("(hover: none)").matches;
+    const mqAnyHoverNone = window.matchMedia("(any-hover: none)").matches;
+    const mqCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const mqAnyCoarse = window.matchMedia("(any-pointer: coarse)").matches;
+    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const isSmallViewport = window.matchMedia("(max-width: 900px)").matches || window.innerWidth < 900;
+    const isMobileLike = mqHoverNone || mqAnyHoverNone || mqCoarse || mqAnyCoarse || hasTouch || isSmallViewport;
+    if (!(sequence === 'always' || isMobileLike)) return;
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    // Select words that should animate (marked with wordActive in markup)
+    let nodes = Array.from(el.querySelectorAll(`.${styles.wordActive}`)) as HTMLElement[];
+    // Fallback: if none match (UA/text differences), sequence all words
+    if (!nodes.length) {
+      nodes = Array.from(el.querySelectorAll(`.${styles.word}`)) as HTMLElement[];
+    }
+    if (!nodes.length) return;
+
+    // Lock to one-time
+    hasRun.current = true;
+
+    let i = 0;
+    let stepTimer: number | undefined;
+    let cleanupLastTimer: number | undefined;
+
+    const next = () => {
+      if (i > 0) nodes[i - 1]?.classList.remove(styles.isActive);
+      if (i >= nodes.length) {
+        // remove last highlight after a short beat
+        cleanupLastTimer = window.setTimeout(() => {
+          nodes[nodes.length - 1]?.classList.remove(styles.isActive);
+          el.classList.remove(styles.sequencing);
+        }, 520);
+        return;
+      }
+      nodes[i].classList.add(styles.isActive);
+      i += 1;
+      stepTimer = window.setTimeout(next, 520);
+    };
+
+    // Allow layout/styles to flush before starting sequence (helps iOS Safari)
+    const start = () => {
+      // debug: count how many nodes will sequence
+      try { console.log("[HoverWords] mobile sequence starting", { count: nodes.length }); } catch {}
+      el.classList.add(styles.sequencing);
+      next();
+    };
+    requestAnimationFrame(() => requestAnimationFrame(start));
+
+    return () => {
+      if (stepTimer) window.clearTimeout(stepTimer);
+      if (cleanupLastTimer) window.clearTimeout(cleanupLastTimer);
+      nodes.forEach((n) => n.classList.remove(styles.isActive));
+      el.classList.remove(styles.sequencing);
+    };
+  }, [inView]);
+
+  // Failsafe: if IntersectionObserver/inView path doesn't trigger on some mobile UAs,
+  // start a one-time sequence shortly after mount on mobile-like devices.
+  useEffect(() => {
+    if (sequence === 'none') return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const mqHoverNone = window.matchMedia("(hover: none)").matches;
+    const mqAnyHoverNone = window.matchMedia("(any-hover: none)").matches;
+    const mqCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const mqAnyCoarse = window.matchMedia("(any-pointer: coarse)").matches;
+    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const isSmallViewport = window.matchMedia("(max-width: 900px)").matches || window.innerWidth < 900;
+    const isMobileLike = mqHoverNone || mqAnyHoverNone || mqCoarse || mqAnyCoarse || hasTouch || isSmallViewport;
+    if (!(sequence === 'always' || isMobileLike)) return;
+
+    const el = containerRef.current;
+    if (!el) return;
+
+    const timer = window.setTimeout(() => {
+      if (hasRun.current) return;
+
+      let nodes = Array.from(el.querySelectorAll(`.${styles.wordActive}`)) as HTMLElement[];
+      if (!nodes.length) {
+        nodes = Array.from(el.querySelectorAll(`.${styles.word}`)) as HTMLElement[];
+      }
+      if (!nodes.length) return;
+
+      hasRun.current = true;
+      el.classList.add(styles.sequencing);
+
+      let i = 0;
+      const step = () => {
+        if (i > 0) nodes[i - 1]?.classList.remove(styles.isActive);
+        if (i >= nodes.length) {
+          window.setTimeout(() => {
+            nodes[nodes.length - 1]?.classList.remove(styles.isActive);
+            el.classList.remove(styles.sequencing);
+          }, 520);
+          return;
+        }
+        nodes[i].classList.add(styles.isActive);
+        i += 1;
+        window.setTimeout(step, 520);
+      };
+
+      requestAnimationFrame(() => requestAnimationFrame(step));
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
   }, []);
 
   // Normalize a known typo for this experiment view only
@@ -140,8 +275,14 @@ export function HoverWords({ text }: HoverWordsProps) {
     );
   }
 
+  const variantClass = variant === 'md' ? styles.wordsMd : variant === 'sm' ? styles.wordsSm : '';
+  const interactivityClass = interactive ? "" : styles.noInteractive;
   return (
-    <div ref={containerRef} className={`${styles.words} ${inView ? styles.inView : ""}`} aria-label={text}>
+    <div
+      ref={containerRef}
+      className={`${styles.words} ${variantClass} ${interactivityClass} ${inView ? styles.inView : ""} ${className || ""}`.trim()}
+      aria-label={text}
+    >
       {result}
     </div>
   );

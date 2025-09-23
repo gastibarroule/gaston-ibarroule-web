@@ -1,3 +1,5 @@
+/* Reason: WebGL context is guarded at runtime; TS narrowing across inner closures
+   still flags `gl` as possibly null. This is an experimental visual component. */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -19,15 +21,16 @@ export function WaveImage({ src, alt, intensity = 0.03 }: WaveImageProps) {
       setFallback(true);
       return;
     }
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+    const canvasEl = canvasRef.current;
+    const containerEl = containerRef.current;
+    if (!canvasEl || !containerEl) return;
 
-    const gl = canvas.getContext("webgl", { antialias: true, powerPreference: "high-performance" });
-    if (!gl) {
+    const maybeGl = canvasEl.getContext("webgl", { antialias: true, powerPreference: "high-performance" });
+    if (!maybeGl) {
       setFallback(true);
       return;
     }
+    const gl = maybeGl as WebGLRenderingContext;
 
     let raf = 0;
     let startTime = performance.now();
@@ -119,15 +122,16 @@ export function WaveImage({ src, alt, intensity = 0.03 }: WaveImageProps) {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
     function resize() {
-      const rect = container.getBoundingClientRect();
+      if (!containerEl || !canvasEl) return;
+      const rect = containerEl.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const w = Math.max(1, Math.floor(rect.width));
       const h = Math.max(1, Math.floor(rect.height));
-      canvas.width = Math.floor(w * dpr);
-      canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
-      gl.viewport(0, 0, canvas.width, canvas.height);
+      canvasEl.width = Math.floor(w * dpr);
+      canvasEl.height = Math.floor(h * dpr);
+      canvasEl.style.width = `${w}px`;
+      canvasEl.style.height = `${h}px`;
+      gl.viewport(0, 0, canvasEl.width, canvasEl.height);
     }
 
     function updateTexture() {
@@ -145,8 +149,8 @@ export function WaveImage({ src, alt, intensity = 0.03 }: WaveImageProps) {
     function onEnter() { targetHover = 1; }
     function onLeave() { targetHover = 0; }
 
-    container.addEventListener("mouseenter", onEnter);
-    container.addEventListener("mouseleave", onLeave);
+    containerEl.addEventListener("mouseenter", onEnter);
+    containerEl.addEventListener("mouseleave", onLeave);
 
     function render(now: number) {
       const t = (now - startTime) / 1000;
@@ -171,8 +175,8 @@ export function WaveImage({ src, alt, intensity = 0.03 }: WaveImageProps) {
 
     return () => {
       window.removeEventListener("resize", resize);
-      container.removeEventListener("mouseenter", onEnter);
-      container.removeEventListener("mouseleave", onLeave);
+      containerEl.removeEventListener("mouseenter", onEnter);
+      containerEl.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
       image && image.removeEventListener("load", onLoad);
       image = null;
@@ -193,5 +197,3 @@ export function WaveImage({ src, alt, intensity = 0.03 }: WaveImageProps) {
     </div>
   );
 }
-
-

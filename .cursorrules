@@ -46,7 +46,3 @@
 ## Structure
 - Keep `webapp/` as source of truth for future edits.
 - Keep `docs/` as generated static output; do not hand-edit except index copies for clean URLs.
-
-
-## Home Page
-- When working on the experimental homepage, you only work in '/experiments/hero-wave' 

@@ -55,11 +55,25 @@ fi
 # Compute required height = ceil(iw * DEN/NUM) without Python (portable awk)
 REQUIRED_H=$(awk -v iw="$IW" -v num="$NUM" -v den="$DEN" 'BEGIN { printf("%d\n", int((iw*den + num - 1)/num)) }')
 
+# Automatically scale image if it's not tall enough
 if (( REQUIRED_H > IH )); then
-  echo "Error: Image is not tall enough to crop to aspect ${NUM}:${DEN} at original width." >&2
+  echo "Warning: Image is not tall enough to crop to aspect ${NUM}:${DEN} at original width. Scaling to required height." >&2
   echo "       Input: ${IW}x${IH}, required height: ${REQUIRED_H}." >&2
-  echo "       Provide a taller image or pre-scale before cropping." >&2
-  exit 1
+  
+  # Scale filter to required height while maintaining aspect ratio for width
+  SCALE_FILTER="scale=-2:${REQUIRED_H}:flags=lanczos"
+  SCALED_INPUT=$(mktemp -t scaled_input_XXXXXXXX).jpg
+  ffmpeg -y -hide_banner -loglevel error -i "${INPUT}" -vf "${SCALE_FILTER}" -q:v 4 "${SCALED_INPUT}"
+  
+  # Update dimensions after scaling
+  DIM=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0:s=x "${SCALED_INPUT}") || true
+  IW=${DIM%x*}
+  IH=${DIM#*x}
+  
+  echo "       Scaled dimensions: ${IW}x${IH}" >&2
+  
+  # Update INPUT for subsequent operations
+  INPUT="${SCALED_INPUT}"
 fi
 
 # Determine output path
@@ -71,8 +85,10 @@ fi
 mkdir -p "$(dirname "${OUTPUT}")"
 
 # Build filter: crop to required height at top; optionally scale if wider than MAX_WIDTH
-VF="crop=iw:trunc(iw*${DEN}/${NUM}):0:0"
-if [[ "${MAX_WIDTH}" != "0" ]]; then
+CROP_HEIGHT=$((${IW}*${DEN}/${NUM}))
+CROP_HEIGHT=$((${CROP_HEIGHT} < ${IH} ? ${CROP_HEIGHT} : ${IH}))
+VF="crop=iw:${CROP_HEIGHT}:0:0"
+if [[ "${MAX_WIDTH}" != "0" && "$IW" -gt "$MAX_WIDTH" ]]; then
   VF="${VF},scale='min(iw,${MAX_WIDTH})':-2:flags=lanczos"
 fi
 
@@ -81,5 +97,3 @@ ffmpeg -y -hide_banner -loglevel error -i "${INPUT}" \
   -q:v "${QUALITY}" -frames:v 1 "${OUTPUT}"
 
 echo "Wrote poster: ${OUTPUT}"
-
-

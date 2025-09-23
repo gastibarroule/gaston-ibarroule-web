@@ -27,13 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
-        <header className="sticky top-0 z-10 backdrop-saturate-150 backdrop-blur bg-[rgba(28,28,30,0.6)] border-b border-white/10">
+        <header className="sticky top-0 z-10 header-bleed backdrop-saturate-150 backdrop-blur">
           <div className="container-max mx-auto px-6 h-16 flex items-center justify-between">
             <Link href="/" className="font-bold tracking-wide inline-block uppercase text-xl">Gaston Ibarroule</Link>
             <nav className="hidden md:flex items-center gap-5 text-base">
-              <Link href="/projects" className="opacity-90 hover:opacity-100">Projects</Link>
-              <Link href="/about" className="opacity-90 hover:opacity-100">About</Link>
-              <Link href="/contact" className="opacity-90 hover:opacity-100">Contact</Link>
+              <Link href="/projects" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">Projects</Link>
+              <Link href="/about" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">About</Link>
+              <Link href="/contact" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">Contact</Link>
             </nav>
             <HeaderClient />
           </div>

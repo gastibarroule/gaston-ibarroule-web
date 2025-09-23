@@ -55,7 +55,7 @@ export default function ProjectsBrowser({ projects }: { projects: Project[] }) {
       <div className="flex flex-wrap gap-2">
         <button
           type="button"
-          className={`px-3 py-2 rounded-full border ${activeRole ? "border-white/10" : "border-white/40"}`}
+          className={`chip fx-enter ${activeRole ? "" : "chip--active scale-up"}`}
           onClick={() => setActiveRole(null)}
         >
           All
@@ -64,7 +64,7 @@ export default function ProjectsBrowser({ projects }: { projects: Project[] }) {
           <button
             key={r}
             type="button"
-            className={`px-3 py-2 rounded-full border ${activeRole === r ? "border-white/40" : "border-white/10"}`}
+            className={`chip fx-enter ${activeRole === r ? "chip--active scale-up" : ""}`}
             onClick={() => setActiveRole((prev) => (prev === r ? null : r))}
           >
             {r}
@@ -160,14 +160,14 @@ function YearRow({ year, projects }: { year: string; projects: Project[] }) {
         </div>
         <button
           aria-label="Previous"
-          className="absolute left-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full border border-white/20 bg-black/30 hover:bg-black/40 flex items-center justify-center"
+          className="arrow-btn absolute left-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center"
           onClick={() => scrollBy(-1)}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
         </button>
         <button
           aria-label="Next"
-          className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full border border-white/20 bg-black/30 hover:bg-black/40 flex items-center justify-center"
+          className="arrow-btn absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center"
           onClick={() => scrollBy(1)}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
@@ -176,5 +176,3 @@ function YearRow({ year, projects }: { year: string; projects: Project[] }) {
     </section>
   );
 }
-
-
