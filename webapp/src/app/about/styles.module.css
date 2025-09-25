@@ -19,7 +19,16 @@
   .grid { grid-template-columns: 1.15fr 0.85fr; gap: 28px; }
 }
 
-.copy {}
+.copy {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .copy {
+    justify-content: center;
+  }
+}
 
 .kicker {
   font-size: 12px;
@@ -30,7 +39,7 @@
 }
 
 .hero {
-  font-size: clamp(22px, 3.5vw, 48px);
+  font-size: clamp(19px, 3.0vw, 20px);
   line-height: 1.18;
   letter-spacing: -0.01em;
   font-weight: 600;
@@ -39,7 +48,10 @@
   white-space: pre-wrap;
 }
 
-.media { align-self: start; }
+.media { 
+  align-self: center; 
+  justify-self: center;
+}
 
 .portrait {
   width: 100%;

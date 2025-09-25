@@ -17,10 +17,15 @@
     "slug": "dann-passiert-das-leben",
     "role": "Dialogue Editor",
     "year": "2025",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/dann-passiert-das-leben.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=_m-wi-SECo4",
+    "images": [
+      "/galleries/dann-passiert-das-leben/dann-passiert-das-leben-majestic_daniel-gottschalk-1920x1080.jpg",
+      "/galleries/dann-passiert-das-leben/dann-passiert-das-leben2-majestic_daniel-gottschalk-1920x1080.jpg"
+    ],
+    "content": "Hans‘ Pensionierung steht kurz bevor, doch statt Freude herrschen Angst und Unsicherheit: Sohn Tom ist lange ausgezogen und seine Frau Rita genießt seit Jahren ihre morgendlichen Schwimmrunden und die  Ruhe im Haus. Als ein tragischer Unfall geschieht, für den sich Rita verantwortlich fühlt, wird das Ehepaar nach jahrzehntelanger Beziehung plötzlich gezwungen, sich selbst, ihre alten, eingerosteten Gefühle  und ihre Ansprüche an das Leben zu hinterfragen.\n\nAlexander Koller\nre-recording mixer\nMartin Langenbach\nfoley artist\nChristoph Oertel\nfoley mixer\nFlora Rajakowitsch\nsound designer\nMathias Schuster\nfoley editor\nKarim Weth\nsounde designer",
+    "category": "",
+    "featured": true
   },
   {
     "title": "Kacken an der Havel (Netflix Series)",
@@ -84,36 +89,34 @@
     "featured": true
   },
   {
-    "title": "Señora Bien (Shortfilm)",
-    "slug": "senora-bien-shortfilm",
-    "role": "Sound Designer, Mixer",
-    "year": "2024",
-    "poster": "",
-    "videoUrl": "",
-    "images": [],
-    "content": "",
-    "category": "",
-    "featured": true
-  },
-  {
     "title": "The Empress (Netflix Series)",
     "slug": "the-empress-netflix-series",
     "role": "Dialogue Editor",
     "year": "2024",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/the-empress-netflix-series.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=6KMmZc49lXE",
+    "images": [
+      "/galleries/the-empress-netflix-series/the-empress-1.jpg",
+      "/galleries/the-empress-netflix-series/the-empress-2.jpg"
+    ],
+    "content": "The 6 episodes will be shot in . - and will focus on the first months after Sisi's arrival at the court. It is the great love story between Elisabeth and Franz that is the focus of the narrative. Elisabeth is told as a young woman ahead of her time, rebelling against the rigid rules of the 19th century and the court. She meets Franz, a multi-layered ruler with fractures who played a major role in shaping modern European history. Against the backdrop of jealousy, intrigue and power struggles behind the scenes of the Habsburg court and the emerging question of freedom of the people, the audience is taken into a glittering illusory world in which young Sisi must fight for her place at court as well as for the right not only to be the figurehead of an ailing empire.—Netflix\n\nhttps://www.imdb.com/title/tt13720112/?language=de-de",
+    "category": "",
+    "featured": true
   },
   {
     "title": "El Caso Freytter",
     "slug": "el-caso-freytter",
     "role": "Sound Designer, Mixer",
     "year": "2023",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/el-caso-freytter.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=VF8vloCTQ-U",
+    "images": [
+      "/galleries/el-caso-freytter/freytter-1.jpg",
+      "/galleries/el-caso-freytter/freytter-2.jpg"
+    ],
+    "content": "Jorge Freytter Florián regresa a Colombia después de 17 años de exilio para indagar el asesinato de su padre, el profesor, abogado y sindicalista Jorge Adolfo Freytter Romero, quien fue secuestrado en Barranquilla el 28 de agosto del 2001 y encontrado muerto un día después con signos de tortura. Las circunstancias y razones de su asesinato siguen sin esclarecerse y la búsqueda de la verdad nos llevará a los lados más oscuros de la historia de Colombia.\n\nFicha técnica\nGénero: Documental\nIdioma original: Castellano\nSubtítulos: Euskera e inglés\nDuración: 85 min.\nFormato: DCP 1.85 | Color\nSonido: 5.1 Dolby Surround\nProducido por: Asociación Jorge Adolfo Freytter Romero",
+    "category": "",
+    "featured": false
   },
   {
     "title": "Flush (Film Art Installation)",
@@ -217,10 +220,16 @@
     "slug": "la-fragilidad-de-lo-real",
     "role": "Sound Designer, Mixer",
     "year": "2022",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/la-fragilidad-de-lo-real.jpg",
+    "videoUrl": "https://vimeo.com/523055124",
+    "images": [
+      "/galleries/la-fragilidad-de-lo-real/220916_lfdlr_online_02-01_01_57_10-still002.jpg",
+      "/galleries/la-fragilidad-de-lo-real/220916_lfdlr_online_02-01_34_19_00-still011.jpg",
+      "/galleries/la-fragilidad-de-lo-real/220916_lfdlr_online_02-01_47_05_18-still017.jpg"
+    ],
+    "content": "Between travel diary, research record and poetic manifesto, we go through 6 years of the director’s lives. Through the mystification of memories, the recycling of unfinished projects, letters and performances, they create a haunted narrative. A trip where they investigate and become obsessed with a young suicidal poet, a pilgrimage to bury a friend, an erratic wandering through the desert and a ceremony that seeks to exorcise the demons and ends up summoning a mythical monster. The journey is a celebration of art as a way of life, and friendship as the anchor that helps us navigate through fragile realities.\n\nWith: Nahuel Cano, Juan Fernández Gebauer, Anabella Bacigalupo, Gastón Guanziroli, Luciana Di Leone, Armando Freitas Jr. , Silvano Santiago, Heloisa Buarque de Holanda, Italo Moriconi, Joaquim, Luis Olavo Fontes\n\nSound: Gastón Ibarroule\nColour: Maren Henke\n\nMusic: Joaquín Macedo Nahuel Cano",
+    "category": "",
+    "featured": false
   },
   {
     "title": "Primer paquete para Honduras",
@@ -251,15 +260,5 @@
     "videoUrl": null,
     "images": [],
     "content": ""
-  },
-  {
-    "title": "Example Project",
-    "slug": "example",
-    "role": "",
-    "year": "",
-    "poster": null,
-    "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    "images": [],
-    "content": "An example project description."
   }
 ]

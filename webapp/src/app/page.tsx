@@ -5,7 +5,7 @@ import projects from "@/data/projects.json";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Hero Wave Experiment",
+  title: "Home",
   description: "Hover to distort the hero image like a sound wave.",
 };
 

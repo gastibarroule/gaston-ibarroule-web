@@ -9,6 +9,15 @@ export default function ContactPage() {
   const contact = (site as unknown as { contact?: ContactData }).contact || {};
   const email = contact.email || (contact.emailUser && contact.emailDomain ? `${contact.emailUser}@${contact.emailDomain}` : null);
   const links = (contact.links || {}) as ContactLinks;
+  const socialDefs = [
+    { key: 'linkedin', icon: '/icons/linkedin.svg', aria: 'linkedin' },
+    { key: 'instagram', icon: '/icons/instagram.svg', aria: 'instagram' },
+    { key: 'imdb', icon: '/icons/imdb.svg', aria: 'imdb' },
+    { key: 'crew-united', icon: '/icons/crew-united.png', aria: 'crew united' },
+  ] as const;
+  const socials = socialDefs
+    .map(def => ({ ...def, href: links[def.key as keyof ContactLinks] as string | undefined }))
+    .filter(s => !!s.href);
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Contact</h1>
@@ -21,26 +30,26 @@ export default function ContactPage() {
         )}
       </p>
       <div className="flex gap-3">
-        {links.linkedin ? (
-          <a href={links.linkedin} target="_blank" rel="noreferrer" aria-label="linkedin">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter">in</span>
+        {socials.map(({ key, href, icon, aria }) => (
+          <a key={key} href={href!} target="_blank" rel="noreferrer" aria-label={aria}>
+            <span className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-white fx-enter">
+              <span
+                className="block h-8 w-8"
+                style={{
+                  backgroundColor: "#0A0A0A",
+                  WebkitMaskImage: `url(${icon})`,
+                  maskImage: `url(${icon})`,
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskPosition: "center",
+                  maskPosition: "center",
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                }}
+              />
+            </span>
           </a>
-        ) : null}
-        {links.instagram ? (
-          <a href={links.instagram} target="_blank" rel="noreferrer" aria-label="instagram">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter right">ig</span>
-          </a>
-        ) : null}
-        {links.imdb ? (
-          <a href={links.imdb} target="_blank" rel="noreferrer" aria-label="imdb">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter">db</span>
-          </a>
-        ) : null}
-        {links['crew-united'] ? (
-          <a href={links['crew-united']} target="_blank" rel="noreferrer" aria-label="crewunited">
-            <span className="inline-flex items-center justify-center h-8 w-8 rounded-[30px] border border-white/20 text-xs uppercase fx-enter right">cu</span>
-          </a>
-        ) : null}
+        ))}
       </div>
     </div>
   );

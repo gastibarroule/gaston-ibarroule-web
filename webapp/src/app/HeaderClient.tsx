@@ -1,11 +1,17 @@
 "use client";
 
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export function HeaderClient() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close the menu when the pathname changes (navigation occurs)
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <div className="md:hidden relative">

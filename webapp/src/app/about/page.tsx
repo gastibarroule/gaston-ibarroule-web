@@ -13,7 +13,7 @@ export default function AboutPage() {
       <h1 className="text-2xl font-bold">About</h1>
       <div className={styles.grid}>
         <section className={styles.copy}>
-          <HoverWords text={aboutText} variant="md" />
+          <p className="max-w-prose mx-auto text-base md:text-lg" style={{ fontSize: 'clamp(1rem, calc(1rem + 0.5vw), 1.5625rem)' }}>{aboutText}</p>
         </section>
         <aside className={styles.media}>
           <img
