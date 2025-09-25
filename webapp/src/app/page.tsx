@@ -9,10 +9,13 @@ export const metadata = {
   description: "Hover to distort the hero image like a sound wave.",
 };
 
-type Project = { title: string; slug: string; poster?: string | null; role?: string; year?: string };
+type Project = { title: string; slug: string; poster?: string | null; role?: string; year?: string; featured?: boolean };
 
 function FeaturedFromData() {
-  const list: Project[] = (projects as Project[]).filter((p) => p.poster).slice(0, 3);
+  const data = projects as Project[];
+  const primary = data.filter((p) => p.featured && p.poster).slice(0, 4);
+  const fallback = data.filter((p) => !primary.includes(p) && p.poster).slice(0, 4 - primary.length);
+  const list: Project[] = [...primary, ...fallback].slice(0, 4);
   return (
     <section className={styles.featured}>
       <div className={styles.featuredHeaderRow}>

@@ -50,6 +50,33 @@ export default function ProjectsBrowser({ projects }: { projects: Project[] }) {
   const groups = useMemo(() => groupByYear(filtered), [filtered]);
   const years = useMemo(() => sortedYears(groups), [groups]);
 
+  const Y_UNKNOWN = "Unknown";
+  const orderedYears = useMemo(() => years.filter((y) => y !== Y_UNKNOWN), [years]);
+  const { leadingYears, suffixYears } = useMemo(() => {
+    let splitIndex = orderedYears.length;
+    for (let i = orderedYears.length - 1; i >= 0; i--) {
+      const y = orderedYears[i];
+      if ((groups[y]?.length ?? 0) < 4) {
+        splitIndex = i;
+      } else {
+        break;
+      }
+    }
+    return {
+      leadingYears: orderedYears.slice(0, splitIndex),
+      suffixYears: orderedYears.slice(splitIndex),
+    };
+  }, [orderedYears, groups]);
+
+  const combinedLabel = useMemo(
+    () => (suffixYears.length ? suffixYears.join(" • ") : null),
+    [suffixYears]
+  );
+  const combinedProjects = useMemo(
+    () => suffixYears.flatMap((y) => groups[y] || []),
+    [suffixYears, groups]
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2">
@@ -72,9 +99,19 @@ export default function ProjectsBrowser({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      {years.map((year) => (
+      {leadingYears.map((year) => (
         <YearRow key={year} year={year} projects={groups[year]} />
       ))}
+      {combinedLabel ? (
+        <YearRow
+          key={`combined-${combinedLabel}`}
+          year={combinedLabel}
+          projects={combinedProjects}
+        />
+      ) : null}
+      {years.includes(Y_UNKNOWN) ? (
+        <YearRow key={Y_UNKNOWN} year={Y_UNKNOWN} projects={groups[Y_UNKNOWN]} />
+      ) : null}
     </div>
   );
 }

@@ -31,11 +31,15 @@ export function HeaderClient() {
       </button>
       <div
         id="global-mobile-menu"
-        className={`absolute right-0 top-[calc(100%+8px)] w-48 overflow-hidden border border-white/10 rounded-md backdrop-blur bg-[rgba(28,28,30,0.7)] transition-[opacity,transform] duration-200 ${open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"}`}
+        className={`absolute left-1/2 -translate-x-1/2 top-full w-screen border-t border-white/10 backdrop-blur bg-[rgba(28,28,30,0.7)] transition-[opacity,transform] duration-200 ${open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"}`}
       >
-        <Link href="/projects" className="block px-4 py-3 opacity-90 hover:opacity-100 border-b border-white/10 last:border-b-0">Projects</Link>
-        <Link href="/about" className="block px-4 py-3 opacity-90 hover:opacity-100 border-b border-white/10">About</Link>
-        <Link href="/contact" className="block px-4 py-3 opacity-90 hover:opacity-100">Contact</Link>
+        <div className="container py-3">
+          <div className="grid grid-cols-3 gap-2">
+            <Link href="/projects" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">Projects</Link>
+            <Link href="/about" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">About</Link>
+            <Link href="/contact" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">Contact</Link>
+          </div>
+        </div>
       </div>
     </div>
   );

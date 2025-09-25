@@ -260,5 +260,17 @@
     "videoUrl": null,
     "images": [],
     "content": ""
+  },
+  {
+    "title": "Carbon Mobile (Ad)",
+    "slug": "carbon-mobile-ad",
+    "role": "Sound Designer, Composer, Mixer",
+    "category": "",
+    "year": "2021",
+    "poster": "/posters/carbon-mobile-ad.jpg",
+    "featured": false,
+    "images": [],
+    "videoUrl": "https://www.youtube.com/watch?v=j17EFBXaEec",
+    "content": "The Carbon 1 MK II is the only hand crafted smartphone in the world today making each stunning device as individual as the next.\n\nI created the sound and music for they're release campaign, as well as a ringtone pack for the custom Carbon Mobile sound experience."
   }
 ]

@@ -117,7 +117,7 @@
 .featuredDivider { height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.06), transparent); margin: 10px 0 14px; }
 .featuredGrid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 @media (min-width: 700px) {
