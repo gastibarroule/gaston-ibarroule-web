@@ -175,6 +175,27 @@ function normalizeGalleryImageForSlug(slug, inputPath, index) {
   }
 }
 
+function normalizeVideoForSlug(slug, inputPath) {
+  if (!inputPath) return "";
+  const cls = classifyPath(inputPath);
+  // If already a public path in /public, keep as-is (prefer /videos but don't enforce)
+  if (cls.type === "public") {
+    return cls.publicPath;
+  }
+  // If it's a real file on disk, copy into /public/videos/<slug>-<basename>.<ext>
+  if (cls.type === "file") {
+    const base = sanitizeName(path.basename(inputPath, path.extname(inputPath)) || "video");
+    const ext = (path.extname(inputPath) || ".mp4").toLowerCase();
+    const outPublic = `/videos/${sanitizeName(slug)}-${base}${ext}`;
+    const outAbs = publicPathToAbs(outPublic);
+    ensureDir(path.dirname(outAbs));
+    fs.copyFileSync(cls.abs, outAbs);
+    return outPublic;
+  }
+  // Otherwise treat as external URL (YouTube/Vimeo/etc.) and return unchanged
+  return inputPath;
+}
+
 function ensurePosterProcessed(publicPath) {
   if (!publicPath) return publicPath;
   const abs = publicPathToAbs(publicPath);
@@ -272,7 +293,7 @@ async function addProject() {
     images.push(normalizeGalleryImageForSlug(base.slug || slugify(base.title), img, i));
   }
 
-  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: "Featured URL / video URL (optional)" });
+  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: "Featured URL / video URL or file path (optional)" });
   const content = await promptMultiline("");
 
   const project = {
@@ -284,7 +305,7 @@ async function addProject() {
     poster: poster.poster ? normalizePosterForSlug(base.slug || slugify(base.title), poster.poster) : "",
     featured: !!base.featured,
     images,
-    videoUrl: videoUrl || "",
+    videoUrl: videoUrl ? normalizeVideoForSlug(base.slug || slugify(base.title), videoUrl) : "",
     content: content || "",
   };
 
@@ -356,8 +377,8 @@ async function editProject() {
   imgs = imgs.filter(Boolean).slice(0, 3);
   updated.images = imgs;
 
-  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: `Featured URL / video URL`, initial: updated.videoUrl || "" });
-  updated.videoUrl = videoUrl || "";
+  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: `Featured URL / video URL or file path`, initial: updated.videoUrl || "" });
+  if (videoUrl !== undefined) updated.videoUrl = videoUrl ? normalizeVideoForSlug(updated.slug, videoUrl) : "";
 
   const editContent = await prompts({ type: "toggle", name: "doEdit", message: "Edit description?", initial: false, active: "yes", inactive: "no" });
   if (editContent.doEdit) {
@@ -442,6 +463,26 @@ async function editContact() {
   console.log("Saved contact info.");
 }
 
+async function importVideoToProject() {
+  const projects = readJson(PROJECTS_PATH, []);
+  const project = await pickProject(projects);
+  if (!project) { console.log("No project selected."); return; }
+
+  const { src } = await prompts({
+    type: "text",
+    name: "src",
+    message: "Path to video file (.mp4/.webm/.ogg) or existing public path (/videos/...)",
+    validate: (v) => (!!v ? true : "Required"),
+  });
+  if (!src) { console.log("Cancelled."); return; }
+
+  const out = normalizeVideoForSlug(project.slug, src);
+  project.videoUrl = out;
+  writeJson(PROJECTS_PATH, projects);
+  console.log(`Imported video to '${out}' and updated project '${project.title}'.`);
+  console.log("Tip: Use this public path in the project if needed:", out);
+}
+
 async function mainMenu() {
   for (;;) {
     const { action } = await prompts({
@@ -455,6 +496,7 @@ async function mainMenu() {
         { title: "Edit About page", value: "about" },
         { title: "Edit Home intro", value: "home" },
         { title: "Edit Contact page", value: "contact" },
+        { title: "Import video to a project", value: "video" },
         { title: "Exit", value: "exit" },
       ],
       initial: 0,
@@ -467,6 +509,7 @@ async function mainMenu() {
       else if (action === "about") await editAbout();
       else if (action === "home") await editHomeIntro();
       else if (action === "contact") await editContact();
+      else if (action === "video") await importVideoToProject();
     } catch (err) {
       console.error("Error:", err?.message || err);
     }
@@ -475,5 +518,3 @@ async function mainMenu() {
 }
 
 mainMenu();
-
-

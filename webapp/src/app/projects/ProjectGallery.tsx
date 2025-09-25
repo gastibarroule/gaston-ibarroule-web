@@ -1,18 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 
 export default function ProjectGallery({ images }: { images: string[] }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
-  const quickToRef = useRef<((value: number) => void) | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  useEffect(() => {
-    quickToRef.current = null; // disable GSAP smoothing; use native
-  }, []);
 
   const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
     const el = scrollerRef.current;
@@ -41,11 +36,7 @@ export default function ProjectGallery({ images }: { images: string[] }) {
     const el = scrollerRef.current;
     if (!el) return;
     const amount = el.clientWidth * 0.9 * dir;
-    const max = Math.max(0, el.scrollWidth - el.clientWidth);
-    let target = el.scrollLeft + amount;
-    if (target < 0) target = 0;
-    if (target > max) target = max;
-    if (quickToRef.current) quickToRef.current(target);
+    el.scrollBy({ left: amount, behavior: "smooth" });
   };
 
   if (!images || images.length === 0) return null;
@@ -107,6 +98,47 @@ function Lightbox({ images, index, onClose, onIndexChange }: { images: string[];
     };
   }, [images.length, index, onClose, onIndexChange]);
 
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const child = el.children[index] as HTMLElement | undefined;
+    if (child) {
+      child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [index]);
+
+  const onScroll: React.UIEventHandler<HTMLDivElement> = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const i = Math.round(el.scrollLeft / el.clientWidth);
+    if (i !== index) onIndexChange(Math.max(0, Math.min(images.length - 1, i)));
+  };
+
+  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    if (el.scrollWidth <= el.clientWidth) return; // nothing to scroll
+    const scale = e.deltaMode === 1 ? 30 : e.deltaMode === 2 ? 120 : 1;
+    const dx = e.deltaX * scale;
+    const dy = e.deltaY * scale;
+    // Heuristics: treat as mouse vertical wheel if it's line-based OR large pixel steps with near-zero dx
+    const isMouseVertical = (e.deltaMode === 1 && Math.abs(dy) > Math.abs(dx) && dy !== 0)
+      || (e.deltaMode === 0 && Math.abs(dx) < 1 && Math.abs(dy) >= 50);
+    if (!isMouseVertical) return; // let trackpads and other gestures pass through
+    const max = Math.max(0, el.scrollWidth - el.clientWidth);
+    const intendsRight = dy > 0;
+    const intendsLeft = dy < 0;
+    const canLeft = el.scrollLeft > 0;
+    const canRight = el.scrollLeft < max;
+    const shouldHijack = (intendsLeft && canLeft) || (intendsRight && canRight);
+    if (!shouldHijack) return;
+    e.preventDefault();
+    const next = Math.max(0, Math.min(max, el.scrollLeft + dy));
+    if (next !== el.scrollLeft) el.scrollLeft = next;
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
@@ -119,24 +151,45 @@ function Lightbox({ images, index, onClose, onIndexChange }: { images: string[];
         >
           ×
         </button>
-        <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 rounded overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={images[index]} alt="Expanded image" className="w-full h-full object-contain bg-black" />
+        <div className="relative">
+          <div
+            ref={scrollerRef}
+            onWheel={onWheel}
+            onScroll={onScroll}
+            className="no-scrollbar overflow-x-auto snap-x snap-mandatory flex w-[90vw] max-w-5xl"
+          >
+            {images.map((src, i) => (
+              <div key={src} className="snap-center shrink-0 w-full">
+                <div className="aspect-video bg-neutral-200 dark:bg-neutral-800 rounded overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={`Expanded image ${i + 1}`} className="w-full h-full object-contain bg-black" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            aria-label="Previous"
+            className="arrow-btn absolute left-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center"
+            onClick={() => onIndexChange(Math.max(0, index - 1))}
+            disabled={index === 0}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          <button
+            aria-label="Next"
+            className="arrow-btn absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center"
+            onClick={() => onIndexChange(Math.min(images.length - 1, index + 1))}
+            disabled={index === images.length - 1}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
         </div>
         <div className="mt-3 flex justify-between text-sm">
-          <button type="button" className="px-3 py-1 rounded border border-white/20" onClick={() => onIndexChange(Math.max(0, index - 1))} disabled={index === 0}>
-            Prev
-          </button>
           <span>
             {index + 1} / {images.length}
           </span>
-          <button type="button" className="px-3 py-1 rounded border border-white/20" onClick={() => onIndexChange(Math.min(images.length - 1, index + 1))} disabled={index === images.length - 1}>
-            Next
-          </button>
         </div>
       </div>
     </div>
   );
 }
-
-

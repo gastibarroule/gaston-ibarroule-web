@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "./Header";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import site from "@/data/site.json";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const contactLinks = ((site as unknown as { contact?: { links?: Record<string, string> } }).contact?.links) || {};
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
@@ -32,8 +34,18 @@ export default function RootLayout({
           <div className="container py-6 text-sm flex items-center justify-between">
             <span>© {new Date().getFullYear()} Gaston Ibarroule</span>
             <div className="flex gap-4">
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:underline">LinkedIn</a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:underline">Instagram</a>
+              {contactLinks.linkedin ? (
+                <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="hover:underline">LinkedIn</a>
+              ) : null}
+              {contactLinks.instagram ? (
+                <a href={contactLinks.instagram} target="_blank" rel="noreferrer" className="hover:underline">Instagram</a>
+              ) : null}
+              {contactLinks.imdb ? (
+                <a href={contactLinks.imdb} target="_blank" rel="noreferrer" className="hover:underline">IMDb</a>
+              ) : null}
+              {contactLinks["crew-united"] ? (
+                <a href={contactLinks["crew-united"]} target="_blank" rel="noreferrer" className="hover:underline">Crew United</a>
+              ) : null}
             </div>
           </div>
         </footer>

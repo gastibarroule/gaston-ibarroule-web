@@ -60,13 +60,30 @@ function toEmbedUrl(raw?: string | null): string | null {
   return u;
 }
 
+function localVideoSrc(raw?: string | null): string | null {
+  if (!raw) return null;
+  const u = raw.trim();
+  if (!u.startsWith("/")) return null;
+  const lower = u.toLowerCase();
+  if (lower.endsWith(".mp4") || lower.endsWith(".webm") || lower.endsWith(".ogg") || lower.endsWith(".ogv")) return u;
+  return null;
+}
+
+function mimeForVideo(src: string): string {
+  const l = src.toLowerCase();
+  if (l.endsWith(".webm")) return "video/webm";
+  if (l.endsWith(".ogg") || l.endsWith(".ogv")) return "video/ogg";
+  return "video/mp4";
+}
+
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = (projects as Project[]).find((p) => p.slug === slug);
   if (!project) {
     return <div>Not found</div>;
   }
-  const embedUrl = toEmbedUrl(project.videoUrl);
+  const fileVideo = localVideoSrc(project.videoUrl);
+  const embedUrl = fileVideo ? null : toEmbedUrl(project.videoUrl);
   return (
     <article className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
@@ -96,7 +113,19 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         </div>
         <div className="order-4">
-          {embedUrl ? (
+          {fileVideo ? (
+            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+              <video
+                className="absolute inset-0 w-full h-full object-contain rounded border border-white/10 bg-black"
+                controls
+                preload="metadata"
+                poster={project.poster || undefined}
+              >
+                <source src={fileVideo} type={mimeForVideo(fileVideo)} />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          ) : embedUrl ? (
             <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
               <iframe
                 src={embedUrl}
@@ -113,5 +142,3 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     </article>
   );
 }
-
-

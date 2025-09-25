@@ -4,13 +4,15 @@
     "slug": "boards-on-zalando",
     "role": "Composer, Sound Designer, Mixer",
     "year": "2025",
-    "poster": "/posters/boards-on-zalando.png",
-    "videoUrl": null,
+    "poster": "/posters/boards-on-zalando.jpg",
+    "videoUrl": "/videos/boards-on-zalando-zalando_boards_consumption_34s.mp4",
     "images": [
-      "/galleries/boards-on-zalando/boards-on-zalando_image1_crop_comp.jpg",
-      "/galleries/boards-on-zalando/boards-on-zalando_image2_comp.jpg"
+      "/galleries/boards-on-zalando/screenshot-2025-09-25-at-13-17-58.jpg",
+      "/galleries/boards-on-zalando/screenshot-2025-09-25-at-13-18-15.jpg"
     ],
-    "content": "Write a short description here."
+    "content": "Music composition and production, sound design, mix and master for Zalando Boards campaign.",
+    "category": "",
+    "featured": true
   },
   {
     "title": "Dann passiert das Leben",
