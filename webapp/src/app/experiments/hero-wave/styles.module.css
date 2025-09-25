@@ -120,8 +120,13 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
+/* Show only the first 4 cards on small screens */
+.featuredGrid > *:nth-child(n+5) { display: none; }
+
 @media (min-width: 700px) {
   .featuredGrid { grid-template-columns: repeat(3, 1fr); }
+  /* Reveal all cards (5 and 6) on desktop */
+  .featuredGrid > .card:nth-child(n+5) { display: block; }
 }
 .card { position: relative; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--surface); box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset; }
 .cardImg { width: 100%; height: auto; display: block; aspect-ratio: 4/5; object-fit: cover; transition: transform 180ms ease; }

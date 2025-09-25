@@ -13,9 +13,9 @@ type Project = { title: string; slug: string; poster?: string | null; role?: str
 
 function FeaturedFromData() {
   const data = projects as Project[];
-  const primary = data.filter((p) => p.featured && p.poster).slice(0, 4);
-  const fallback = data.filter((p) => !primary.includes(p) && p.poster).slice(0, 4 - primary.length);
-  const list: Project[] = [...primary, ...fallback].slice(0, 4);
+  const primary = data.filter((p) => p.featured && p.poster).slice(0, 6);
+  const fallback = data.filter((p) => !primary.includes(p) && p.poster).slice(0, 6 - primary.length);
+  const list: Project[] = [...primary, ...fallback].slice(0, 6);
   return (
     <section className={styles.featured}>
       <div className={styles.featuredHeaderRow}>
