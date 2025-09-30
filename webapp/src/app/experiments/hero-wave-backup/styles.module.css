@@ -1,12 +1,3 @@
-:root {
-  --bg: #0B0B0C;
-  --bg-elevated: #121214;
-  --surface: #18181B;
-  --text: #E6E7EA;
-  --text-dim: #A9ABB0;
-  --border: #2A2B30;
-  --accent-silver: #C9CCD1;
-}
 
 .wrapper {
   display: flex;
@@ -172,5 +163,3 @@
   .word:hover { transform: none; }
   .wordFaceText, .wordFaceEmoji { transition: none; }
 }
-
-

@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:3001": "next dev -p 3001 --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "extract": "node scripts/extract.js",
-    "export": "next build --turbopack",
+    "export": "next export",
     "content": "node scripts/content.js"
   },
   "dependencies": {
