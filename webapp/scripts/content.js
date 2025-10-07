@@ -264,6 +264,66 @@ async function promptMultiline(initialText) {
   });
 }
 
+async function getFeaturedMediaForAdd(slug) {
+  const { mode } = await prompts({
+    type: "select",
+    name: "mode",
+    message: "Featured media input",
+    choices: [
+      { title: "URL or file path", value: "url" },
+      { title: "Embed HTML (paste)", value: "embed" },
+      { title: "Skip", value: "skip" },
+    ],
+    initial: 0,
+  });
+  if (mode === "url") {
+    const { txt } = await prompts({
+      type: "text",
+      name: "txt",
+      message: "Featured URL / video URL or file path (optional)",
+    });
+    return txt ? normalizeVideoForSlug(slug, txt) : "";
+  }
+  if (mode === "embed") {
+    console.log("Paste your EMBED HTML below (type ::done on its own line to finish).");
+    const html = await promptMultiline("");
+    return html || "";
+  }
+  return "";
+}
+
+async function getFeaturedMediaForEdit(slug, current) {
+  const { mode } = await prompts({
+    type: "select",
+    name: "mode",
+    message: `Featured media (${current ? "current set" : "empty"})`,
+    choices: [
+      { title: "Keep current", value: "keep" },
+      { title: "Replace with URL or file path", value: "url" },
+      { title: "Replace with Embed HTML (paste)", value: "embed" },
+      { title: current ? "Clear" : "Clear (n/a)", value: "clear" },
+    ],
+    initial: 0,
+  });
+  if (mode === "keep") return current || "";
+  if (mode === "clear") return "";
+  if (mode === "url") {
+    const { txt } = await prompts({
+      type: "text",
+      name: "txt",
+      message: "Featured URL / video URL or file path",
+      initial: current && !String(current).includes("<") ? String(current) : "",
+    });
+    return txt ? normalizeVideoForSlug(slug, txt) : "";
+  }
+  if (mode === "embed") {
+    console.log("Paste your EMBED HTML below (type ::done on its own line to finish).");
+    const html = await promptMultiline(current && String(current).includes("<") ? String(current) : "");
+    return html || "";
+  }
+  return current || "";
+}
+
 async function addProject() {
   const projects = readJson(PROJECTS_PATH, []);
   const base = await prompts([
@@ -293,7 +353,7 @@ async function addProject() {
     images.push(normalizeGalleryImageForSlug(base.slug || slugify(base.title), img, i));
   }
 
-  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: "Featured URL / video URL or file path (optional)" });
+  const featured = await getFeaturedMediaForAdd(base.slug || slugify(base.title));
   const content = await promptMultiline("");
 
   const project = {
@@ -305,7 +365,7 @@ async function addProject() {
     poster: poster.poster ? normalizePosterForSlug(base.slug || slugify(base.title), poster.poster) : "",
     featured: !!base.featured,
     images,
-    videoUrl: videoUrl ? normalizeVideoForSlug(base.slug || slugify(base.title), videoUrl) : "",
+    videoUrl: featured,
     content: content || "",
   };
 
@@ -377,8 +437,8 @@ async function editProject() {
   imgs = imgs.filter(Boolean).slice(0, 3);
   updated.images = imgs;
 
-  const { videoUrl } = await prompts({ type: "text", name: "videoUrl", message: `Featured URL / video URL or file path`, initial: updated.videoUrl || "" });
-  if (videoUrl !== undefined) updated.videoUrl = videoUrl ? normalizeVideoForSlug(updated.slug, videoUrl) : "";
+  const featured = await getFeaturedMediaForEdit(updated.slug, updated.videoUrl || "");
+  updated.videoUrl = featured;
 
   const editContent = await prompts({ type: "toggle", name: "doEdit", message: "Edit description?", initial: false, active: "yes", inactive: "no" });
   if (editContent.doEdit) {

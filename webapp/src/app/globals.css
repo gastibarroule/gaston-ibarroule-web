@@ -96,7 +96,12 @@ body {
 .p-responsive { max-width: 60ch; }
 /* Prevent page from scrolling when horizontal scrollers are hovered */
 .overscroll-contain { overscroll-behavior-inline: contain; overscroll-behavior-x: contain; }
-.scroll-x { touch-action: pan-x; }
+/* Horizontal scrollers: allow horizontal panning here, let vertical swipes bubble to page.
+   Also apply to immediate children so touches starting on cards/links use the same behavior.
+   Enable iOS momentum scrolling. */
+.scroll-x { touch-action: pan-x; -webkit-overflow-scrolling: touch; }
+.scroll-x > * { touch-action: pan-x; }
+[data-rowscroller="true"] > * { touch-action: pan-x; }
 
 /* Button and link opacities to match export */
 a.opacity-90, button.opacity-90 { opacity: 0.9; }

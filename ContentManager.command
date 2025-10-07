@@ -14,6 +14,9 @@ echo "[Content Manager] Tip: You can now import local video files into the site.
 echo "[Content Manager] In the menu, choose: 'Import video to a project' to copy a file into webapp/public/videos and update projects.json."
 echo "[Content Manager] Example source:"
 echo "[Content Manager]   /Volumes/Macbook Pro_Work/05_WEB/source/Zalando English Videos/Zalando_Boards_Consumption_34s.mp4"
+echo "[Content Manager] New: You can also paste full EMBED HTML (e.g., Instagram blockquote) for a project's Featured media."
+echo "[Content Manager] In 'Add project': when prompted for Featured media, choose 'Embed HTML (paste)'."
+echo "[Content Manager] In 'Edit project': Featured media → 'Replace with Embed HTML (paste)'."
 
 if [ ! -d node_modules ]; then
   echo "[Content Manager] Installing dependencies (first run)..."

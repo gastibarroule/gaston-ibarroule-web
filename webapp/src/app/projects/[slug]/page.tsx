@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import projects from "@/data/projects.json";
 import ProjectGallery from "../../projects/ProjectGallery";
 import ProjectGalleryStack from "../../projects/ProjectGalleryStack";
+import EmbedHtml from "../../projects/EmbedHtml";
 
 type Project = {
   title: string;
@@ -82,8 +83,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (!project) {
     return <div>Not found</div>;
   }
-  const fileVideo = localVideoSrc(project.videoUrl);
-  const embedUrl = fileVideo ? null : toEmbedUrl(project.videoUrl);
+  const isHtml = !!project.videoUrl && project.videoUrl.trim().includes("<");
+  const fileVideo = isHtml ? null : localVideoSrc(project.videoUrl);
+  const embedUrl = fileVideo || isHtml ? null : toEmbedUrl(project.videoUrl);
   return (
     <article className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
@@ -136,6 +138,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 title="Project video"
               />
             </div>
+          ) : isHtml ? (
+            <EmbedHtml html={project.videoUrl || ""} />
           ) : null}
         </div>
       </div>
