@@ -9,29 +9,6 @@ export default function ProjectGallery({ images }: { images: string[] }) {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
 
-  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    if (el.scrollWidth <= el.clientWidth) return; // no overflow
-    const max = Math.max(0, el.scrollWidth - el.clientWidth);
-    const scale = e.deltaMode === 1 ? 30 : e.deltaMode === 2 ? 120 : 1;
-    const dx = e.deltaX * scale;
-    const dy = e.deltaY * scale;
-    const intentThreshold = 4;
-    const isHorizontalIntent = (Math.abs(dx) - Math.abs(dy) > intentThreshold) || e.shiftKey;
-    if (!isHorizontalIntent) return; // allow vertical page scroll
-    const horiz = dx !== 0 ? dx : e.shiftKey ? dy : 0;
-    if (horiz === 0) return;
-    const canLeft = el.scrollLeft > 0;
-    const canRight = el.scrollLeft < max;
-    const intendsLeft = horiz < 0;
-    const intendsRight = horiz > 0;
-    const shouldHijack = (intendsLeft && canLeft) || (intendsRight && canRight);
-    if (!shouldHijack) return;
-    e.preventDefault();
-    el.scrollLeft = Math.max(0, Math.min(max, el.scrollLeft + horiz));
-  };
-
   const scrollBy = (dir: number) => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -45,8 +22,7 @@ export default function ProjectGallery({ images }: { images: string[] }) {
     <div className="relative">
       <div
         ref={scrollerRef}
-        onWheel={onWheel}
-        className="no-scrollbar overflow-x-auto snap-x snap-mandatory -mx-4 px-4 lg:mx-0 lg:px-0 py-2 flex gap-4 overscroll-contain scroll-x"
+        className="no-scrollbar overflow-x-auto snap-x snap-mandatory -mx-4 px-4 lg:mx-0 lg:px-0 py-2 flex gap-4 overscroll-x-contain"
       >
         {images.map((src, idx) => (
           <button
@@ -116,29 +92,6 @@ function Lightbox({ images, index, onClose, onIndexChange }: { images: string[];
     if (i !== index) onIndexChange(Math.max(0, Math.min(images.length - 1, i)));
   };
 
-  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    if (el.scrollWidth <= el.clientWidth) return; // nothing to scroll
-    const scale = e.deltaMode === 1 ? 30 : e.deltaMode === 2 ? 120 : 1;
-    const dx = e.deltaX * scale;
-    const dy = e.deltaY * scale;
-    // Heuristics: treat as mouse vertical wheel if it's line-based OR large pixel steps with near-zero dx
-    const isMouseVertical = (e.deltaMode === 1 && Math.abs(dy) > Math.abs(dx) && dy !== 0)
-      || (e.deltaMode === 0 && Math.abs(dx) < 1 && Math.abs(dy) >= 50);
-    if (!isMouseVertical) return; // let trackpads and other gestures pass through
-    const max = Math.max(0, el.scrollWidth - el.clientWidth);
-    const intendsRight = dy > 0;
-    const intendsLeft = dy < 0;
-    const canLeft = el.scrollLeft > 0;
-    const canRight = el.scrollLeft < max;
-    const shouldHijack = (intendsLeft && canLeft) || (intendsRight && canRight);
-    if (!shouldHijack) return;
-    e.preventDefault();
-    const next = Math.max(0, Math.min(max, el.scrollLeft + dy));
-    if (next !== el.scrollLeft) el.scrollLeft = next;
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-black/70" onClick={onClose} />
@@ -154,7 +107,6 @@ function Lightbox({ images, index, onClose, onIndexChange }: { images: string[];
         <div className="relative">
           <div
             ref={scrollerRef}
-            onWheel={onWheel}
             onScroll={onScroll}
             className="no-scrollbar overflow-x-auto snap-x snap-mandatory flex w-[90vw] max-w-5xl"
           >

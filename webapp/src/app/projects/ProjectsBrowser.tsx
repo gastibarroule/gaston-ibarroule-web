@@ -131,29 +131,6 @@ function YearRow({ year, projects }: { year: string; projects: Project[] }) {
     el.scrollBy({ left: amount, behavior: "smooth" });
   };
 
-  const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    if (el.scrollWidth <= el.clientWidth) return; // nothing to scroll
-    const scale = e.deltaMode === 1 ? 30 : e.deltaMode === 2 ? 120 : 1;
-    const dx = e.deltaX * scale;
-    const dy = e.deltaY * scale;
-    // Heuristics: treat as mouse vertical wheel if it's line-based OR large pixel steps with near-zero dx
-    const isMouseVertical = (e.deltaMode === 1 && Math.abs(dy) > Math.abs(dx) && dy !== 0)
-      || (e.deltaMode === 0 && Math.abs(dx) < 1 && Math.abs(dy) >= 50);
-    if (!isMouseVertical) return; // let trackpads and other gestures pass through
-    const max = Math.max(0, el.scrollWidth - el.clientWidth);
-    const intendsRight = dy > 0;
-    const intendsLeft = dy < 0;
-    const canLeft = el.scrollLeft > 0;
-    const canRight = el.scrollLeft < max;
-    const shouldHijack = (intendsLeft && canLeft) || (intendsRight && canRight);
-    if (!shouldHijack) return;
-    e.preventDefault();
-    const next = Math.max(0, Math.min(max, el.scrollLeft + dy));
-    if (next !== el.scrollLeft) el.scrollLeft = next;
-  };
-
   const onKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       e.preventDefault();
@@ -170,13 +147,12 @@ function YearRow({ year, projects }: { year: string; projects: Project[] }) {
       <div className="relative">
         <div
           ref={scrollerRef}
-          onWheel={onWheel}
           onKeyDown={onKeyDown}
           tabIndex={0}
           role="region"
           aria-label={`Projects ${year}`}
           data-rowscroller="true"
-          className="no-scrollbar overflow-x-auto snap-x snap-proximity -mx-4 px-4 lg:mx-0 lg:px-0 py-2 flex gap-4 overscroll-contain scroll-x"
+          className="no-scrollbar overflow-x-auto snap-x snap-proximity -mx-4 px-4 lg:mx-0 lg:px-0 py-2 flex gap-4 overscroll-x-contain"
         >
           {projects.map((p) => (
             <Link key={p.slug} href={`/projects/${p.slug}`} className="block snap-start shrink-0 w-60">
