@@ -346,11 +346,51 @@ async function addProject() {
     }
   });
 
+  const { imageMode } = await prompts({
+    type: "select",
+    name: "imageMode",
+    message: "Gallery images input",
+    choices: [
+      { title: "Add images one by one", value: "individual" },
+      { title: "Import all from a folder", value: "folder" },
+      { title: "Skip", value: "skip" },
+    ],
+    initial: 0,
+  });
+
   const images = [];
-  for (let i = 0; i < 3; i++) {
-    const { img } = await prompts({ type: "text", name: "img", message: `Gallery image ${i + 1} (public path or file path, blank to skip)` });
-    if (!img) break;
-    images.push(normalizeGalleryImageForSlug(base.slug || slugify(base.title), img, i));
+  if (imageMode === "folder") {
+    const { folderPath } = await prompts({
+      type: "text",
+      name: "folderPath",
+      message: "Path to folder containing images",
+      validate: (v) => {
+        if (!v) return "Required";
+        const absPath = path.isAbsolute(v) ? v : path.resolve(REPO_ROOT, v);
+        if (!fs.existsSync(absPath)) return "Folder not found";
+        if (!fs.statSync(absPath).isDirectory()) return "Not a directory";
+        return true;
+      }
+    });
+    if (folderPath) {
+      const absPath = path.isAbsolute(folderPath) ? folderPath : path.resolve(REPO_ROOT, folderPath);
+      const files = fs.readdirSync(absPath)
+        .filter(f => /\.(jpg|jpeg|png|webp|tif|tiff)$/i.test(f))
+        .sort();
+      console.log(`Found ${files.length} image(s) in folder.`);
+      for (let i = 0; i < files.length; i++) {
+        const fullPath = path.join(absPath, files[i]);
+        console.log(`Processing ${i + 1}/${files.length}: ${files[i]}...`);
+        images.push(normalizeGalleryImageForSlug(base.slug || slugify(base.title), fullPath, i));
+      }
+      console.log(`Processed ${images.length} image(s).`);
+    }
+  } else if (imageMode === "individual") {
+    for (let i = 0; i < 10; i++) {
+      const { img } = await prompts({ type: "text", name: "img", message: `Gallery image ${i + 1} (public path or file path, blank to finish)` });
+      if (!img) break;
+      images.push(normalizeGalleryImageForSlug(base.slug || slugify(base.title), img, i));
+    }
   }
 
   const featured = await getFeaturedMediaForAdd(base.slug || slugify(base.title));
@@ -412,29 +452,74 @@ async function editProject() {
   if (poster !== undefined) updated.poster = poster ? normalizePosterForSlug(updated.slug, poster) : "";
 
   // Edit images
+  const { imageEditMode } = await prompts({
+    type: "select",
+    name: "imageEditMode",
+    message: "Gallery images",
+    choices: [
+      { title: "Keep current images", value: "keep" },
+      { title: "Replace all with folder import", value: "folder" },
+      { title: "Edit images individually", value: "individual" },
+      { title: "Clear all images", value: "clear" },
+    ],
+    initial: 0,
+  });
+
   let imgs = Array.isArray(updated.images) ? [...updated.images] : [];
-  for (let i = 0; i < 3; i++) {
-    const cur = imgs[i] || "";
-    const { action } = await prompts({
-      type: "select",
-      name: "action",
-      message: `Image ${i + 1}: ${cur ? cur : "<empty>"}`,
-      choices: [
-        { title: cur ? "Keep" : "Skip", value: "keep" },
-        { title: "Replace/Add", value: "set" },
-        { title: cur ? "Remove" : "Remove (n/a)", value: "remove" },
-      ],
-      initial: 0,
+  
+  if (imageEditMode === "folder") {
+    const { folderPath } = await prompts({
+      type: "text",
+      name: "folderPath",
+      message: "Path to folder containing images",
+      validate: (v) => {
+        if (!v) return "Required";
+        const absPath = path.isAbsolute(v) ? v : path.resolve(REPO_ROOT, v);
+        if (!fs.existsSync(absPath)) return "Folder not found";
+        if (!fs.statSync(absPath).isDirectory()) return "Not a directory";
+        return true;
+      }
     });
-    if (action === "set") {
-      const { img } = await prompts({ type: "text", name: "img", message: `Enter image (public path or file path)`, initial: cur });
-      if (img) imgs[i] = normalizeGalleryImageForSlug(updated.slug, img, i);
-    } else if (action === "remove") {
-      if (cur) imgs.splice(i, 1);
+    if (folderPath) {
+      const absPath = path.isAbsolute(folderPath) ? folderPath : path.resolve(REPO_ROOT, folderPath);
+      const files = fs.readdirSync(absPath)
+        .filter(f => /\.(jpg|jpeg|png|webp|tif|tiff)$/i.test(f))
+        .sort();
+      console.log(`Found ${files.length} image(s) in folder.`);
+      imgs = [];
+      for (let i = 0; i < files.length; i++) {
+        const fullPath = path.join(absPath, files[i]);
+        console.log(`Processing ${i + 1}/${files.length}: ${files[i]}...`);
+        imgs.push(normalizeGalleryImageForSlug(updated.slug, fullPath, i));
+      }
+      console.log(`Processed ${imgs.length} image(s).`);
     }
+  } else if (imageEditMode === "individual") {
+    for (let i = 0; i < 10; i++) {
+      const cur = imgs[i] || "";
+      const { action } = await prompts({
+        type: "select",
+        name: "action",
+        message: `Image ${i + 1}: ${cur ? cur : "<empty>"}`,
+        choices: [
+          { title: cur ? "Keep" : "Skip", value: "keep" },
+          { title: "Replace/Add", value: "set" },
+          { title: cur ? "Remove" : "Remove (n/a)", value: "remove" },
+        ],
+        initial: 0,
+      });
+      if (action === "set") {
+        const { img } = await prompts({ type: "text", name: "img", message: `Enter image (public path or file path)`, initial: cur });
+        if (img) imgs[i] = normalizeGalleryImageForSlug(updated.slug, img, i);
+      } else if (action === "remove") {
+        if (cur) imgs.splice(i, 1);
+      }
+    }
+    imgs = imgs.filter(Boolean);
+  } else if (imageEditMode === "clear") {
+    imgs = [];
   }
-  // Trim to max 3
-  imgs = imgs.filter(Boolean).slice(0, 3);
+  
   updated.images = imgs;
 
   const featured = await getFeaturedMediaForEdit(updated.slug, updated.videoUrl || "");
