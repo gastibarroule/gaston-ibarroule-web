@@ -61,10 +61,17 @@
     "slug": "out-of-body-film-art-installation",
     "role": "Sound Designer, Mixer",
     "year": "2024",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/out-of-body-poster.jpg",
+    "videoUrl": "",
+    "images": [
+      "/galleries/out-of-body-film-art-installation/out-of-body-still-01.jpg",
+      "/galleries/out-of-body-film-art-installation/out-of-body-still-02.jpg",
+      "/galleries/out-of-body-film-art-installation/out-of-body-still-03.jpg",
+      "/galleries/out-of-body-film-art-installation/out-of-body-still-04.jpg"
+    ],
+    "content": "Out Of body, 4K video 29 min with 7.1 surround sound \n\nFocusing on maintenance work at various thresholds of the body, this psychedelic film slips between the cracks of industrial spaces; below ground; across membranes; factory walls; and into orifices and hidden worlds of work where biomedical waste streams are entangled with pharmaceutical production, bacteriology, and reproduction.\n\nThe film is woven together by a series of poems performed by Logan February in which borrowed language accumulates. Sourced from different fields these found poems refer to fluid dynamics, spirituality, medical history, psychoanalysis and reproductive science. \n\nThe film is commissioned and produced by New Museum New York.",
+    "category": "",
+    "featured": false
   },
   {
     "title": "Please don’t shoot (Feature Documentary)",
@@ -123,12 +130,16 @@
   {
     "title": "Flush (Film Art Installation)",
     "slug": "flush-film-art-installation",
-    "role": "Sound Designer, Mixer",
+    "role": "Sound Designer, Mixer, Composer",
     "year": "2023",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/flush-poster.jpg",
+    "videoUrl": "",
+    "images": [
+      "/galleries/flush-film-art-installation/flush-still-01.jpg"
+    ],
+    "content": "Flush, 4K film with, 15 min 7.1 surround sound\n\nBlending documentary, reenactment and poetry Flush focuses on flows of bodily waste in and out of hum/animal bodies in the making of reproductive science. Drawing on animal studies, history of science and fluid mechanics this poetic film blends medical and agricultural jargon that evolved as western scientists, eugenicists, zoologists, farmers and sociologists collaborated throughout the 20th century to control reproduction and in turn formalise gendered normative values within human society. Documenting work at the thresholds of bodies, Beech evokes a poetics of waste which disrupts fixed ideas about the body and its limits.\n\nFlush developed from a collaborative writing project with historian of science Dr. Tamar Novick during Beech’s fellowship at The Max Planck Institute for the History of Science, Berlin.",
+    "category": "",
+    "featured": false
   },
   {
     "title": "Home Sweet Home",
@@ -192,12 +203,18 @@
   {
     "title": "Reproductive Exile (Film Art Installation)",
     "slug": "reproductive-exile-film-art-installation",
-    "role": "Mixer, Composer",
+    "role": "Sound Designer, Mixer, Composer",
     "year": "2023",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/reproductive-exile-poster.jpg",
+    "videoUrl": "",
+    "images": [
+      "/galleries/reproductive-exile-film-art-installation/reproductive-exile-still-01.jpg",
+      "/galleries/reproductive-exile-film-art-installation/reproductive-exile-still-02.jpg",
+      "/galleries/reproductive-exile-film-art-installation/reproductive-exile-still-03.jpg"
+    ],
+    "content": "Reproductive Exile (4K video, 30 min with 5.1 surround sound, 2018-2023) \n\nThe film tracks the experience of a cross-border patient in the commercial surrogacy industry where we encounter this “reproductive exile” on the road, in her car, obsessed with a machine called ‘Eve’—a scientific prosthetic assigned to her as a personalised organ model who she confides in while swabbing, driving, and injecting herself in a seemingly endless loop. In a drug induced hallucination she imagines her inner body flooding - mirroring a medical state referred to as ‘third spacing’ which is an exaggerated response to excessive hormones in which fluids collect in the interstitial space between cells. In this state of overflow the protagonist experiences her body conflated with the nonhuman others that facilitate her fertility treatment, including the pregnant horse whose urine is a resource material for the drugs she injects daily. This film was commissioned by Lafayette Anticipations Paris, Tramway Glasgow and De La Warr Pavilion, UK",
+    "category": "",
+    "featured": false
   },
   {
     "title": "The Signal (Netflix Series)",
@@ -214,10 +231,15 @@
     "slug": "warm-decembers-film-art-installation",
     "role": "Sound Designer, Mixer",
     "year": "2023",
-    "poster": null,
-    "videoUrl": null,
-    "images": [],
-    "content": ""
+    "poster": "/posters/warm-decembers-film-art-installation.jpg",
+    "videoUrl": "",
+    "images": [
+      "/galleries/warm-decembers-film-art-installation/warm-decembers-still-01.jpg",
+      "/galleries/warm-decembers-film-art-installation/warm-decembers-still-02.jpg"
+    ],
+    "content": "Warm Decembers, 4K film (27 min with 5.1 surround sound)\n\nBased on a poem by Eve Kosofsky Sedgwick Warm Decembers was scripted through an exchange with writer Cassie Westwood who features in the film reflecting on her own gender transition she describes how the diverse attitude to poetic waste of authors like Sedgwick has helped her make sense of her own false starts and necessary revisions; as she works to integrate memories, desires, or identifications that she was led to believe were unacceptable – with the identity she was assigned at birth. Framed by Cassie’s personal experience of transition and Sedgwick’s notes the film adopts creative approaches to psychic and poetic waste and describes the act of building subjectivity from emotional experiences that you are left with.",
+    "category": "",
+    "featured": false
   },
   {
     "title": "1899 (Netflix Series)",
