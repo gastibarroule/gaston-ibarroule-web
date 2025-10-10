@@ -94,7 +94,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             {project.poster ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={project.poster} alt={project.title} className="w-full h-full object-cover" />
-            ) : null}
+            ) : (
+              <div className="w-full h-full bg-black flex items-center justify-center">
+                <span className="text-white/90 text-base font-semibold uppercase tracking-[0.2em] drop-shadow-[0_0_10px_rgba(255,255,255,0.55)]">
+                  COMING SOON
+                </span>
+              </div>
+            )}
           </div>
         </div>
         <div className="order-2">
@@ -103,10 +109,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           {project.content ? (
             <div className="mt-3 text-sm whitespace-pre-wrap">{project.content}</div>
           ) : null}
-          {/* Stacked gallery under description on small screens */}
-          <div className="lg:hidden">
-            <ProjectGalleryStack images={project.images || []} />
-          </div>
         </div>
         {/* Horizontal gallery on large screens only */}
         <div className="h-full flex items-center hidden lg:flex order-3">
@@ -114,33 +116,39 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <ProjectGallery images={project.images || []} />
           </div>
         </div>
-        <div className="order-4">
-          {fileVideo ? (
-            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-              <video
-                className="absolute inset-0 w-full h-full object-contain rounded border border-white/10 bg-black"
-                controls
-                preload="metadata"
-                poster={project.poster || undefined}
-              >
-                <source src={fileVideo} type={mimeForVideo(fileVideo)} />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          ) : embedUrl ? (
-            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-              <iframe
-                src={embedUrl}
-                className="absolute inset-0 w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                title="Project video"
-              />
-            </div>
-          ) : isHtml ? (
-            <EmbedHtml html={project.videoUrl || ""} />
-          ) : null}
+        {(fileVideo || embedUrl || isHtml) ? (
+          <div className="order-3 lg:order-4">
+            {fileVideo ? (
+              <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                <video
+                  className="absolute inset-0 w-full h-full object-contain rounded border border-white/10 bg-black"
+                  controls
+                  preload="metadata"
+                  poster={project.poster || undefined}
+                >
+                  <source src={fileVideo} type={mimeForVideo(fileVideo)} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            ) : embedUrl ? (
+              <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                <iframe
+                  src={embedUrl}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  title="Project video"
+                />
+              </div>
+            ) : (
+              <EmbedHtml html={project.videoUrl || ""} />
+            )}
+          </div>
+        ) : null}
+        {/* Stacked gallery under description on small screens (moved below video) */}
+        <div className="lg:hidden order-4">
+          <ProjectGalleryStack images={project.images || []} />
         </div>
       </div>
     </article>

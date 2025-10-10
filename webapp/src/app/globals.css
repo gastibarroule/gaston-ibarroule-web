@@ -205,21 +205,45 @@ a[role="button"],
 }
 
 .chip {
-  padding: 0.5rem 0.75rem;
-  border-radius: 10px;
-  border: 1px solid var(--line);
+  padding: 0.55rem 0.85rem;
+  min-height: 40px;
+  border-radius: 10px !important; /* match main menu shape */
+  border: 1px solid color-mix(in oklab, var(--line), white 18%);
   color: var(--text);
   background: transparent;
-  transition: transform 260ms ease, font-weight 260ms ease;
+  font-size: 0.95rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap; /* keep single line */
+  transition: background-color 160ms ease, border-color 160ms ease;
 }
-.chip:hover { background: var(--elev-1); }
+.chip:hover { background: color-mix(in oklab, var(--elev-1), white 6%); }
 .chip--active {
+  /* flat, crisp active state for readability */
+  background: var(--elev-1);
+  color: var(--text);
+  border-color: color-mix(in oklab, var(--line), white 25%);
+  font-weight: 600;
+}
+
+/* Distinct style for the "All" chip (outline by default; filled when active) */
+.chip--all {
   background: transparent;
   color: var(--text);
   border-color: var(--line);
   font-weight: 600;
-  transform: scale(1.02);
 }
+.chip--all:hover { background: color-mix(in oklab, var(--elev-1), white 6%); }
+/* When "All" is the active filter, highlight with same dark gray as main menu */
+.chip--all.chip--active {
+  background: var(--elev-1);
+  color: var(--text);
+  border-color: color-mix(in oklab, var(--line), white 25%);
+}
+
+/* Horizontal chips row utilities */
+.chips-row { gap: 0.5rem; }
+.chips-row > .chip { scroll-snap-align: start; }
 .scale-up {
   font-weight: 600;
   transform: scale(1.02);
