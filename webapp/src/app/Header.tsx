@@ -29,6 +29,9 @@ export function Header() {
           <Link href="/contact" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
             Contact
           </Link>
+          <Link href="/metasound-support" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
+            Metasound
+          </Link>
         </nav>
 
         <div className="md:hidden">
@@ -55,7 +58,7 @@ export function Header() {
         className={`md:hidden border-t border-white/10 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none hidden"}`}
       >
         <div className="container py-3">
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-4 gap-2">
             <Link href="/projects" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Projects
             </Link>
@@ -64,6 +67,9 @@ export function Header() {
             </Link>
             <Link href="/contact" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Contact
+            </Link>
+            <Link href="/metasound-support" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+              Metasound
             </Link>
           </div>
         </div>
