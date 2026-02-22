@@ -87,10 +87,10 @@ export default function MetasoundPrivacy() {
                             If you have any questions about this Privacy Policy, please reach out to us.
                         </p>
                         <a
-                            href="mailto:support@metasoundapp.com"
+                            href="mailto:metasound.info@gmail.com"
                             className="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold transition-transform hover:-translate-y-0.5 hover:shadow-lg"
                         >
-                            support@metasoundapp.com
+                            metasound.info@gmail.com
                         </a>
                     </div>
 

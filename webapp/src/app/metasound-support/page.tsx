@@ -78,7 +78,7 @@ export default function MetasoundSupport() {
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
             <a
-              href="mailto:support@metasoundapp.com"
+              href="mailto:metasound.info@gmail.com"
               className="w-full sm:w-auto text-center bg-white text-black px-8 py-3.5 rounded-full font-semibold transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-white/20"
             >
               Contact Support
@@ -164,7 +164,7 @@ export default function MetasoundSupport() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="mailto:support@metasoundapp.com"
+              href="mailto:metasound.info@gmail.com"
               className="w-full sm:w-auto bg-white text-black px-8 py-3.5 rounded-full font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

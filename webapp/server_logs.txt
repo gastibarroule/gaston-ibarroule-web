@@ -1,0 +1,27 @@
+
+> webapp@0.1.0 dev:3001
+> next dev -p 3001 --turbopack
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/package-lock.json
+
+   ▲ Next.js 15.5.2 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.0.83:3001
+
+ ✓ Starting...
+ ✓ Ready in 1021ms
+ ○ Compiling /metasound-privacy ...
+ ✓ Compiled /metasound-privacy in 2.1s
+ HEAD /metasound-privacy 200 in 2415ms
+ GET /metasound-privacy 200 in 147ms
+ ✓ Compiled /metasound-support in 277ms
+ GET /metasound-support 200 in 330ms
+ GET /metasound-support 200 in 47ms
+ ✓ Compiled in 90ms
+ GET /metasound-support 200 in 54ms
+ ✓ Compiled in 160ms
