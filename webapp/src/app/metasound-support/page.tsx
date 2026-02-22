@@ -116,7 +116,7 @@ export default function MetasoundSupport() {
 
         {/* Horizontal Scroll Gallery */}
         <div className="flex gap-6 overflow-x-auto px-4 pb-8 snap-x snap-mandatory overscroll-x-contain container mx-auto no-scrollbar" style={{ WebkitOverflowScrolling: "touch" }}>
-          {[2, 3, 4, 5].map((num) => (
+          {[2, 3, 4, 5, 6].map((num) => (
             <div
               key={num}
               className="shrink-0 w-[260px] sm:w-[320px] snap-center rounded-[24px] overflow-hidden bg-neutral-900 border border-white/10 shadow-xl transition-all hover:border-white/20 cursor-grab active:cursor-grabbing group relative"
