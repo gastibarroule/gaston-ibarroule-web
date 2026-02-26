@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import siteData from "@/data/site.json";
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,37 +30,14 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
-export default function MetasoundSupport() {
-  const faqs = [
-    {
-      question: "What audio formats does Metasound support for recording?",
-      answer: "Metasound supports professional-grade audio recording in WAV format at 48kHz/24bit (Pro) and 44.1kHz/16bit (High). For longer sessions or when storage space is a priority, you can also record in compressed M4A format."
-    },
-    {
-      question: "How does the Universal Category System (UCS) integration work?",
-      answer: "Metasound fully integrates the Universal Category System (UCS v8.2) for standardizing sound effects metadata. When you tag a recording, you can assign it a Category, Subcategory, CatID, FX Name, Creator ID, Source ID, and Location. Metasound then automatically renames the file to a UCS-compliant format (e.g., ANMLDog_Bark-Close_Creator_Mic_Location.wav) and can seamlessly organize your files into a matching folder hierarchy."
-    },
-    {
-      question: "How does the Voice Slate feature transcribe audio?",
-      answer: "The Voice Slate feature utilizes WhisperKit (an on-device machine learning model) to transcribe speech to text. By simply tapping the microphone icon next to the FX Name field, you can dictate your file names quickly without typing. This transcription is completely private, happening entirely on your device."
-    },
-    {
-      question: "Can I automatically append location metadata to my recordings?",
-      answer: "Yes, Metasound can autofill location metadata using your device's GPS. With location permissions enabled, it performs reverse geocoding to attach precise mapping data and full addresses to the recordings' metadata, which is embedded securely into the file."
-    },
-    {
-      question: "How do I export my audio files and metadata?",
-      answer: "You can easily export your data by navigating to the Settings or directly from the file browser. Metasound allows you to export filtered subsets of your library as complete ZIP archives, which include your audio files, any attached camera photos, and a comprehensive CSV file containing all UCS metadata."
-    },
-    {
-      question: "Are my recordings backed up to the cloud?",
-      answer: "Metasound features incremental, one-way backups to secure your data. You can enable automatic syncing to iCloud Drive or Google Drive (with Dropbox coming soon) in the Cloud Sync settings. It will securely copy your media files and your recordings_database.json without overwriting newer manual changes."
-    },
-    {
-      question: "Can I import existing audio files into Metasound?",
-      answer: "Absolutely. Using the iOS Share Extension, you can import external audio files (such as .wav, .m4a, .mp3, .aiff, and .caf) directly into Metasound from other apps. They'll be automatically moved into your Metasound Documents folder for tagging and organization."
-    }
-  ];
+export default function SonidataSupport() {
+  const s = siteData.sonidataSupport || {
+    title: "Sonidata",
+    subtitle: "Pro Field Recording.\nSimplified.",
+    email: "sonidata.info@gmail.com",
+    faqs: []
+  };
+  const faqs = s.faqs;
 
   return (
     <div className="flex flex-col items-center pt-8 pb-20 text-white selection:bg-white/20">
@@ -71,14 +49,14 @@ export default function MetasoundSupport() {
             Official Suppport
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-            Metasound
+            {s.title}
           </h1>
-          <p className="text-xl md:text-2xl text-neutral-400 font-light mb-10 max-w-lg mx-auto md:mx-0">
-            Pro Field Recording.<br />Simplified.
+          <p className="text-xl md:text-2xl text-neutral-400 font-light mb-10 max-w-lg mx-auto md:mx-0 whitespace-pre-line">
+            {s.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
             <a
-              href="mailto:metasound.info@gmail.com"
+              href={`mailto:${s.email}`}
               className="w-full sm:w-auto text-center bg-white text-black px-8 py-3.5 rounded-full font-semibold transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-white/20"
             >
               Contact Support
@@ -96,8 +74,8 @@ export default function MetasoundSupport() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-white/10 rounded-full blur-[80px] -z-10 pointer-events-none" />
           <div className="relative rounded-[32px] overflow-hidden shadow-2xl border-[6px] border-[#2a2a2d] bg-black transform rotate-y-[-5deg] rotate-x-[2deg] transition-transform duration-700 hover:rotate-y-0 hover:rotate-x-0">
             <Image
-              src="/metasound/1.png"
-              alt="Metasound App Demo"
+              src="/sonidata/1.png"
+              alt="Sonidata App Demo"
               width={1284}
               height={2778}
               className="w-full h-auto block"
@@ -123,8 +101,8 @@ export default function MetasoundSupport() {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none" />
               <Image
-                src={`/metasound/${num}.png`}
-                alt={`Metasound feature ${num}`}
+                src={`/sonidata/${num}.png`}
+                alt={`Sonidata feature ${num}`}
                 width={1284}
                 height={2778}
                 className="w-full h-auto block transform group-hover:scale-105 transition-transform duration-500 ease-out"
@@ -140,7 +118,7 @@ export default function MetasoundSupport() {
         <div className="mb-12">
           <h2 className="text-3xl font-semibold mb-4">Frequently Asked Questions</h2>
           <p className="text-neutral-400 font-light">
-            Everything you need to know about setting up and using Metasound for your field recordings.
+            Everything you need to know about setting up and using Sonidata for your field recordings.
           </p>
         </div>
 
@@ -164,7 +142,7 @@ export default function MetasoundSupport() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="mailto:metasound.info@gmail.com"
+              href={`mailto:${s.email}`}
               className="w-full sm:w-auto bg-white text-black px-8 py-3.5 rounded-full font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

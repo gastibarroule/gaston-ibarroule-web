@@ -1,4 +1,11 @@
-export default function MetasoundPrivacy() {
+import siteData from "@/data/site.json";
+
+export default function SonidataPrivacy() {
+    const p = siteData.sonidataPrivacy || {
+        lastUpdated: "February 2026",
+        email: "sonidata.info@gmail.com"
+    };
+
     return (
         <div className="flex flex-col items-center pt-12 pb-24 text-white selection:bg-white/20">
             <div className="w-full max-w-3xl mx-auto px-4">
@@ -9,17 +16,17 @@ export default function MetasoundPrivacy() {
                         Legal
                     </div>
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                        Metasound Privacy Policy
+                        Sonidata Privacy Policy
                     </h1>
                     <p className="text-neutral-400 text-lg">
-                        Last updated: February 2026
+                        Last updated: {p.lastUpdated}
                     </p>
                 </div>
 
                 {/* Content */}
                 <div className="prose prose-invert prose-neutral max-w-none text-neutral-300">
                     <p className="lead text-lg text-neutral-200 mb-8">
-                        Gaston Ibarroule (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the Metasound iOS application (the &quot;App&quot;). We respect your privacy and are committed to protecting it through our compliance with this policy. Metasound is designed with privacy at its core, ensuring your audio recordings and metadata remain absolutely in your control.
+                        Gaston Ibarroule (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the Sonidata iOS application (the &quot;App&quot;). We respect your privacy and are committed to protecting it through our compliance with this policy. Sonidata is designed with privacy at its core, ensuring your audio recordings and metadata remain absolutely in your control.
                     </p>
 
                     <section className="mb-10">
@@ -87,10 +94,10 @@ export default function MetasoundPrivacy() {
                             If you have any questions about this Privacy Policy, please reach out to us.
                         </p>
                         <a
-                            href="mailto:metasound.info@gmail.com"
+                            href={`mailto:${p.email}`}
                             className="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold transition-transform hover:-translate-y-0.5 hover:shadow-lg"
                         >
-                            metasound.info@gmail.com
+                            {p.email}
                         </a>
                     </div>
 

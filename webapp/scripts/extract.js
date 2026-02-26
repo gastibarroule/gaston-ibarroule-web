@@ -171,7 +171,17 @@ function main() {
       .trim();
     site.homeIntro = intro;
   }
-  fs.writeFileSync(siteFile, JSON.stringify(site, null, 2));
+
+  // Preserve existing Sonidata data if present
+  let existingSite = {};
+  if (fs.existsSync(siteFile)) {
+    try {
+      existingSite = JSON.parse(fs.readFileSync(siteFile, 'utf8'));
+    } catch (_) { }
+  }
+  const finalSite = { ...existingSite, ...site };
+
+  fs.writeFileSync(siteFile, JSON.stringify(finalSite, null, 2));
   console.log(`Wrote site info to ${path.relative(webappDir, siteFile)}`);
 }
 

@@ -77,7 +77,7 @@ function getImageDims(absPath) {
     const [wStr, hStr] = out.split("x");
     const w = parseInt(wStr, 10); const h = parseInt(hStr, 10);
     if (Number.isFinite(w) && Number.isFinite(h)) return { width: w, height: h };
-  } catch (_) {}
+  } catch (_) { }
   return null;
 }
 
@@ -327,7 +327,7 @@ async function getFeaturedMediaForEdit(slug, current) {
 async function addProject() {
   const projects = readJson(PROJECTS_PATH, []);
   const base = await prompts([
-    { type: "text", name: "title", message: "Title", validate: (v) => (!!v ? true : "Required" ) },
+    { type: "text", name: "title", message: "Title", validate: (v) => (!!v ? true : "Required") },
     { type: (prev) => (prev ? "text" : null), name: "slug", message: "Slug", initial: (prev) => slugify(prev) },
     { type: "text", name: "role", message: "Role (e.g., Graphic Designer)" },
     { type: "text", name: "category", message: "Category (optional)" },
@@ -466,7 +466,7 @@ async function editProject() {
   });
 
   let imgs = Array.isArray(updated.images) ? [...updated.images] : [];
-  
+
   if (imageEditMode === "folder") {
     const { folderPath } = await prompts({
       type: "text",
@@ -519,7 +519,7 @@ async function editProject() {
   } else if (imageEditMode === "clear") {
     imgs = [];
   }
-  
+
   updated.images = imgs;
 
   const featured = await getFeaturedMediaForEdit(updated.slug, updated.videoUrl || "");
@@ -608,6 +608,98 @@ async function editContact() {
   console.log("Saved contact info.");
 }
 
+async function editSonidataSupport() {
+  const site = readJson(SITE_PATH, {});
+  site.sonidataSupport = site.sonidataSupport || {};
+  const s = site.sonidataSupport;
+
+  const base = await prompts([
+    { type: "text", name: "title", message: "Title", initial: s.title || "Sonidata" },
+    { type: "text", name: "subtitle", message: "Subtitle (use \\n for newline)", initial: s.subtitle || "" },
+    { type: "text", name: "email", message: "Support Email", initial: s.email || "sonidata.info@gmail.com" },
+  ]);
+
+  s.title = base.title;
+  s.subtitle = base.subtitle;
+  s.email = base.email;
+
+  // FAQ Editor
+  let faqs = Array.isArray(s.faqs) ? [...s.faqs] : [];
+  for (; ;) {
+    const { faqAction } = await prompts({
+      type: "select",
+      name: "faqAction",
+      message: `Sonidata FAQs (${faqs.length})`,
+      choices: [
+        { title: "Add FAQ", value: "add" },
+        ...(faqs.length ? [{ title: "Edit/Delete FAQ", value: "edit" }] : []),
+        { title: "Back", value: "back" },
+      ],
+    });
+
+    if (faqAction === "back" || faqAction === undefined) break;
+
+    if (faqAction === "add") {
+      const newFaq = await prompts([
+        { type: "text", name: "question", message: "Question" },
+        { type: "text", name: "answer", message: "Answer" },
+      ]);
+      if (newFaq.question && newFaq.answer) faqs.push(newFaq);
+    } else if (faqAction === "edit") {
+      const { idx } = await prompts({
+        type: "select",
+        name: "idx",
+        message: "Select FAQ to edit",
+        choices: faqs.map((f, i) => ({ title: f.question, value: i })),
+      });
+
+      const { subAction } = await prompts({
+        type: "select",
+        name: "subAction",
+        message: "Action",
+        choices: [
+          { title: "Edit", value: "edit" },
+          { title: "Delete", value: "delete" },
+          { title: "Cancel", value: "cancel" },
+        ],
+      });
+
+      if (subAction === "edit") {
+        const edited = await prompts([
+          { type: "text", name: "question", message: "Question", initial: faqs[idx].question },
+          { type: "text", name: "answer", message: "Answer", initial: faqs[idx].answer },
+        ]);
+        if (edited.question && edited.answer) faqs[idx] = edited;
+      } else if (subAction === "delete") {
+        faqs.splice(idx, 1);
+      }
+    }
+  }
+
+  s.faqs = faqs;
+  site.sonidataSupport = s;
+  writeJson(SITE_PATH, site);
+  console.log("Saved Sonidata Support page info.");
+}
+
+async function editSonidataPrivacy() {
+  const site = readJson(SITE_PATH, {});
+  site.sonidataPrivacy = site.sonidataPrivacy || {};
+  const p = site.sonidataPrivacy;
+
+  const base = await prompts([
+    { type: "text", name: "lastUpdated", message: "Last Updated Date (e.g., February 2026)", initial: p.lastUpdated || "" },
+    { type: "text", name: "email", message: "Contact Email", initial: p.email || "sonidata.info@gmail.com" },
+  ]);
+
+  p.lastUpdated = base.lastUpdated;
+  p.email = base.email;
+
+  site.sonidataPrivacy = p;
+  writeJson(SITE_PATH, site);
+  console.log("Saved Sonidata Privacy page info.");
+}
+
 async function importVideoToProject() {
   const projects = readJson(PROJECTS_PATH, []);
   const project = await pickProject(projects);
@@ -629,7 +721,7 @@ async function importVideoToProject() {
 }
 
 async function mainMenu() {
-  for (;;) {
+  for (; ;) {
     const { action } = await prompts({
       type: "select",
       name: "action",
@@ -641,6 +733,8 @@ async function mainMenu() {
         { title: "Edit About page", value: "about" },
         { title: "Edit Home intro", value: "home" },
         { title: "Edit Contact page", value: "contact" },
+        { title: "Edit Sonidata Support page", value: "ms_support" },
+        { title: "Edit Sonidata Privacy page", value: "ms_privacy" },
         { title: "Import video to a project", value: "video" },
         { title: "Exit", value: "exit" },
       ],
@@ -654,6 +748,8 @@ async function mainMenu() {
       else if (action === "about") await editAbout();
       else if (action === "home") await editHomeIntro();
       else if (action === "contact") await editContact();
+      else if (action === "ms_support") await editSonidataSupport();
+      else if (action === "ms_privacy") await editSonidataPrivacy();
       else if (action === "video") await importVideoToProject();
     } catch (err) {
       console.error("Error:", err?.message || err);

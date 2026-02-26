@@ -11,5 +11,44 @@
       "crew-united": "https://www.crew-united.com/en/Gaston-Ibarroule_452857.html#!searchterm=gaston%20ibarroule"
     }
   },
-  "homeIntro": "Sound designer & Composer from Argentina, based in Berlin. My work spans film, series, documentary, art installations, TV & ads."
+  "homeIntro": "Sound designer & Composer from Argentina, based in Berlin. My work spans film, series, documentary, art installations, TV & ads.",
+  "sonidataSupport": {
+    "title": "Sonidata",
+    "subtitle": "Pro Field Recording.\nSimplified.",
+    "email": "sonidata.info@gmail.com",
+    "faqs": [
+      {
+        "question": "What audio formats does Sonidata support for recording?",
+        "answer": "Sonidata supports professional-grade audio recording in WAV format at 48kHz/24bit (Pro) and 44.1kHz/16bit (High). For longer sessions or when storage space is a priority, you can also record in compressed M4A format."
+      },
+      {
+        "question": "How does the Universal Category System (UCS) integration work?",
+        "answer": "Sonidata fully integrates the Universal Category System (UCS v8.2) for standardizing sound effects metadata. When you tag a recording, you can assign it a Category, Subcategory, CatID, FX Name, Creator ID, Source ID, and Location. Sonidata then automatically renames the file to a UCS-compliant format (e.g., ANMLDog_Bark-Close_Creator_Mic_Location.wav) and can seamlessly organize your files into a matching folder hierarchy."
+      },
+      {
+        "question": "How does the Voice Slate feature transcribe audio?",
+        "answer": "The Voice Slate feature utilizes WhisperKit (an on-device machine learning model) to transcribe speech to text. By simply tapping the microphone icon next to the FX Name field, you can dictate your file names quickly without typing. This transcription is completely private, happening entirely on your device."
+      },
+      {
+        "question": "Can I automatically append location metadata to my recordings?",
+        "answer": "Yes, Sonidata can autofill location metadata using your device's GPS. With location permissions enabled, it performs reverse geocoding to attach precise mapping data and full addresses to the recordings' metadata, which is embedded securely into the file."
+      },
+      {
+        "question": "How do I export my audio files and metadata?",
+        "answer": "You can easily export your data by navigating to the Settings or directly from the file browser. Sonidata allows you to export filtered subsets of your library as complete ZIP archives, which include your audio files, any attached camera photos, and a comprehensive CSV file containing all UCS metadata."
+      },
+      {
+        "question": "Are my recordings backed up to the cloud?",
+        "answer": "Sonidata features incremental, one-way backups to secure your data. You can enable automatic syncing to iCloud Drive or Google Drive (with Dropbox coming soon) in the Cloud Sync settings. It will securely copy your media files and your recordings_database.json without overwriting newer manual changes."
+      },
+      {
+        "question": "Can I import existing audio files into Sonidata?",
+        "answer": "Absolutely. Using the iOS Share Extension, you can import external audio files (such as .wav, .m4a, .mp3, .aiff, and .caf) directly into Sonidata from other apps. They'll be automatically moved into your Sonidata Documents folder for tagging and organization."
+      }
+    ]
+  },
+  "sonidataPrivacy": {
+    "lastUpdated": "February 2026",
+    "email": "sonidata.info@gmail.com"
+  }
 }

@@ -26,3 +26,70 @@
  GET /metasound-support 200 in 54ms
  ✓ Compiled in 160ms
  ✓ Compiled in 127ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1211ms
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.gl4jq9ef3ec'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.gl4jq9ef3ec'
+}
+[Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.r0f85zaewa'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.r0f85zaewa'
+}
+[Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.g64e40x2tj4'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.g64e40x2tj4'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.fm1pfx6o2io'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.fm1pfx6o2io'
+}
+[Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/server/app/metasound-support/page/app-build-manifest.json'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.jhang5nnw2h'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.jhang5nnw2h'
+}
+[Error: ENOENT: no such file or directory, open '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.5pv75y54elf'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/webapp/.next/static/development/_buildManifest.js.tmp.5pv75y54elf'
+}
+ ✓ Compiled in 107ms
+ ✓ Compiled in 66ms
+ ✓ Compiled in 65ms
+ ✓ Compiled in 53ms
+ ✓ Compiled in 51ms

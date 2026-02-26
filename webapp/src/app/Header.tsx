@@ -29,8 +29,8 @@ export function Header() {
           <Link href="/contact" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
             Contact
           </Link>
-          <Link href="/metasound-support" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
-            Metasound
+          <Link href="/sonidata-support" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
+            Sonidata
           </Link>
         </nav>
 
@@ -68,8 +68,8 @@ export function Header() {
             <Link href="/contact" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Contact
             </Link>
-            <Link href="/metasound-support" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
-              Metasound
+            <Link href="/sonidata-support" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+              Sonidata
             </Link>
           </div>
         </div>
