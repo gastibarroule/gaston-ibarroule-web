@@ -29,9 +29,44 @@ export function Header() {
           <Link href="/contact" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
             Contact
           </Link>
-          <Link href="/sonidata-support" className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter">
-            Sonidata
-          </Link>
+
+          {/* Sonidata with hover dropdown */}
+          <div className="relative group">
+            <Link
+              href="/sonidata-support"
+              className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter inline-flex items-center gap-1"
+            >
+              Sonidata
+              <svg
+                width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                className="opacity-50 group-hover:opacity-80 transition-transform duration-200 group-hover:translate-y-[1px]"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </Link>
+
+            {/* Dropdown */}
+            <div className="absolute right-0 top-full pt-2 opacity-0 pointer-events-none translate-y-1 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out z-50">
+              <div className="w-48 bg-[#1c1c1e]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden py-1.5">
+                <Link
+                  href="/sonidata-support"
+                  className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
+                >
+                  <span className="text-[15px]">🏠</span>
+                  <span>Overview</span>
+                </Link>
+                <div className="h-px bg-white/8 mx-3 my-1" />
+                <Link
+                  href="/sonidata-support/recording"
+                  className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
+                >
+                  <span className="text-[15px]">📖</span>
+                  <span>Documentation</span>
+                </Link>
+              </div>
+            </div>
+          </div>
         </nav>
 
         <div className="md:hidden">
@@ -52,7 +87,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile sub-row that displaces content and matches header/container width */}
+      {/* Mobile sub-row */}
       <div
         id="global-mobile-menu"
         className={`md:hidden border-t border-white/10 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none hidden"}`}

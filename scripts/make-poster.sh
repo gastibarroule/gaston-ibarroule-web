@@ -12,7 +12,7 @@ set -euo pipefail
 #   scripts/make-poster.sh /path/to/image.jpg webapp/public/posters/my-project.jpg 4:5 4 1400
 #   scripts/make-poster.sh input.png   # -> input_poster.jpg next to input
 
-if ! command -v ffmpeg >/dev/null 2>&1 || ! command_v_ffprobe=$(command -v ffprobe); then
+if ! command -v ffmpeg >/dev/null 2>&1 || ! command -v ffprobe >/dev/null 2>&1; then
   echo "Error: ffmpeg/ffprobe not found. Install via 'brew install ffmpeg' (macOS)." >&2
   exit 1
 fi

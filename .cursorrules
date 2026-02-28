@@ -1,8 +1,43 @@
 # Cursor Project Rules
 
+## ⛔ AUTO-GENERATED FILES — DO NOT EDIT
+
+The following directories contain auto-generated build output. **Never edit
+these files directly.** They are overwritten every time the deploy script
+(`scripts/push-to-github.command`) runs.
+
+| Path | What it is | How it's generated |
+|---|---|---|
+| `docs/` | GitHub Pages deploy target | rsync'd from `webapp/out/` |
+| `docs/**/*.html` | Static HTML pages | Next.js static export |
+| `docs/**/*.css` | Compiled stylesheets | Tailwind + Next.js build |
+| `docs/**/*.js` | Client-side bundles | Next.js build |
+| `docs/**/*.txt` | RSC payloads | Next.js build |
+| `webapp/out/` | Next.js static export output | `npm run build` (gitignored) |
+| `webapp/.next/` | Next.js build cache | `npm run build` (gitignored) |
+
+### Build pipeline
+
+```
+webapp/src/  ──(npm run build)──▸  webapp/out/  ──(rsync)──▸  docs/  ──(git push)──▸  GitHub Pages
+  (source)                        (build output)              (deploy target)         (live site)
+```
+
+### Where to make changes
+
+- **All code edits** go in `webapp/src/` (components, pages, CSS, data, etc.)
+- **Static assets** (images, icons, fonts) go in `webapp/public/`
+- **Project data** lives in `webapp/src/data/` — or re-run `npm run extract`
+- The root-level `.html` files (`index.html`, `about.html`, etc.) and
+  `assets/css/styles.css` are **legacy fallback pages** and are not part of the
+  Next.js build pipeline.
+
+---
+
 ## Goals
 - The `docs/` folder is the deploy target for GitHub Pages and must not be deleted.
 - The `webapp/` folder contains the Next.js source used for local development and rebuilds.
+- The site must always use a **dark theme** — no light mode.
 
 ## Editing Rules
 1. Do not remove or rename `docs/` or its `CNAME`.
@@ -42,7 +77,3 @@
 ## Local Run
 - Built site (1:1 live): `npx http-server docs -p 3000 -e html -c-1`
 - Source app: `cd webapp && npm install && npm run dev`
-
-## Structure
-- Keep `webapp/` as source of truth for future edits.
-- Keep `docs/` as generated static output; do not hand-edit except index copies for clean URLs.

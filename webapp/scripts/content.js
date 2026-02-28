@@ -45,6 +45,17 @@ function slugify(input) {
     .replace(/-+/g, "-");
 }
 
+/** Strip surrounding single or double quotes that terminals inject for paths with spaces */
+function stripQuotes(s) {
+  if (!s) return s;
+  s = String(s).trim();
+  if ((s.startsWith("'") && s.endsWith("'")) ||
+    (s.startsWith('"') && s.endsWith('"'))) {
+    s = s.slice(1, -1);
+  }
+  return s;
+}
+
 function publicPathExists(p) {
   if (!p) return false;
   const rel = p.startsWith("/") ? p.slice(1) : p;
@@ -108,6 +119,7 @@ function runCompress(inputAbs, outputAbs, maxWidth = "1600", quality = "4") {
 
 function classifyPath(inputPath) {
   if (!inputPath) return { type: "none" };
+  inputPath = stripQuotes(inputPath);
   // First, if it resolves inside public and exists, treat as public site path
   if (inputPath.startsWith("/")) {
     const rel = inputPath.slice(1);
@@ -134,6 +146,7 @@ function sanitizeName(name) {
 
 function normalizePosterForSlug(slug, inputPath) {
   if (!inputPath) return "";
+  inputPath = stripQuotes(inputPath);
   const cls = classifyPath(inputPath);
   const outPublic = `/posters/${sanitizeName(slug)}.jpg`;
   const outAbs = publicPathToAbs(outPublic);
@@ -152,6 +165,7 @@ function normalizePosterForSlug(slug, inputPath) {
 
 function normalizeGalleryImageForSlug(slug, inputPath, index) {
   if (!inputPath) return "";
+  inputPath = stripQuotes(inputPath);
   const cls = classifyPath(inputPath);
   const base = sanitizeName(path.basename(inputPath, path.extname(inputPath)) || `img-${index + 1}`);
   const outPublic = `/galleries/${sanitizeName(slug)}/${base}.jpg`;
@@ -177,6 +191,7 @@ function normalizeGalleryImageForSlug(slug, inputPath, index) {
 
 function normalizeVideoForSlug(slug, inputPath) {
   if (!inputPath) return "";
+  inputPath = stripQuotes(inputPath);
   const cls = classifyPath(inputPath);
   // If already a public path in /public, keep as-is (prefer /videos but don't enforce)
   if (cls.type === "public") {
@@ -341,7 +356,7 @@ async function addProject() {
     message: "Poster path (public path like /posters/omni.jpg OR a file path)",
     validate: (v) => {
       if (!v) return true;
-      const cls = classifyPath(v);
+      const cls = classifyPath(stripQuotes(v));
       return (cls.type === "public" || cls.type === "file") ? true : "Not found: provide public path under webapp/public or a valid file path";
     }
   });
