@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import siteData from "@/data/site.json";
 
+/* ── Accordion item for FAQ ─────────────────────────────────── */
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,14 +31,148 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   );
 }
 
+/* ── Types for documentation content blocks ─────────────────── */
+type ContentBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "code"; text: string }
+  | { type: "tip"; text: string }
+  | { type: "steps"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] };
+
+type DocSection = {
+  id: string;
+  title: string;
+  icon: string;
+  content: ContentBlock[];
+};
+
+/* ── Content block renderer ─────────────────────────────────── */
+function ContentBlockRenderer({ block }: { block: ContentBlock }) {
+  switch (block.type) {
+    case "paragraph":
+      return <p className="text-neutral-400 leading-relaxed mb-4">{block.text}</p>;
+
+    case "heading":
+      return <h4 className="text-white font-semibold text-base mt-6 mb-2">{block.text}</h4>;
+
+    case "code":
+      return (
+        <div className="bg-black/40 border border-white/10 rounded-xl px-4 py-3 mb-4 font-mono text-sm text-neutral-300 overflow-x-auto">
+          {block.text}
+        </div>
+      );
+
+    case "tip":
+      return (
+        <div className="flex items-start gap-3 bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 mb-4">
+          <span className="shrink-0 mt-0.5 text-neutral-500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+          </span>
+          <p className="text-neutral-400 text-sm leading-relaxed">{block.text}</p>
+        </div>
+      );
+
+    case "steps":
+      return (
+        <ol className="list-none space-y-3 mb-4">
+          {block.items.map((step, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <span className="shrink-0 w-6 h-6 rounded-full bg-white/10 text-white/70 text-xs flex items-center justify-center font-semibold mt-0.5">
+                {i + 1}
+              </span>
+              <span className="text-neutral-400 leading-relaxed">{step}</span>
+            </li>
+          ))}
+        </ol>
+      );
+
+    case "table":
+      return (
+        <div className="overflow-x-auto mb-4 rounded-xl border border-white/10">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-white/10 bg-white/[0.03]">
+                {block.headers.map((h, i) => (
+                  <th key={i} className="text-left px-4 py-3 text-white/80 font-semibold whitespace-nowrap">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri} className="border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors">
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="px-4 py-2.5 text-neutral-400 whitespace-nowrap">{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+    default:
+      return null;
+  }
+}
+
+/* ── Collapsible documentation section ──────────────────────── */
+function DocSectionCard({ section }: { section: DocSection }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className={`rounded-2xl border transition-all duration-300 ${isOpen
+          ? "bg-white/[0.03] border-white/15 shadow-lg"
+          : "bg-transparent border-white/8 hover:border-white/15 hover:bg-white/[0.02]"
+        }`}
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full text-left px-6 py-5 flex items-center gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-2xl"
+      >
+        <span className="text-2xl shrink-0">{section.icon}</span>
+        <span className="flex-1 text-white font-semibold text-lg">{section.title}</span>
+        <span className={`transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""} text-white/40`}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </button>
+
+      <div
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{ maxHeight: isOpen ? "2000px" : "0", opacity: isOpen ? 1 : 0 }}
+      >
+        <div className="px-6 pb-6 pt-0">
+          <div className="border-t border-white/10 pt-5">
+            {section.content.map((block, i) => (
+              <ContentBlockRenderer key={i} block={block} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Main page ──────────────────────────────────────────────── */
 export default function SonidataSupport() {
   const s = siteData.sonidataSupport || {
     title: "Sonidata",
     subtitle: "Pro Field Recording.\nSimplified.",
     email: "sonidata.info@gmail.com",
-    faqs: []
+    faqs: [],
+    docs: [],
+    version: "",
+    lastUpdated: "",
   };
   const faqs = s.faqs;
+  const docs = (s as { docs?: DocSection[] }).docs || [];
 
   return (
     <div className="flex flex-col items-center pt-8 pb-20 text-white selection:bg-white/20">
@@ -46,7 +181,7 @@ export default function SonidataSupport() {
       <section className="w-full max-w-5xl mx-auto mb-24 px-4 pt-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
         <div className="flex-1 text-center md:text-left z-10">
           <div className="inline-block px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-semibold tracking-wider text-neutral-300 uppercase">
-            Official Suppport
+            Official Support
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
             {s.title}
@@ -62,7 +197,7 @@ export default function SonidataSupport() {
               Contact Support
             </a>
             <a
-              href="#faq"
+              href="#docs"
               className="w-full sm:w-auto text-center bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-full font-semibold transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white"
             >
               Read Documentation
@@ -112,6 +247,56 @@ export default function SonidataSupport() {
           ))}
         </div>
       </section>
+
+      {/* Documentation Navigation */}
+      {docs.length > 0 && (
+        <section id="docs" className="w-full max-w-3xl mx-auto px-4 mb-16 scroll-mt-24">
+          <div className="mb-8">
+            <h2 className="text-3xl font-semibold mb-4">Documentation</h2>
+            <p className="text-neutral-400 font-light">
+              Complete guide to every feature in Sonidata — tap any section to expand.
+            </p>
+            {(s as { version?: string; lastUpdated?: string }).version && (
+              <div className="flex items-center gap-3 mt-4">
+                <span className="inline-block px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-neutral-400">
+                  v{(s as { version?: string }).version}
+                </span>
+                {(s as { lastUpdated?: string }).lastUpdated && (
+                  <span className="text-xs text-neutral-500">
+                    Updated {(s as { lastUpdated?: string }).lastUpdated}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-8">
+            {docs.map((doc) => (
+              <a
+                key={doc.id}
+                href={`#${doc.id}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-sm text-neutral-400 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all"
+              >
+                <span className="text-base">{doc.icon}</span>
+                {doc.title}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Documentation Sections */}
+      {docs.length > 0 && (
+        <section className="w-full max-w-3xl mx-auto px-4 mb-24">
+          <div className="space-y-3">
+            {docs.map((section) => (
+              <div key={section.id} id={section.id} className="scroll-mt-24">
+                <DocSectionCard section={section} />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* FAQ / Documentation Section */}
       <section id="faq" className="w-full max-w-3xl mx-auto px-4 mb-24 scroll-mt-24">

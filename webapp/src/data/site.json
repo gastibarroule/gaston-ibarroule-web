@@ -16,6 +16,8 @@
     "title": "Sonidata",
     "subtitle": "Pro Field Recording.\nSimplified.",
     "email": "sonidata.info@gmail.com",
+    "version": "0.5.0 (11) Beta",
+    "lastUpdated": "2026-02-28",
     "faqs": [
       {
         "question": "What audio formats does Sonidata support for recording?",
@@ -27,7 +29,7 @@
       },
       {
         "question": "How does the Voice Slate feature transcribe audio?",
-        "answer": "The Voice Slate feature utilizes WhisperKit (an on-device machine learning model) to transcribe speech to text. By simply tapping the microphone icon next to the FX Name field, you can dictate your file names quickly without typing. This transcription is completely private, happening entirely on your device."
+        "answer": "Voice Slate uses Apple's native SFSpeechRecognizer for on-device speech-to-text. Tap the microphone icon next to the FX Name field, speak clearly, and the transcription appears instantly. It injects dynamic contextual hints from UCS categories to improve accuracy for sound design terminology. All processing happens entirely on your device — completely private."
       },
       {
         "question": "Can I automatically append location metadata to my recordings?",
@@ -38,12 +40,497 @@
         "answer": "You can easily export your data by navigating to the Settings or directly from the file browser. Sonidata allows you to export filtered subsets of your library as complete ZIP archives, which include your audio files, any attached camera photos, and a comprehensive CSV file containing all UCS metadata."
       },
       {
-        "question": "Are my recordings backed up to the cloud?",
-        "answer": "Sonidata features incremental, one-way backups to secure your data. You can enable automatic syncing to iCloud Drive or Google Drive (with Dropbox coming soon) in the Cloud Sync settings. It will securely copy your media files and your recordings_database.json without overwriting newer manual changes."
-      },
-      {
         "question": "Can I import existing audio files into Sonidata?",
         "answer": "Absolutely. Using the iOS Share Extension, you can import external audio files (such as .wav, .m4a, .mp3, .aiff, and .caf) directly into Sonidata from other apps. They'll be automatically moved into your Sonidata Documents folder for tagging and organization."
+      }
+    ],
+    "docs": [
+      {
+        "id": "recording",
+        "title": "Recording",
+        "icon": "🎙️",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata records high-quality audio directly on your iPhone or iPad. Choose from three quality presets to match your needs."
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Quality",
+              "Format",
+              "Sample Rate",
+              "Bit Depth",
+              "Best For"
+            ],
+            "rows": [
+              [
+                "Pro",
+                "WAV",
+                "48 kHz",
+                "24-bit",
+                "Professional delivery, film/TV post"
+              ],
+              [
+                "High",
+                "WAV",
+                "44.1 kHz",
+                "16-bit",
+                "CD quality, general use"
+              ],
+              [
+                "Compressed",
+                "M4A (AAC)",
+                "44.1 kHz",
+                "—",
+                "Long sessions, saving storage"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "To change quality: Settings → Recording → Audio Quality. Pro quality (WAV 48/24) is a Pro feature."
+          },
+          {
+            "type": "heading",
+            "text": "How to Record"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Tap the center record button (red circle) on the bottom tab bar.",
+              "A recording panel appears at the bottom with a live waveform, timer, and format badge.",
+              "Tap the stop button to finish recording.",
+              "The Naming View automatically opens so you can tag the recording immediately."
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "The app records in the background — you can switch to other apps without stopping. The waveform display shows real-time audio levels so you can monitor your input."
+          }
+        ]
+      },
+      {
+        "id": "tagging",
+        "title": "Tagging & Metadata",
+        "icon": "🏷️",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "The Naming View is the core of Sonidata. It's where you assign UCS-compliant metadata to your recordings using the industry-standard Universal Category System (UCS v8.2)."
+          },
+          {
+            "type": "heading",
+            "text": "UCS Filename Format"
+          },
+          {
+            "type": "code",
+            "text": "{CatID}{UserCategory}_{VendorCategory}{FXName}_{CreatorID}_{SourceID}_{Location-UserData}"
+          },
+          {
+            "type": "paragraph",
+            "text": "Example: ANMLDog_Bark-Close_GI_MKH8060_Park.wav"
+          },
+          {
+            "type": "heading",
+            "text": "Metadata Fields"
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Field",
+              "Description",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Category",
+                "Primary UCS category",
+                "ANIMALS"
+              ],
+              [
+                "Subcategory",
+                "Specific sub-type",
+                "DOG"
+              ],
+              [
+                "CatID",
+                "Short UCS code (auto-filled)",
+                "ANML"
+              ],
+              [
+                "FX Name",
+                "Descriptive name for the sound",
+                "Bark-Close"
+              ],
+              [
+                "Creator ID",
+                "Your initials or identifier",
+                "GI"
+              ],
+              [
+                "Source ID",
+                "Microphone or source used",
+                "MKH8060"
+              ],
+              [
+                "Location",
+                "Where the sound was recorded",
+                "Park"
+              ],
+              [
+                "User Category",
+                "Custom category tag (optional)",
+                "—"
+              ],
+              [
+                "Vendor Category",
+                "Vendor-specific prefix (optional)",
+                "—"
+              ],
+              [
+                "User Data",
+                "Any extra info (optional)",
+                "—"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "How to Tag a Recording"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Search for a category using SmartSearch — type \"dog\" and it finds ANIMALS > DOG even if you don't know the exact name.",
+              "Select from the dual-wheel picker (Category on left, Subcategory on right).",
+              "Fill in the FX Name, or use Voice Slate to dictate it.",
+              "Add Creator ID and Source ID — enable \"Remember IDs\" in Settings to save across sessions.",
+              "Add Location — tap the location button to auto-fill from GPS, or type manually.",
+              "Attach a Photo if desired (tap the camera icon).",
+              "Preview the filename in the bottom bar, then tap \"Rename File\"."
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "SmartSearch"
+          },
+          {
+            "type": "paragraph",
+            "text": "The category search uses Apple's Natural Language framework for semantic understanding — not just text matching. Type \"rain\" to find WEATHER > RAIN and related categories. Synonym matching means \"puppy\" finds ANIMALS > DOG. Exact matches score highest, followed by subcategory, synonyms, and semantic neighbors."
+          },
+          {
+            "type": "heading",
+            "text": "Batch Rename"
+          },
+          {
+            "type": "paragraph",
+            "text": "Rename multiple files at once: enter Edit Mode, select files, tap \"Rename\". All selected files receive the same metadata and are renamed sequentially with unique indices."
+          }
+        ]
+      },
+      {
+        "id": "voice-slate",
+        "title": "Voice Slate",
+        "icon": "🎤",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Voice Slate lets you dictate the FX Name using speech-to-text instead of typing."
+          },
+          {
+            "type": "steps",
+            "items": [
+              "In the Naming View, tap the microphone icon next to the FX Name field.",
+              "Speak clearly — describe the sound (e.g., \"Bark Close\").",
+              "The transcription appears in the FX Name field."
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "Technical Details"
+          },
+          {
+            "type": "paragraph",
+            "text": "Uses Apple's native SFSpeechRecognizer — all processing happens on-device, completely private. Injects dynamic contextual hints from UCS categories to improve accuracy for sound design terminology. Records to a temporary PCM 16kHz mono file, then transcribes."
+          },
+          {
+            "type": "paragraph",
+            "text": "You can change the Voice Slate language in Settings → Recording → Voice Slate Language. Options include Device Default and all languages supported by Apple's Speech framework."
+          },
+          {
+            "type": "tip",
+            "text": "Voice Slate is a Pro feature."
+          }
+        ]
+      },
+      {
+        "id": "location",
+        "title": "Location Tagging",
+        "icon": "📍",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata can automatically tag recordings with GPS location data."
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Grant location permission when prompted (or enable it in Settings → Privacy → Location).",
+              "When you open the Naming View, the current location is automatically detected.",
+              "Tap the location button to auto-fill the Location field.",
+              "The full address, coordinates, and short address are all saved with the recording."
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "What Gets Stored"
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Data",
+              "Description",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Short location",
+                "Used in filename",
+                "Berlin"
+              ],
+              [
+                "Full address",
+                "Complete street address",
+                "Sonnenallee 45, 12045 Berlin, Germany"
+              ],
+              [
+                "Coordinates",
+                "GPS lat/long (shown on Map Viewer)",
+                "52.4833, 13.4266"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Enable \"Always\" location access for the fastest metadata loading. Sonidata pre-fetches your location as soon as the app becomes active. Smart Location is a Pro feature."
+          }
+        ]
+      },
+      {
+        "id": "library",
+        "title": "Browsing Your Library",
+        "icon": "📚",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata offers multiple ways to browse your recordings."
+          },
+          {
+            "type": "heading",
+            "text": "All Files (List View)"
+          },
+          {
+            "type": "paragraph",
+            "text": "A flat list of all recordings with expandable rows showing location, photo, and an inline audio player with waveform. Search by filename, sort by name/date/category, and use filter pills for category, subcategory, or location. Swipe left for Edit/Share/Delete, swipe right to Select."
+          },
+          {
+            "type": "heading",
+            "text": "Folder Browser"
+          },
+          {
+            "type": "paragraph",
+            "text": "A grid view of your UCS folders showing folder name and file count. Tap a folder to see its contents, with the same swipe actions and expandable rows as the list view."
+          },
+          {
+            "type": "heading",
+            "text": "Map Viewer"
+          },
+          {
+            "type": "paragraph",
+            "text": "An interactive map showing all geotagged recordings. Each pin represents a recording with GPS coordinates. Filter by category or location, and tap a pin for inline playback."
+          },
+          {
+            "type": "tip",
+            "text": "Switch between views using the segmented control at the top of the screen. Your preference is saved between sessions."
+          }
+        ]
+      },
+      {
+        "id": "folders",
+        "title": "Folder Organization",
+        "icon": "📁",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata can automatically organize your recordings into a UCS folder structure."
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Mode",
+              "Structure",
+              "Example"
+            ],
+            "rows": [
+              [
+                "Disabled",
+                "All files stay in Documents root",
+                "Documents/ANMLDog_Bark.wav"
+              ],
+              [
+                "Category Only",
+                "One folder per category",
+                "Documents/ANIMALS/ANMLDog_Bark.wav"
+              ],
+              [
+                "Full",
+                "Category + subcategory nesting",
+                "Documents/ANIMALS-DOG/ANMLDog_Bark.wav"
+              ]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Configure in Settings → Folder Organization. Enable Auto-Organize to move files to their UCS folder immediately after renaming. Use \"Generate Folders\" to create the complete UCS folder tree, or \"Organize All\" to batch-organize existing recordings."
+          }
+        ]
+      },
+      {
+        "id": "photos",
+        "title": "Photo Attachments",
+        "icon": "📸",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Attach a photo to any recording — useful for documenting the recording environment, location, or source."
+          },
+          {
+            "type": "steps",
+            "items": [
+              "In the Naming View, tap the camera icon.",
+              "Choose \"Take Photo\" or \"Choose from Library\".",
+              "The photo is saved alongside the recording with a unique ID linking them."
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Photos are included in ZIP exports alongside the audio files. Photo Attachments is a Pro feature."
+          }
+        ]
+      },
+      {
+        "id": "export",
+        "title": "Exporting Your Library",
+        "icon": "📦",
+        "content": [
+          {
+            "type": "heading",
+            "text": "CSV Export"
+          },
+          {
+            "type": "paragraph",
+            "text": "Export your entire recordings database as a CSV file for import into sound library managers (Soundminer, BaseHead, Soundly, etc.). Includes all UCS metadata fields, location data, coordinates, file paths, audio format, file size, duration, sample rate, and bit depth. Access via Settings → Export → Export CSV."
+          },
+          {
+            "type": "heading",
+            "text": "ZIP Export"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Open the Export Filter Sheet from Settings or the file browser.",
+              "Set filters: category, subcategory, location, creator ID, date range.",
+              "Preview how many files match.",
+              "Export as ZIP: includes audio files + photos + CSV metadata.",
+              "Share via AirDrop, Files, email, or any share destination."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The Export screen shows your library stats at a glance: total recordings, categories used, and file counts."
+          },
+          {
+            "type": "tip",
+            "text": "ZIP Export is a Pro feature."
+          }
+        ]
+      },
+      {
+        "id": "import",
+        "title": "Importing Audio",
+        "icon": "📥",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Import external audio files into Sonidata using the iOS Share Extension."
+          },
+          {
+            "type": "heading",
+            "text": "Supported Formats"
+          },
+          {
+            "type": "paragraph",
+            "text": ".wav, .m4a, .mp3, .aiff, .aif, .caf"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "In any app (Files, Voice Memos, etc.), tap Share.",
+              "Select Sonidata from the share sheet.",
+              "The file is copied to Sonidata's shared container.",
+              "Next time you open Sonidata, the file is automatically moved to your Documents folder.",
+              "It appears in your recordings list, ready for tagging."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "troubleshooting",
+        "title": "Troubleshooting",
+        "icon": "🔧",
+        "content": [
+          {
+            "type": "heading",
+            "text": "Recordings don't appear in the list"
+          },
+          {
+            "type": "paragraph",
+            "text": "Check that the recording is in the app's Documents folder. Pull down to refresh the list. If the file was moved manually via Files app, re-open Sonidata to trigger a rescan."
+          },
+          {
+            "type": "heading",
+            "text": "Voice Slate isn't working"
+          },
+          {
+            "type": "paragraph",
+            "text": "Check that Speech Recognition permission is granted in iPhone Settings → Sonidata → Speech Recognition. Ensure you have a stable internet connection for the first download of the speech model. Try changing the Voice Slate Language in Settings if accuracy is poor."
+          },
+          {
+            "type": "heading",
+            "text": "Location isn't auto-filling"
+          },
+          {
+            "type": "paragraph",
+            "text": "Check permission: iPhone Settings → Sonidata → Location → \"Always\" (recommended) or \"While Using\". GPS accuracy is lower indoors — step outside for a more precise reading."
+          },
+          {
+            "type": "heading",
+            "text": "Files aren't organizing into folders"
+          },
+          {
+            "type": "paragraph",
+            "text": "Check that Folder Organization is enabled in Settings → Folder Organization → Mode. Ensure Auto-Organize is turned on. If files were recorded before enabling organization, use \"Organize All\" to batch-process them."
+          },
+          {
+            "type": "heading",
+            "text": "Export ZIP is empty"
+          },
+          {
+            "type": "paragraph",
+            "text": "Check that your filters actually match some recordings (the preview count shows how many files will be included). Make sure the recordings have audio files on disk."
+          }
+        ]
       }
     ]
   },
