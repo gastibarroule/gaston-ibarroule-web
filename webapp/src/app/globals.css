@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  /* Light fallback (site is primarily dark; keep for completeness) */
-  --bg: #ffffff;
-  --surface: #f6f7f9;
-  --elev-1: #eef0f3;
-  --line: rgba(20, 30, 40, 0.15);
+  /* Always dark theme */
+  --bg: #111113;
+  --surface: #18181A;
+  --elev-1: #222224;
+  --line: rgba(255, 255, 255, 0.1);
 
-  --text: #171717;
-  --muted: #5b6672;
+  --text: #EAECEE;
+  --muted: #A9B0BA;
 
   /* Accent family (grey tones) */
   --accent: #A9B0BA;
@@ -30,33 +30,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Neutral deep dark gray */
-    --bg: #111113;
-    --surface: #18181A;
-    --elev-1: #222224;
-    --line: rgba(255, 255, 255, 0.1);
-
-    --text: #EAECEE;
-    --muted: #A9B0BA;
-    /* hsl(220 10% 70%) */
-
-    /* Chosen accent: grey tones */
-    --accent: #A9B0BA;
-    --accent-600: #959DA7;
-    --accent-700: #818A94;
-
-    --electric: #3BB7FF;
-    --focus: var(--electric);
-    --ring: color-mix(in oklab, var(--electric) 60%, white);
-
-    /* Map legacy vars */
-    --background: var(--bg);
-    --foreground: var(--text);
-  }
 }
 
 html {
