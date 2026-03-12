@@ -56,6 +56,7 @@ webapp/src/  ──(npm run build)──▸  webapp/out/  ──(rsync)──▸
    - `export default async function Page({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; }`
 
 ## Safety & Quality Gates
+- **Do not push automatically to GitHub.** Always wait for explicit user approval before running `git push`.
 - Do not force-push to `main` unless explicitly approved and after a fresh backup.
 - Pages deploy target: `main` branch `/docs` folder ONLY (no alternatives). Keep `docs/.nojekyll` present.
 - Never remove `docs/.nojekyll`; `_next/**` assets require it on Pages.

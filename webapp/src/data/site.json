@@ -146,6 +146,22 @@
           },
           {
             "type": "heading",
+            "text": "Record Ready / Monitor Mode"
+          },
+          {
+            "type": "paragraph",
+            "text": "Optional pre-record monitoring that shows live audio levels before recording starts. Uses an input tap for zero-file metering. The gradient background (green→yellow→red) on the monitor panel acts as a level meter, supporting VU and Peak ballistics in Settings. The center button offers a 3-state flow (idle→monitor→record→stop)."
+          },
+          {
+            "type": "heading",
+            "text": "Post-Recording Discard"
+          },
+          {
+            "type": "paragraph",
+            "text": "When you finish recording, two pill buttons (\"Discard Recording\" / \"Continue Editing\") appear at the top of the Naming View. Discard safely deletes the file, removes the database entry, and dismisses the sheet instantly."
+          },
+          {
+            "type": "heading",
             "text": "Recording Tips"
           },
           {
@@ -263,6 +279,14 @@
               "Attach a Photo if desired (tap the camera icon at the top).",
               "Preview the filename in the bottom bar, then tap \"Rename File\"."
             ]
+          },
+          {
+            "type": "heading",
+            "text": "Auto Title Case"
+          },
+          {
+            "type": "paragraph",
+            "text": "An optional setting in Settings → Naming automatically capitalizes the first letter of each word in the FX Name field. This works seamlessly with live typing, pasting metadata, or using Voice Slate."
           },
           {
             "type": "heading",
@@ -1021,11 +1045,25 @@
           },
           {
             "type": "heading",
-            "text": "Key Features"
+            "text": "Unlocking Pro Features"
           },
           {
             "type": "paragraph",
-            "text": "The app offers drag-and-drop import for ZIP, CSV, and WAV folders, a mini waveform visualization with marker positions, photo thumbnail previews, and inline metadata editing before embedding. Recent sessions are saved for quick access, and non-standard chunks (like Soundminer SMED) are preserved during embedding."
+            "text": "Sonidata Embed is free to download, but unlocking full export capability requires a Sonidata Pro license from the iOS app. We use an Offline Pairing Code to verify your purchase, ensuring 100% privacy without requiring logins or cloud accounts."
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Open Sonidata on your iPhone/iPad.",
+              "Navigate to Settings → Desktop App Unlock.",
+              "If you have purchased Sonidata Pro, the app will display a secure, 6-digit offline pairing code.",
+              "Open Sonidata Embed on your Mac/PC and click Unlock Pro.",
+              "Enter the pairing code. Your desktop app is now permanently unlocked."
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Note: During the open beta phase, the app may be temporarily unlocked for all users for testing purposes. If not in beta, this code is required to embed metadata into files."
           }
         ]
       }

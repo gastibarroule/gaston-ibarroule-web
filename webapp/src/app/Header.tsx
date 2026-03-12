@@ -33,7 +33,7 @@ export function Header() {
           {/* Sonidata with hover dropdown */}
           <div className="relative group">
             <Link
-              href="/sonidata-support"
+              href="/sonidata"
               className="opacity-90 hover:opacity-100 px-3 py-2 rounded-[30px] fx-enter inline-flex items-center gap-1"
             >
               Sonidata
@@ -50,7 +50,7 @@ export function Header() {
             <div className="absolute right-0 top-full pt-2 opacity-0 pointer-events-none translate-y-1 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200 ease-out z-50">
               <div className="w-48 bg-[#1c1c1e]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden py-1.5">
                 <Link
-                  href="/sonidata-support"
+                  href="/sonidata"
                   className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
                 >
                   <span className="text-[15px]">🏠</span>
@@ -58,11 +58,18 @@ export function Header() {
                 </Link>
                 <div className="h-px bg-white/8 mx-3 my-1" />
                 <Link
-                  href="/sonidata-support/recording"
+                  href="/sonidata/recording"
                   className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
                 >
                   <span className="text-[15px]">📖</span>
                   <span>Documentation</span>
+                </Link>
+                <Link
+                  href="/sonidata#download"
+                  className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
+                >
+                  <span className="text-[15px]">💻</span>
+                  <span>Download Embed</span>
                 </Link>
               </div>
             </div>
@@ -103,7 +110,7 @@ export function Header() {
             <Link href="/contact" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Contact
             </Link>
-            <Link href="/sonidata-support" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+            <Link href="/sonidata" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Sonidata
             </Link>
           </div>
