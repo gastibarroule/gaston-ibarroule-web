@@ -17,7 +17,7 @@
     "subtitle": "Pro Field Recording.\nSimplified.",
     "email": "sonidata.info@gmail.com",
     "version": "0.5.0 (13) Beta",
-    "lastUpdated": "2026-03-06",
+    "lastUpdated": "2026-03-12",
     "faqs": [
       {
         "question": "What audio formats does Sonidata support for recording?",
@@ -58,6 +58,10 @@
       {
         "question": "What's the difference between Free and Pro?",
         "answer": "Free users can record in High and Compressed quality, tag files with UCS metadata, use SmartSearch, FX Name Presets, Batch Delete, Siri Shortcuts, and the Live Activity. Pro unlocks WAV 48/24 recording, Voice Slate, Smart Location, Metadata Clipboard, Photo Attachments, Embedded Artwork, Folder Browser, Calendar Filter, Map Viewer, Batch Rename, Visual Date Export, and ZIP Export. Pro is a one-time lifetime purchase — no subscription."
+      },
+      {
+        "question": "What is Sonidata Embed?",
+        "answer": "Sonidata Embed is a free desktop companion app for macOS. It takes the ZIP exports from your iOS device and automatically embeds the metadata (BEXT, iXML, CUE markers, and artwork) directly into your original recorder's WAV files so they can be read natively by Soundminer, Pro Tools, and Reaper."
       }
     ],
     "docs": [
@@ -951,6 +955,77 @@
           {
             "type": "paragraph",
             "text": "Switch themes in Settings → Display → Theme. If using System, the app follows your iPhone's appearance setting (Settings → Display & Brightness)."
+          }
+        ]
+      },
+      {
+        "id": "sonidata-embed",
+        "title": "Sonidata Embed (macOS)",
+        "icon": "💻",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata Embed is a desktop companion app for macOS (Windows coming soon) that takes your Sonidata session exports and embeds the metadata directly into your recorder's WAV files."
+          },
+          {
+            "type": "paragraph",
+            "text": "After embedding, your WAV files carry all their metadata — UCS categories, GPS coordinates, markers, artwork — as industry-standard chunks that Soundminer, Pro Tools, Reaper, and other tools can read natively."
+          },
+          {
+            "type": "heading",
+            "text": "The Workflow"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Export a session from Sonidata iOS as a ZIP file (Settings → Export → Export ZIP).",
+              "Open Sonidata Embed on your Mac and drag-and-drop the ZIP file.",
+              "Drop your WAV folder — the app matches recorder filenames from the CSV to your WAVs.",
+              "Review metadata, waveforms, markers, and photos in the detail sidebar.",
+              "Click \"Embed All\" — metadata is written into the WAV files.",
+              "Open in your DAW — Soundminer, Reaper, Nuendo, or Pro Tools will read the embedded data."
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "What Gets Embedded"
+          },
+          {
+            "type": "table",
+            "headers": [
+              "Chunk",
+              "Contents"
+            ],
+            "rows": [
+              [
+                "BEXT",
+                "FX Name, Creator ID, Source ID, timecode"
+              ],
+              [
+                "iXML",
+                "Full UCS metadata, GPS, location, markers"
+              ],
+              [
+                "CUE + ADTL",
+                "Marker positions with labels and comments"
+              ],
+              [
+                "LIST-INFO",
+                "Standard RIFF tags (INAM, IART, ICMT, etc.)"
+              ],
+              [
+                "ID3 Artwork",
+                "Embedded cover photo (APIC frame)"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "Key Features"
+          },
+          {
+            "type": "paragraph",
+            "text": "The app offers drag-and-drop import for ZIP, CSV, and WAV folders, a mini waveform visualization with marker positions, photo thumbnail previews, and inline metadata editing before embedding. Recent sessions are saved for quick access, and non-standard chunks (like Soundminer SMED) are preserved during embedding."
           }
         ]
       }
