@@ -83,6 +83,7 @@ export default function RootLayout({
                 <a href={contactLinks["crew-united"]} target="_blank" rel="noreferrer" className="hover:underline">Crew United</a>
               ) : null}
               <a href="/sonidata-privacy" className="hover:underline text-neutral-400">Privacy Policy</a>
+              <a href="/sonidata-terms" className="hover:underline text-neutral-400">Terms of Use</a>
             </div>
           </div>
         </footer>
