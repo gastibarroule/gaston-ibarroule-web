@@ -207,9 +207,10 @@ export default function SonidataSupport() {
           
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold tracking-tight mb-4">Download Sonidata Embed (Desktop)</h2>
-            <p className="text-neutral-400 text-lg max-w-2xl mx-auto">
+            <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-3">
               The missing link in your field recording workflow. Burn your iOS field metadata straight into your WAVs.
             </p>
+            <span className="inline-block text-xs font-medium text-neutral-500 border border-white/10 rounded-full px-3 py-1">v1.1.0</span>
           </div>
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
