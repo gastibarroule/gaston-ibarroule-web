@@ -59,6 +59,30 @@ export default function SonidataPrivacy() {
 
                             <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
                                 <h3 className="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-pink-400"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                                    Camera
+                                </h3>
+                                <p className="m-0 text-sm">If you grant the App permission to access your camera, photos are used solely to capture images of your recording location or sound source. These images are attached as cover artwork to your recordings and stored locally on your device. They are not transmitted to our servers.</p>
+                            </div>
+
+                            <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
+                                <h3 className="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                    Photo Library
+                                </h3>
+                                <p className="m-0 text-sm">If you grant the App permission to access your photo library, selected images are used solely as cover artwork for your audio recordings. Photos remain on your device and are not collected or transmitted by us.</p>
+                            </div>
+
+                            <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
+                                <h3 className="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-yellow-400"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                                    File System Access
+                                </h3>
+                                <p className="m-0 text-sm">The App may request access to files on your device in order to read, rename, and embed professional metadata (such as UCS categories, descriptions, and recordist information) into your audio recordings. All file operations are performed locally on your device.</p>
+                            </div>
+
+                            <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
+                                <h3 className="text-lg font-medium text-white mb-2 flex items-center gap-2">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-purple-400"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
                                     Cloud Sync
                                 </h3>
