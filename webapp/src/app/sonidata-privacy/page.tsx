@@ -88,13 +88,21 @@ export default function SonidataPrivacy() {
                                 </h3>
                                 <p className="m-0 text-sm">You may choose to back up your data using third-party services like iCloud Drive, Google Drive, or Dropbox. When you use these services, your data is governed by the privacy policies of those respective providers. We do not have access to your cloud accounts or backups.</p>
                             </div>
+
+                            <div className="bg-neutral-900/50 border border-white/10 rounded-2xl p-6">
+                                <h3 className="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+                                    Anonymous Usage Analytics
+                                </h3>
+                                <p className="m-0 text-sm">Sonidata collects anonymous app usage data to help us understand how features are used and improve the app experience. This includes general information such as which features are accessed, recording format preferences, session duration, and basic device information (device model, OS version, app version). This data is fully anonymous — it contains no personal information, no audio content, no filenames, no location data, and no user identifiers. It cannot be used to identify you. No data is shared with third parties. You can contact us at any time to learn more about the data we collect.</p>
+                            </div>
                         </div>
                     </section>
 
                     <section className="mb-10">
                         <h2 className="text-2xl font-semibold text-white mb-4 border-b border-white/10 pb-2">2. Analytics and Third-Party Tracking</h2>
                         <p>
-                            The App does not include any third-party analytics trackers, advertising SDKs, or behavioral tracking tools. We do not collect personal data for marketing purposes.
+                            The App does not include any third-party analytics trackers, advertising SDKs, or behavioral tracking tools. We do not collect personal data for marketing purposes. As described above, the App collects only anonymous, aggregated usage data to improve the experience — this data cannot identify you and is never shared with third parties.
                         </p>
                     </section>
 
