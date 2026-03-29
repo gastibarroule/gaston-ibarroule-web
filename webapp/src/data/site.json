@@ -377,7 +377,7 @@
           },
           {
             "type": "tip",
-            "text": "Voice Slate is a Pro feature."
+            "text": "Voice Slate is free for all users."
           }
         ]
       },
@@ -503,7 +503,7 @@
           },
           {
             "type": "tip",
-            "text": "Enable \"Always\" location access for the fastest metadata loading. Sonidata pre-fetches your location as soon as the app becomes active. Smart Location is a Pro feature."
+            "text": "Enable \"Always\" location access for the fastest metadata loading. Sonidata pre-fetches your location as soon as the app becomes active."
           }
         ]
       },
@@ -763,6 +763,11 @@
                 "✅"
               ],
               [
+                "Stereo Recording (True Stereo, M/S)",
+                "❌",
+                "✅"
+              ],
+              [
                 "UCS Category Tagging",
                 "✅",
                 "✅"
@@ -778,7 +783,17 @@
                 "✅"
               ],
               [
-                "FX Name Presets",
+                "Voice Slate (speech-to-text)",
+                "✅",
+                "✅"
+              ],
+              [
+                "Smart Location (GPS auto-fill)",
+                "✅",
+                "✅"
+              ],
+              [
+                "Metadata Clipboard (Copy/Paste)",
                 "✅",
                 "✅"
               ],
@@ -798,17 +813,17 @@
                 "✅"
               ],
               [
-                "Voice Slate (speech-to-text)",
-                "❌",
+                "Share Extension (Import)",
+                "✅",
                 "✅"
               ],
               [
-                "Smart Location (GPS auto-fill)",
-                "❌",
+                "Folder Organization",
+                "✅",
                 "✅"
               ],
               [
-                "Metadata Clipboard (Copy/Paste)",
+                "FX Name Presets",
                 "❌",
                 "✅"
               ],
@@ -849,6 +864,11 @@
               ],
               [
                 "ZIP Export",
+                "❌",
+                "✅"
+              ],
+              [
+                "CSV Export",
                 "❌",
                 "✅"
               ]

@@ -1,0 +1,81 @@
+{
+  "page": {
+    "url": "https://gastibarroule.com/sonidata/free-vs-pro",
+    "slug": "free-vs-pro",
+    "title": "Free vs Pro",
+    "icon": "⭐",
+    "description": "Sonidata offers a generous free tier for everyday recording and tagging, with a Pro upgrade that unlocks the full professional toolkit. Pro is a one-time lifetime purchase — no subscription."
+  },
+  "featureComparison": {
+    "columns": ["Feature", "Free", "Pro"],
+    "features": [
+      { "feature": "Recording (M4A, WAV 44.1/16)", "free": true, "pro": true },
+      { "feature": "Recording (WAV 48/24 Pro)", "free": false, "pro": true },
+      { "feature": "Stereo Recording (True Stereo, M/S)", "free": false, "pro": true },
+      { "feature": "UCS Category Tagging", "free": true, "pro": true },
+      { "feature": "SmartSearch", "free": true, "pro": true },
+      { "feature": "File Renaming", "free": true, "pro": true },
+      { "feature": "Voice Slate (speech-to-text)", "free": true, "pro": true },
+      { "feature": "Smart Location (GPS auto-fill)", "free": true, "pro": true },
+      { "feature": "Metadata Clipboard (Copy/Paste)", "free": true, "pro": true },
+      { "feature": "Batch Delete", "free": true, "pro": true },
+      { "feature": "Siri Shortcuts & Automation", "free": true, "pro": true },
+      { "feature": "Live Activity (Lock Screen)", "free": true, "pro": true },
+      { "feature": "Share Extension (Import)", "free": true, "pro": true },
+      { "feature": "Folder Organization", "free": true, "pro": true },
+      { "feature": "FX Name Presets", "free": false, "pro": true },
+      { "feature": "Photo Attachments", "free": false, "pro": true },
+      { "feature": "Embedded Artwork", "free": false, "pro": true },
+      { "feature": "Folder Browser", "free": false, "pro": true },
+      { "feature": "Calendar Filter Bar", "free": false, "pro": true },
+      { "feature": "Map Viewer", "free": false, "pro": true },
+      { "feature": "Batch Editing (Rename)", "free": false, "pro": true },
+      { "feature": "Visual Date Export", "free": false, "pro": true },
+      { "feature": "ZIP Export", "free": false, "pro": true },
+      { "feature": "CSV Export", "free": false, "pro": true }
+    ]
+  },
+  "pricing": {
+    "model": "one-time lifetime purchase",
+    "subscription": false,
+    "note": "Pro Lifetime is a one-time purchase — no recurring fees, no subscription."
+  },
+  "tiers": {
+    "free": {
+      "name": "Free",
+      "featureCount": 13,
+      "features": [
+        "Recording (M4A, WAV 44.1/16)",
+        "UCS Category Tagging",
+        "SmartSearch",
+        "File Renaming",
+        "Voice Slate (speech-to-text)",
+        "Smart Location (GPS auto-fill)",
+        "Metadata Clipboard (Copy/Paste)",
+        "Batch Delete",
+        "Siri Shortcuts & Automation",
+        "Live Activity (Lock Screen)",
+        "Share Extension (Import)",
+        "Folder Organization"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "featureCount": 24,
+      "exclusiveFeatures": [
+        "Recording (WAV 48/24 Pro)",
+        "Stereo Recording (True Stereo, M/S)",
+        "FX Name Presets",
+        "Photo Attachments",
+        "Embedded Artwork",
+        "Folder Browser",
+        "Calendar Filter Bar",
+        "Map Viewer",
+        "Batch Editing (Rename)",
+        "Visual Date Export",
+        "ZIP Export",
+        "CSV Export"
+      ]
+    }
+  }
+}
