@@ -763,7 +763,12 @@
                 "✅"
               ],
               [
-                "Stereo Recording (True Stereo, M/S)",
+                "Stereo Recording (Internal True Stereo)",
+                "✅",
+                "✅"
+              ],
+              [
+                "Stereo Recording (M/S)",
                 "❌",
                 "✅"
               ],

@@ -7,32 +7,137 @@
     "description": "Sonidata offers a generous free tier for everyday recording and tagging, with a Pro upgrade that unlocks the full professional toolkit. Pro is a one-time lifetime purchase — no subscription."
   },
   "featureComparison": {
-    "columns": ["Feature", "Free", "Pro"],
+    "columns": [
+      "Feature",
+      "Free",
+      "Pro"
+    ],
     "features": [
-      { "feature": "Recording (M4A, WAV 44.1/16)", "free": true, "pro": true },
-      { "feature": "Recording (WAV 48/24 Pro)", "free": false, "pro": true },
-      { "feature": "Stereo Recording (True Stereo, M/S)", "free": false, "pro": true },
-      { "feature": "UCS Category Tagging", "free": true, "pro": true },
-      { "feature": "SmartSearch", "free": true, "pro": true },
-      { "feature": "File Renaming", "free": true, "pro": true },
-      { "feature": "Voice Slate (speech-to-text)", "free": true, "pro": true },
-      { "feature": "Smart Location (GPS auto-fill)", "free": true, "pro": true },
-      { "feature": "Metadata Clipboard (Copy/Paste)", "free": true, "pro": true },
-      { "feature": "Batch Delete", "free": true, "pro": true },
-      { "feature": "Siri Shortcuts & Automation", "free": true, "pro": true },
-      { "feature": "Live Activity (Lock Screen)", "free": true, "pro": true },
-      { "feature": "Share Extension (Import)", "free": true, "pro": true },
-      { "feature": "Folder Organization", "free": true, "pro": true },
-      { "feature": "FX Name Presets", "free": false, "pro": true },
-      { "feature": "Photo Attachments", "free": false, "pro": true },
-      { "feature": "Embedded Artwork", "free": false, "pro": true },
-      { "feature": "Folder Browser", "free": false, "pro": true },
-      { "feature": "Calendar Filter Bar", "free": false, "pro": true },
-      { "feature": "Map Viewer", "free": false, "pro": true },
-      { "feature": "Batch Editing (Rename)", "free": false, "pro": true },
-      { "feature": "Visual Date Export", "free": false, "pro": true },
-      { "feature": "ZIP Export", "free": false, "pro": true },
-      { "feature": "CSV Export", "free": false, "pro": true }
+      {
+        "feature": "Recording (M4A, WAV 44.1/16)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Recording (WAV 48/24 Pro)",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Stereo Recording (True Stereo)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Stereo Recording (M/S)",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "UCS Category Tagging",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "SmartSearch",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "File Renaming",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Voice Slate (speech-to-text)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Smart Location (GPS auto-fill)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Metadata Clipboard (Copy/Paste)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Batch Delete",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Siri Shortcuts & Automation",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Live Activity (Lock Screen)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Share Extension (Import)",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "Folder Organization",
+        "free": true,
+        "pro": true
+      },
+      {
+        "feature": "FX Name Presets",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Photo Attachments",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Embedded Artwork",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Folder Browser",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Calendar Filter Bar",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Map Viewer",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Batch Editing (Rename)",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "Visual Date Export",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "ZIP Export",
+        "free": false,
+        "pro": true
+      },
+      {
+        "feature": "CSV Export",
+        "free": false,
+        "pro": true
+      }
     ]
   },
   "pricing": {
