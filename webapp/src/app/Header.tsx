@@ -58,7 +58,7 @@ export function Header() {
                 </Link>
                 <div className="h-px bg-white/8 mx-3 my-1" />
                 <Link
-                  href="/sonidata/recording"
+                  href="/sonidata-documentation"
                   className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-neutral-300 hover:text-white hover:bg-white/8 transition-colors"
                 >
                   <span className="text-[15px]">📖</span>

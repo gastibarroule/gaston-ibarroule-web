@@ -120,7 +120,7 @@ export default function SonidataSupport() {
               Contact Support
             </a>
             <Link
-              href="/sonidata/recording"
+              href="/sonidata-documentation"
               className="w-full text-center bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-full font-semibold transition-colors hover:bg-white/5"
             >
               Read Documentation
@@ -149,7 +149,7 @@ export default function SonidataSupport() {
               Contact Support
             </a>
             <Link
-              href="/sonidata/recording"
+              href="/sonidata-documentation"
               className="text-center bg-transparent border border-white/20 text-white px-8 py-3.5 rounded-full font-semibold transition-colors hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white"
             >
               Read Documentation
