@@ -1091,6 +1091,284 @@
             "text": "Note: During the open beta phase, the app may be temporarily unlocked for all users for testing purposes. If not in beta, this code is required to embed metadata into files."
           }
         ]
+      },
+      {
+        "id": "workflow",
+        "title": "Field to Library — Workflow",
+        "icon": "🔄",
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Sonidata's workflow takes you from raw field recordings to a fully tagged, metadata-embedded, UCS-organized sound library — without modifying your original files. Whether you record with the built-in iPhone microphone or an external recorder, the result is the same: DAW-ready WAV files with industry-standard metadata that any sound library manager can read."
+          },
+          {
+            "type": "paragraph",
+            "text": "This guide walks through the entire pipeline in four phases. Estimated time: 10–15 minutes per session after initial setup."
+          },
+          {
+            "type": "heading",
+            "text": "Phase 1 — In the Field (Sonidata iOS)"
+          },
+          {
+            "type": "paragraph",
+            "text": "This is where it all starts. You're on location, capturing sounds. Sonidata supports two recording paths:"
+          },
+          {
+            "type": "table",
+            "headers": ["Path", "How It Works", "Best For"],
+            "rows": [
+              ["Built-in Recording", "Record directly with iPhone mic (Mono, Dual Mono, True Stereo, or M/S)", "Quick captures, ambient recordings, solo sessions"],
+              ["External Recorder", "Create a metadata session alongside your dedicated recorder (Zoom, Sound Devices, etc.)", "Professional multi-channel sessions"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "Built-in recording captures the audio and creates the database entry simultaneously. External recording creates only the metadata session — you'll match it to the recorder's WAV files later on your Mac."
+          },
+          {
+            "type": "heading",
+            "text": "Naming & Tagging"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Search for a UCS category — SmartSearch finds categories semantically, so \"puppy\" → ANIMALS > DOG.",
+              "Add FX Name — describe the sound (e.g., \"Bark-Close\"). Use Voice Slate to dictate if your hands are occupied.",
+              "Set Creator ID & Source ID — your initials and microphone. Enable \"Remember IDs\" so these persist.",
+              "Attach a photo — optional but valuable. Photos are embedded directly into the WAV file as artwork.",
+              "Tap Rename — the file is renamed to UCS-compliant format (e.g., ANMLDog_Bark-Close_GI_MKH8060.wav)."
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Use Metadata Clipboard (Copy/Paste) to tag multiple recordings with the same category in seconds."
+          },
+          {
+            "type": "heading",
+            "text": "Automatic Metadata"
+          },
+          {
+            "type": "paragraph",
+            "text": "Sonidata automatically captures GPS coordinates (latitude/longitude, reverse-geocoded to a readable address), altitude, date & time, and full audio format details (sample rate, bit depth, channels, duration)."
+          },
+          {
+            "type": "heading",
+            "text": "Markers (External Recorder Only)"
+          },
+          {
+            "type": "paragraph",
+            "text": "When using the External Recorder, tap Add Marker during recording to log timecoded cue points. These are embedded as CUE/ADTL chunks in your WAV files."
+          },
+          {
+            "type": "heading",
+            "text": "Export"
+          },
+          {
+            "type": "paragraph",
+            "text": "When your session is complete, export it. Built-in recordings: Settings → Export → Export ZIP. The ZIP contains your WAV files, photos, and a session CSV. External recorder sessions: Tap Export Session in the External Recorder view. The ZIP contains only the CSV and photos — your audio files are on the recorder's SD card."
+          },
+          {
+            "type": "heading",
+            "text": "Phase 2 — Transfer to Mac"
+          },
+          {
+            "type": "heading",
+            "text": "Built-in Recordings (AirDrop / ZIP)"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "AirDrop the exported ZIP directly to your Mac, or save to Files and transfer via cable / iCloud Drive.",
+              "Drop the ZIP into Sonidata Embed — it automatically detects the Sonidata session.",
+              "The app extracts the CSV and photos, triggers the metadata scan, and you're ready to match WAV files immediately."
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "External Recorder (SD Card / SSD)"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Eject the SD card from your recorder and mount it on your Mac (or copy files from an external SSD).",
+              "In Sonidata Embed, drop the CSV or ZIP from the iOS export.",
+              "Drop the WAV folder from your recorder.",
+              "Sonidata Embed matches recorder filenames from the CSV (e.g., ZOOM0001_TrLR.wav) to your actual WAV files."
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Filename matching is exact — don't rename your recorder's WAV files before importing."
+          },
+          {
+            "type": "heading",
+            "text": "Phase 3 — Embed & Organize (Sonidata Embed for macOS)"
+          },
+          {
+            "type": "paragraph",
+            "text": "This is where your metadata meets your audio files."
+          },
+          {
+            "type": "heading",
+            "text": "Non-Destructive by Default"
+          },
+          {
+            "type": "paragraph",
+            "text": "Sonidata Embed never modifies your original files. When you click \"Embed All\", it creates a duplicate folder next to your originals with the _sonidata suffix, copies your WAV files into the new folder, writes metadata into the copies, renames files to UCS-compliant filenames, and generates a soundminer_import.csv with 17 columns ready for Soundminer import. Your original folder stays exactly as it was."
+          },
+          {
+            "type": "heading",
+            "text": "What Gets Embedded"
+          },
+          {
+            "type": "table",
+            "headers": ["Metadata Format", "Contents"],
+            "rows": [
+              ["BEXT (Broadcast Wave Extension)", "FX Name, Creator ID, Source ID, timecode reference"],
+              ["iXML", "Full UCS categories, GPS coordinates, location, markers, project/scene/take"],
+              ["CUE + ADTL", "Marker positions with labels and comments"],
+              ["LIST-INFO", "Standard RIFF tags (INAM, IART, ICMT, IGNR, ISRC, IPRD, IKEY)"],
+              ["ID3 Artwork", "Embedded cover photo (APIC frame)"]
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "All non-standard chunks (SMED, _PMX) already present in your WAV files are preserved."
+          },
+          {
+            "type": "heading",
+            "text": "Library Organizer"
+          },
+          {
+            "type": "paragraph",
+            "text": "After embedding, use the Library Organizer to sort your files into a UCS-compliant folder structure on your studio drive."
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Select your library drive — the destination for organized files.",
+              "Choose UCS folder mode — files are sorted into Category/Subcategory/ folders automatically.",
+              "Preview first — see exactly where each file will go before committing.",
+              "Copy — files are copied (not moved) to your drive with full folder hierarchy."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "text": "The organizer includes duplicate detection (name + size matching), import history (.sonidata_imports.json log), and auto folder creation for missing categories."
+          },
+          {
+            "type": "heading",
+            "text": "Phase 4 — Library Ready"
+          },
+          {
+            "type": "paragraph",
+            "text": "At this point your files are: renamed to UCS-compliant filenames, embedded with iXML, BEXT, markers, and artwork, organized into category/subcategory folders on your studio drive, and accompanied by a Soundminer-compatible CSV for bulk import."
+          },
+          {
+            "type": "heading",
+            "text": "Import into Your Sound Library Manager"
+          },
+          {
+            "type": "paragraph",
+            "text": "Open your library manager (Soundminer, BaseHead, Soundly, etc.) and either scan the folder — the embedded metadata is read directly from the WAV files — or import the CSV (soundminer_import.csv) containing all 17 metadata columns for one-click bulk import."
+          },
+          {
+            "type": "heading",
+            "text": "DAW Compatibility"
+          },
+          {
+            "type": "table",
+            "headers": ["Feature", "Pro Tools", "Reaper", "Nuendo", "Logic Pro"],
+            "rows": [
+              ["BEXT metadata", "✅", "✅", "✅", "✅"],
+              ["iXML metadata", "✅", "✅", "✅", "⚠️"],
+              ["CUE markers", "⚠️", "✅", "✅", "❌"],
+              ["LIST-INFO tags", "✅", "✅", "✅", "✅"],
+              ["Embedded artwork", "❌", "❌", "❌", "❌"]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Embedded artwork is visible in Finder, sound library managers, and AirDrop previews — DAWs generally don't display artwork."
+          },
+          {
+            "type": "heading",
+            "text": "Flow — Built-in Recording"
+          },
+          {
+            "type": "code",
+            "text": "Record with iPhone → Name & Tag → Auto Metadata (GPS) → Export ZIP\n  ↓\nAirDrop ZIP to Mac\n  ↓\nSonidata Embed auto-detects ZIP → Embed All → Organize → Library Ready"
+          },
+          {
+            "type": "paragraph",
+            "text": "Pros: Single device, all audio + metadata in one ZIP, fastest path from field to library. Cons: Limited to iPhone microphone quality and stereo modes."
+          },
+          {
+            "type": "heading",
+            "text": "Flow — External Recorder"
+          },
+          {
+            "type": "code",
+            "text": "Create Session → Live Metadata Tap → Add Markers → Name & Tag → Export Session\n  ↓\nTransfer CSV/ZIP to Mac + Mount SD card / SSD with WAV files\n  ↓\nSonidata Embed matches CSV → WAV folder → Embed All → Organize → Library Ready"
+          },
+          {
+            "type": "paragraph",
+            "text": "Pros: Use professional microphones and recorders (Zoom F6, Sound Devices MixPre, etc.), multi-channel capture, higher sample rates. Cons: Two-device workflow, requires filename matching."
+          },
+          {
+            "type": "heading",
+            "text": "Both Paths Converge"
+          },
+          {
+            "type": "paragraph",
+            "text": "Regardless of which recording path you choose, the output is identical: session.csv with all metadata in a structured format, photos/ with embedded artwork for each recording, and WAV files — either from the iPhone (internal) or your recorder (external). Sonidata Embed treats both paths the same way."
+          },
+          {
+            "type": "heading",
+            "text": "Quick Reference"
+          },
+          {
+            "type": "table",
+            "headers": ["Metric", "Value"],
+            "rows": [
+              ["Total Steps", "17 (across all 4 phases)"],
+              ["Recording Modes", "2 (Built-in + External Recorder)"],
+              ["Destructive Edits", "Zero — originals are never modified"],
+              ["Metadata Fields", "27 fields embedded per file"],
+              ["Embedded Formats", "iXML, BEXT, CUE/ADTL, LIST-INFO, ID3 Artwork"],
+              ["Export Format", "Soundminer-compatible CSV (17 columns)"]
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "Requirements"
+          },
+          {
+            "type": "table",
+            "headers": ["Component", "Requirement"],
+            "rows": [
+              ["Sonidata iOS", "iPhone or iPad, iOS 16.0+"],
+              ["Sonidata Embed", "macOS 12.0+ (Universal: Intel + Apple Silicon)"],
+              ["Sonidata Pro", "Required for ZIP Export, Photo Attachments, Stereo Recording"],
+              ["Desktop Unlock", "Sonidata Pro license + Offline Pairing Code"]
+            ]
+          },
+          {
+            "type": "heading",
+            "text": "Tips for Faster Sessions"
+          },
+          {
+            "type": "steps",
+            "items": [
+              "Set up Creator ID and Source ID once — enable \"Remember IDs\" in Settings so they persist between sessions.",
+              "Use FX Name Presets — save common naming patterns (e.g., <Location, State> Ambience) and apply them with one swipe.",
+              "Copy/Paste metadata — tag the first file, copy the metadata, and paste it onto subsequent files. Only change the FX Name.",
+              "Batch rename — select multiple files in the library and tag them all at once with sequential numbering.",
+              "Use Voice Slate — dictate FX Names hands-free while recording on location.",
+              "Keep the same folder structure — use the Library Organizer's UCS folder mode consistently so your studio drive stays organized as your library grows."
+            ]
+          }
+        ]
       }
     ]
   },

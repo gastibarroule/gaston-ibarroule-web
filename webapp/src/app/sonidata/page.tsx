@@ -47,14 +47,14 @@ function DownloadButtons() {
   }, []);
 
   const macBtn = (
-    <a href="/downloads/Sonidata_Embed_1.1.1_universal.dmg" className={os === "win" ? SECONDARY : PRIMARY}>
+    <a href="/downloads/Sonidata_Embed_1.3.0_universal.dmg" className={os === "win" ? SECONDARY : PRIMARY}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       <span>Download for macOS</span>
     </a>
   );
 
   const winBtn = (
-    <a href="/downloads/Sonidata_Embed_1.1.1_x64-setup.exe" className={os === "win" ? PRIMARY : SECONDARY}>
+    <a href="/downloads/Sonidata_Embed_1.3.0_x64-setup.exe" className={os === "win" ? PRIMARY : SECONDARY}>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
       <span>Download for Windows</span>
     </a>
@@ -63,6 +63,84 @@ function DownloadButtons() {
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
       {os === "win" ? <>{winBtn}{macBtn}</> : <>{macBtn}{winBtn}</>}
+    </div>
+  );
+}
+
+/* ── What's New collapsible ─────────────────────────────────── */
+const WHATS_NEW_FEATURES = [
+  {
+    emoji: "🛡️",
+    title: "Non-Destructive Output",
+    description:
+      "Embed All now creates a duplicate folder with the _sonidata suffix next to your source files. Your originals are never touched.",
+  },
+  {
+    emoji: "📦",
+    title: "Smart ZIP Auto-Detect",
+    description:
+      "Dropping an internal recording ZIP from Sonidata iOS is now a one-drop experience — WAVs inside the ZIP are auto-detected and scanned instantly.",
+  },
+  {
+    emoji: "📁",
+    title: "Library Organizer",
+    description:
+      "New post-embed workflow to organize embedded files into UCS folder structures. Preview before copy, duplicate detection, and full import history.",
+  },
+];
+
+function WhatsNew() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="mt-8 max-w-2xl mx-auto">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-center gap-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors py-3 group"
+      >
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span>What&apos;s new in v1.3.0</span>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={`transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""} text-neutral-600 group-hover:text-neutral-400`}
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+
+      <div
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{
+          maxHeight: isOpen ? "600px" : "0",
+          opacity: isOpen ? 1 : 0,
+        }}
+      >
+        <div className="grid gap-3 pt-2 pb-4">
+          {WHATS_NEW_FEATURES.map((f) => (
+            <div
+              key={f.title}
+              className="flex items-start gap-3 bg-white/[0.03] border border-white/8 rounded-xl px-4 py-3.5 transition-colors hover:bg-white/[0.05]"
+            >
+              <span className="text-xl shrink-0 mt-0.5">{f.emoji}</span>
+              <div>
+                <div className="text-[14px] font-semibold text-white mb-0.5">
+                  {f.title}
+                </div>
+                <p className="text-[13px] text-neutral-500 leading-relaxed">
+                  {f.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -210,7 +288,7 @@ export default function SonidataSupport() {
             <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-3">
               The missing link in your field recording workflow. Burn your iOS field metadata straight into your WAVs.
             </p>
-            <span className="inline-block text-xs font-medium text-neutral-500 border border-white/10 rounded-full px-3 py-1">v1.1.1</span>
+            <span className="inline-block text-xs font-medium text-neutral-500 border border-white/10 rounded-full px-3 py-1">v1.3.0</span>
           </div>
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
@@ -231,8 +309,11 @@ export default function SonidataSupport() {
           </div>
 
           <DownloadButtons />
+
+          {/* What's New in v1.3.0 */}
+          <WhatsNew />
           
-          <p className="text-center text-sm text-neutral-500 max-w-lg mx-auto">
+          <p className="text-center text-sm text-neutral-500 max-w-lg mx-auto mt-6">
             Sonidata Embed requires the Pro version of the Sonidata iOS app to unlock full export functionality.
           </p>
         </div>
