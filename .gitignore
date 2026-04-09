@@ -1,6 +1,9 @@
 # local backups
 backups/
 
+# portfolio (local only)
+portfolio/
+
 # node
 webapp/node_modules/
 node_modules/

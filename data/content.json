@@ -3,6 +3,7 @@
   "briefBio": "Sound Designer, Composer, Sound Editor, and Mixer with extensive experience in film and audio production.",
   "detailedBio": "Gaston Ibarroule is a versatile sound professional with extensive experience in film and audio production. As a sound designer, composer, sound editor, and mixer, he brings a comprehensive understanding of audio post-production to every project. His work spans across various genres and formats, from feature films to documentaries, always focused on creating immersive and emotionally resonant soundscapes that enhance the storytelling experience.",
   "projects": [
+    { "title": "Where the Water Ends", "role": "Sound Designer, Composer, Mixer", "year": "2026" },
     { "title": "Prekid Vatre – Ceasefire", "role": "Sound Designer, Composer, Mixer", "year": "2025" },
     { "title": "Boards on Zalando", "role": "Composer, Sound Designer, Mixer", "year": "2025" },
     { "title": "Kacken an der Havel (Netflix Series)", "role": "Dialogue Editor", "year": "2025" },
