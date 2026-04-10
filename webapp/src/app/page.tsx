@@ -13,7 +13,7 @@ type Project = { title: string; slug: string; poster?: string | null; role?: str
 
 function FeaturedFromData() {
   const data = projects as Project[];
-  const primary = data.filter((p) => p.featured && p.poster).slice(0, 6);
+  const primary = data.filter((p) => p.featured).slice(0, 6);
   const fallback = data.filter((p) => !primary.includes(p) && p.poster).slice(0, 6 - primary.length);
   const list: Project[] = [...primary, ...fallback].slice(0, 6);
   return (
@@ -26,7 +26,15 @@ function FeaturedFromData() {
       <div className={styles.featuredGrid}>
         {list.map((p) => (
           <Link key={p.slug} className={styles.card} href={`/projects/${p.slug}`}>
-            <img className={styles.cardImg} src={p.poster || ""} alt={p.title} />
+            {p.poster ? (
+              <img className={styles.cardImg} src={p.poster} alt={p.title} />
+            ) : (
+              <div className={`${styles.cardImg} bg-black flex items-center justify-center`}>
+                <span className="text-white/90 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] drop-shadow-[0_0_10px_rgba(255,255,255,0.55)] opacity-80">
+                  COMING SOON
+                </span>
+              </div>
+            )}
             <div className={styles.cardMeta}>
               <div className={styles.cardTitle}>{p.title}</div>
               <div className={styles.cardSub}>{p.role}{p.year ? ` • ${p.year}` : ""}</div>
