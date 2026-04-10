@@ -53,13 +53,13 @@ export default function ProjectsBrowser({ projects }: { projects: Project[] }) {
   const Y_UNKNOWN = "Unknown";
   const orderedYears = useMemo(() => years.filter((y) => y !== Y_UNKNOWN), [years]);
   const { leadingYears, suffixYears } = useMemo(() => {
-    // Only group years that have fewer than 2 projects.
-    // Each year with 2 or more projects gets its own row.
+    // Group older years with fewer than 2 projects. Recent years always get their own row.
     const strong: string[] = [];
     const weak: string[] = [];
     for (const y of orderedYears) {
       const count = groups[y]?.length ?? 0;
-      if (count >= 2) strong.push(y);
+      const yearNum = parseInt(y, 10);
+      if (count >= 2 || (yearNum && yearNum >= 2024)) strong.push(y);
       else weak.push(y);
     }
     return { leadingYears: strong, suffixYears: weak };
