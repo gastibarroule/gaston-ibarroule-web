@@ -24,13 +24,16 @@ This workflow describes the process for syncing the latest Sonidata documentatio
    - Update the "What's new in vX.X.X" text string if a new major release occurred.
    - Update the `WHATS_NEW_FEATURES` array in the component to reflect the actual new features of the release (e.g., Cloud Sync, Auto-Updater, etc.).
 
-3. **Sync the Documentation**
+3. **Update the iOS App Auto-Update JSON (`embed-info.json`)**
+   The Sonidata iOS app fetches Embed release info from a hosted JSON file to trigger the desktop companion popup. You must update `webapp/public/downloads/embed-info.json` with the new version, the matching `download_url`, and the array of new features so the iOS app alerts users correctly without requiring an iOS app update.
+
+4. **Sync the Documentation**
    The Sonidata support documentation on the website is powered by `webapp/src/data/site.json`. Instead of manually copying JSON, you can run the provided node script to automatically parse the latest `SONIDATA_DOCUMENTATION.md` and `SONIDATA_EMBED_DOCUMENTATION.md` files from the source project and inject them directly into the JSON.
    ```bash
    node webapp/scripts/updateDocs.js
    ```
 
-4. **Deploy the Changes**
+5. **Deploy the Changes**
    Trigger the standard deployment workflow to build the Next.js static site and push the new artifacts to GitHub Pages.
    ```bash
    source ~/.zshrc && bash "/Volumes/Macbook Pro_Work/05_WEB/gaston-ibarroule-portfolio/scripts/push-to-github.command"
