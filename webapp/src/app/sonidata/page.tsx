@@ -70,22 +70,22 @@ function DownloadButtons() {
 /* ── What's New collapsible ─────────────────────────────────── */
 const WHATS_NEW_FEATURES = [
   {
-    emoji: "🛡️",
-    title: "Non-Destructive Output",
+    emoji: "🔄",
+    title: "Auto-Updater",
     description:
-      "Embed All now creates a duplicate folder with the _sonidata suffix next to your source files. Your originals are never touched.",
+      "Sonidata Embed now checks for and installs updates automatically, ensuring you always have the latest metadata engine securely.",
   },
   {
-    emoji: "📦",
-    title: "Smart ZIP Auto-Detect",
+    emoji: "☁️",
+    title: "Cloud Sync Sessions",
     description:
-      "Dropping an internal recording ZIP from Sonidata iOS is now a one-drop experience — WAVs inside the ZIP are auto-detected and scanned instantly.",
+      "Full support for iCloud and Google Drive sessions. Load synced iOS session metadata directly into the app and pair it with your local WAVs.",
   },
   {
-    emoji: "📁",
-    title: "Library Organizer",
+    emoji: "✍️",
+    title: "Batch Metadata Editing",
     description:
-      "New post-embed workflow to organize embedded files into UCS folder structures. Preview before copy, duplicate detection, and full import history.",
+      "Multi-select files to apply bulk metadata changes (FX Name, category, creator, etc.) across your entire selection simultaneously.",
   },
 ];
 
