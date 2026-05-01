@@ -47,7 +47,7 @@ function DownloadButtons() {
   }, []);
 
   const macBtn = (
-    <a href="/downloads/Sonidata_Embed_1.3.3_universal.dmg" className={os === "win" ? SECONDARY : PRIMARY}>
+    <a href="/downloads/Sonidata_Embed_1.4.0_universal.dmg" className={os === "win" ? SECONDARY : PRIMARY}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       <span>Download for macOS</span>
     </a>
@@ -70,22 +70,22 @@ function DownloadButtons() {
 /* ── What's New collapsible ─────────────────────────────────── */
 const WHATS_NEW_FEATURES = [
   {
-    emoji: "🔄",
-    title: "Auto-Updater",
-    description:
-      "Sonidata Embed now checks for and installs updates automatically, ensuring you always have the latest metadata engine securely.",
-  },
-  {
     emoji: "☁️",
-    title: "Cloud Sync Sessions",
+    title: "Cloud Sync Embedding",
     description:
-      "Full support for iCloud and Google Drive sessions. Load synced iOS session metadata directly into the app and pair it with your local WAVs.",
+      "Load sessions directly from Dropbox, Google Drive, or a local sync folder — no CSV export needed.",
   },
   {
-    emoji: "✍️",
-    title: "Batch Metadata Editing",
+    emoji: "🛡️",
+    title: "Collision Protection",
     description:
-      "Multi-select files to apply bulk metadata changes (FX Name, category, creator, etc.) across your entire selection simultaneously.",
+      "Files with identical UCS names are auto-numbered (_002, _003) — no more accidental overwrites.",
+  },
+  {
+    emoji: "📁",
+    title: "Library Organizer",
+    description:
+      "Organize embedded files into UCS folder structures on your studio drive.",
   },
 ];
 
@@ -99,7 +99,7 @@ function WhatsNew() {
         className="w-full flex items-center justify-center gap-2 text-sm font-medium text-neutral-400 hover:text-white transition-colors py-3 group"
       >
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span>What&apos;s new in v1.3.3</span>
+        <span>What&apos;s new in v1.4.0</span>
         <svg
           width="14"
           height="14"
@@ -288,7 +288,7 @@ export default function SonidataSupport() {
             <p className="text-neutral-400 text-lg max-w-2xl mx-auto mb-3">
               The missing link in your field recording workflow. Burn your iOS field metadata straight into your WAVs.
             </p>
-            <span className="inline-block text-xs font-medium text-neutral-500 border border-white/10 rounded-full px-3 py-1">v1.3.3</span>
+            <span className="inline-block text-xs font-medium text-neutral-500 border border-white/10 rounded-full px-3 py-1">v1.4.0</span>
           </div>
 
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">

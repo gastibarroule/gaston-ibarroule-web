@@ -1,17 +1,17 @@
 {
-  "version": "1.3.3",
+  "version": "1.4.0",
   "download_url": "https://gastibarroule.com/sonidata#download",
   "release_notes_url": "https://gastibarroule.com/sonidata#whats-new",
   "whats_new": [
     {
-      "icon": "shield.checkered",
-      "title": "Non-Destructive Output",
-      "subtitle": "Originals stay untouched — embedded copies go to a _sonidata folder"
+      "icon": "cloud.fill",
+      "title": "Cloud Sync Embedding",
+      "subtitle": "Load sessions directly from Dropbox, Google Drive, or a local sync folder — no CSV export needed"
     },
     {
-      "icon": "doc.zipper",
-      "title": "Smart ZIP Auto-Detect",
-      "subtitle": "Drop a recording ZIP and WAVs are matched instantly — no manual folder selection"
+      "icon": "shield.checkered",
+      "title": "Collision Protection",
+      "subtitle": "Files with identical UCS names are auto-numbered (_002, _003) — no more accidental overwrites"
     },
     {
       "icon": "folder.badge.gearshape",
