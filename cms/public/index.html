@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Manager — Gaston Ibarroule</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ── Sidebar ──────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Content Manager</h1>
+      <span>Portfolio Admin</span>
+    </div>
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-panel="projects">
+        <span class="icon">🎬</span>
+        <span class="nav-text">Projects</span>
+        <span class="badge" id="projectCount">0</span>
+      </button>
+      <button class="nav-item" data-panel="site">
+        <span class="icon">🏠</span>
+        <span class="nav-text">Site Info</span>
+      </button>
+      <button class="nav-item" data-panel="sonidata">
+        <span class="icon">🎙️</span>
+        <span class="nav-text">Sonidata</span>
+      </button>
+      <div style="flex:1"></div>
+      <button class="nav-item" data-panel="deploy">
+        <span class="icon">🚀</span>
+        <span class="nav-text">Deploy</span>
+      </button>
+    </nav>
+    <div class="sidebar-footer">localhost:4000</div>
+  </aside>
+
+  <!-- ── Main ─────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- Projects Panel -->
+    <div class="panel active" id="panel-projects">
+      <div class="page-header">
+        <h2>Projects</h2>
+        <button class="btn btn-primary" onclick="openProjectEditor()">+ New Project</button>
+      </div>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+
+    <!-- Site Info Panel -->
+    <div class="panel" id="panel-site">
+      <div class="page-header"><h2>Site Info</h2></div>
+      <div class="info-cards">
+
+        <div class="info-card">
+          <h3><span class="icon">📝</span> About</h3>
+          <div class="field">
+            <label>About Text</label>
+            <textarea id="sAbout" rows="5"></textarea>
+          </div>
+          <div class="field">
+            <label>Home Intro</label>
+            <textarea id="sHomeIntro" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><span class="icon">📬</span> Contact</h3>
+          <div class="field">
+            <label>Email</label>
+            <input type="text" id="sEmail">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>LinkedIn</label>
+              <input type="text" id="sLinkedin">
+            </div>
+            <div class="field">
+              <label>Instagram</label>
+              <input type="text" id="sInstagram">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>IMDb</label>
+              <input type="text" id="sImdb">
+            </div>
+            <div class="field">
+              <label>Crew United</label>
+              <input type="text" id="sCrewUnited">
+            </div>
+          </div>
+        </div>
+
+        <div class="save-row" style="display:flex;justify-content:flex-end;margin-top:8px">
+          <button class="btn btn-primary" onclick="saveSiteInfo()">Save Site Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sonidata Panel -->
+    <div class="panel" id="panel-sonidata">
+      <div class="page-header"><h2>Sonidata</h2></div>
+      <div class="info-cards">
+
+        <div class="info-card">
+          <h3><span class="icon">🎙️</span> Support Page</h3>
+          <div class="field-row">
+            <div class="field">
+              <label>Title</label>
+              <input type="text" id="sdTitle">
+            </div>
+            <div class="field">
+              <label>Version</label>
+              <input type="text" id="sdVersion">
+            </div>
+          </div>
+          <div class="field">
+            <label>Subtitle</label>
+            <textarea id="sdSubtitle" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label>Support Email</label>
+            <input type="text" id="sdEmail">
+          </div>
+          <div class="field">
+            <label style="display:flex;align-items:center;justify-content:space-between">
+              FAQs
+              <button class="btn btn-outline btn-sm" onclick="addFaq()">+ Add FAQ</button>
+            </label>
+            <div id="faqList" style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>
+          </div>
+          <div class="save-row" style="display:flex;justify-content:flex-end;margin-top:16px">
+            <button class="btn btn-primary" onclick="saveSonidataSupport()">Save Support</button>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3><span class="icon">🔒</span> Privacy Page</h3>
+          <div class="field-row">
+            <div class="field">
+              <label>Last Updated</label>
+              <input type="text" id="spLastUpdated" placeholder="e.g. February 2026">
+            </div>
+            <div class="field">
+              <label>Contact Email</label>
+              <input type="text" id="spEmail">
+            </div>
+          </div>
+          <div class="save-row" style="display:flex;justify-content:flex-end;margin-top:16px">
+            <button class="btn btn-primary" onclick="saveSonidataPrivacy()">Save Privacy</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Deploy Panel -->
+    <div class="panel" id="panel-deploy">
+      <div class="page-header">
+        <h2>Deploy to GitHub Pages</h2>
+        <button class="btn btn-outline" onclick="loadGitStatus()">↻ Refresh</button>
+      </div>
+      <div class="info-cards">
+
+        <div class="info-card">
+          <h3><span class="icon">📊</span> Git Status</h3>
+          <div style="display:flex;gap:16px;margin-bottom:16px">
+            <div style="font-size:12px;color:var(--text-secondary)">
+              Branch: <strong id="gitBranch" style="color:var(--text)">—</strong>
+            </div>
+            <div style="font-size:12px;color:var(--text-secondary)">
+              Last commit: <span id="gitLastCommit" style="color:var(--text)">—</span>
+            </div>
+          </div>
+          <div id="gitFileList" style="font-size:13px"></div>
+          <div id="gitClean" style="display:none;color:var(--green);font-size:13px;padding:12px 0">✓ Working tree clean — nothing to deploy</div>
+        </div>
+
+        <div class="info-card">
+          <h3><span class="icon">🚀</span> Deploy</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">
+            Builds the Next.js site, syncs to <code>docs/</code>, creates a backup, commits, and pushes to GitHub Pages.
+          </p>
+          <button class="btn btn-primary" id="deployBtn" onclick="startDeploy()" style="margin-bottom:16px">
+            🚀 Deploy Now
+          </button>
+          <div id="deployLog" style="display:none;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;font-family:'SF Mono',Menlo,monospace;font-size:12px;line-height:1.7;max-height:400px;overflow-y:auto"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ── Project Editor Modal ──────────────────────────────── -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">New Project</h3>
+      <button class="modal-close" onclick="closeProjectModal()">×</button>
+    </div>
+    <div class="modal-body">
+
+      <div class="field-row">
+        <div class="field" style="flex:2">
+          <label>Title</label>
+          <input type="text" id="pTitle" placeholder="Project title">
+        </div>
+        <div class="field">
+          <label>Slug</label>
+          <input type="text" id="pSlug" placeholder="auto-generated">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Role</label>
+          <input type="text" id="pRole" placeholder="e.g. Sound Designer, Mixer">
+        </div>
+        <div class="field" style="flex:0 0 100px">
+          <label>Year</label>
+          <input type="text" id="pYear" placeholder="2025">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Category</label>
+        <input type="text" id="pCategory" placeholder="Optional category">
+      </div>
+
+      <div class="field">
+        <div class="toggle-group">
+          <label class="toggle-label">
+            <input type="checkbox" id="pFeatured">
+            Featured
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" id="pComingSoon">
+            Coming Soon
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Poster</label>
+        <div style="display:flex;gap:12px;align-items:start">
+          <div style="flex:1">
+            <input type="text" id="pPoster" placeholder="/posters/project-name.jpg">
+            <div class="drop-zone" id="posterDropZone" style="margin-top:8px">
+              Drop poster image here or click to upload
+              <input type="file" id="posterFileInput" accept="image/*" hidden>
+            </div>
+          </div>
+          <div id="posterPreview"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Featured Video / Embed</label>
+        <input type="text" id="pVideoUrl" placeholder="YouTube/Vimeo URL or /videos/file.mp4">
+      </div>
+
+      <div class="field">
+        <label>Gallery Images</label>
+        <div class="gallery-grid" id="galleryPreview"></div>
+        <div class="drop-zone" id="galleryDropZone" style="margin-top:8px">
+          Drop gallery images here or click to upload
+          <input type="file" id="galleryFileInput" accept="image/*" multiple hidden>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea id="pContent" rows="6" placeholder="Project description..."></textarea>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" id="deleteProjectBtn" onclick="deleteProject()" style="margin-right:auto;display:none">Delete</button>
+      <button class="btn btn-outline" onclick="closeProjectModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveProject()">Save Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Confirm Dialog ────────────────────────────────────── -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <p id="confirmMsg"></p>
+    <div class="btn-row">
+      <button class="btn btn-outline" id="confirmNo">Cancel</button>
+      <button class="btn btn-primary" id="confirmYes">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toasts ────────────────────────────────────────────── -->
+<div class="toast-container" id="toasts"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
