@@ -17,6 +17,7 @@
 
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -27,6 +28,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
   animation: fadeIn 320ms ease-out;
 }
 
@@ -76,6 +79,7 @@ header.site-header {
 .nav-links {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -167,8 +171,9 @@ footer.site-footer {
 footer.site-footer .container { padding-top: 20px; padding-bottom: 32px; }
 
 @media (max-width: 600px) {
-  .site-nav { height: 56px; }
-  .nav-links { gap: 14px; }
+  .site-nav { height: auto; min-height: 56px; flex-wrap: wrap; padding: 10px 0; gap: 8px; }
+  .nav-links { gap: 10px; flex-wrap: wrap; justify-content: flex-start; }
+  .nav-links a { font-size: 0.9rem; }
 }
 
 /* Filters */
@@ -176,6 +181,7 @@ footer.site-footer .container { padding-top: 20px; padding-bottom: 32px; }
   display: flex;
   gap: 10px;
   margin: 8px 0 14px 0;
+  flex-wrap: wrap;
 }
 
 .filter-btn {

@@ -74,9 +74,9 @@ export default function RootLayout({
         <Header />
         <main className="flex-1 container mx-auto w-full py-8">{children}</main>
         <footer className="border-t border-white/10">
-          <div className="container py-6 text-sm flex items-center justify-between">
+          <div className="container py-6 text-sm flex flex-wrap items-center justify-between gap-y-2">
             <span>© {new Date().getFullYear()} Gaston Ibarroule</span>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
               {contactLinks.linkedin ? (
                 <a href={contactLinks.linkedin} target="_blank" rel="noreferrer" className="hover:underline">LinkedIn</a>
               ) : null}
