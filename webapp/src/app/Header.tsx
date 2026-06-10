@@ -108,17 +108,17 @@ export function Header() {
         className={`md:hidden border-t border-white/10 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none hidden"}`}
       >
         <div className="container py-3">
-          <div className="grid grid-cols-4 gap-2">
-            <Link href="/projects" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+          <div className="flex flex-wrap gap-2">
+            <Link href="/projects" className="text-center px-4 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Projects
             </Link>
-            <Link href="/about" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+            <Link href="/about" className="text-center px-4 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               About
             </Link>
-            <Link href="/contact" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+            <Link href="/contact" className="text-center px-4 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Contact
             </Link>
-            <Link href="/sonidata" className="text-center px-3 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
+            <Link href="/sonidata" className="text-center px-4 py-2 rounded-[30px] fx-enter opacity-90 hover:opacity-100">
               Sonidata
             </Link>
           </div>
