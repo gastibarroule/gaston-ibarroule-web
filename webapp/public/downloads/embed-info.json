@@ -1,22 +1,22 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "download_url": "https://gastibarroule.com/sonidata#download",
   "release_notes_url": "https://gastibarroule.com/sonidata#whats-new",
   "whats_new": [
     {
+      "icon": "shield.checkered",
+      "title": "Safer Embedding",
+      "subtitle": "Atomic file writes protect your original audio from corruption during embedding"
+    },
+    {
+      "icon": "doc.text.magnifyingglass",
+      "title": "Session-Named CSV",
+      "subtitle": "Soundminer import CSVs now include the session name — no more silent overwrites"
+    },
+    {
       "icon": "cloud.fill",
       "title": "Cloud Sync Embedding",
-      "subtitle": "Load sessions directly from Dropbox, Google Drive, or a local sync folder — no CSV export needed"
-    },
-    {
-      "icon": "shield.checkered",
-      "title": "Collision Protection",
-      "subtitle": "Files with identical UCS names are auto-numbered (_002, _003) — no more accidental overwrites"
-    },
-    {
-      "icon": "folder.badge.gearshape",
-      "title": "Library Organizer",
-      "subtitle": "Organize embedded files into UCS folder structures on your studio drive"
+      "subtitle": "Load sessions directly from iCloud Drive — no CSV export needed"
     }
   ]
 }
