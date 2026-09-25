@@ -1,22 +1,22 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "download_url": "https://gastibarroule.com/sonidata#download",
   "release_notes_url": "https://gastibarroule.com/sonidata#whats-new",
   "whats_new": [
     {
-      "icon": "shield.checkered",
-      "title": "Safer Embedding",
-      "subtitle": "Atomic file writes protect your original audio from corruption during embedding"
+      "icon": "bolt.horizontal.fill",
+      "title": "Direct LAN Beam",
+      "subtitle": "Beam complete sessions wirelessly from Sonidata iOS directly into Embed on your Mac — no cables or cloud needed"
     },
     {
-      "icon": "doc.text.magnifyingglass",
-      "title": "Session-Named CSV",
-      "subtitle": "Soundminer import CSVs now include the session name — no more silent overwrites"
+      "icon": "folder.badge.gearshape",
+      "title": "Library Organizer",
+      "subtitle": "Auto-detect UCS categories and organize your studio WAV library without exporting CSVs"
     },
     {
-      "icon": "cloud.fill",
-      "title": "Cloud Sync Embedding",
-      "subtitle": "Load sessions directly from iCloud Drive — no CSV export needed"
+      "icon": "circle.lefthalf.filled",
+      "title": "Monochrome Design",
+      "subtitle": "Refined dark monochrome UI designed to match the Sonidata iOS experience"
     }
   ]
 }
