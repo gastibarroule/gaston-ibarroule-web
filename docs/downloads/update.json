@@ -1,22 +1,22 @@
 {
-  "version": "1.5.0",
-  "notes": "Sonidata Embed v1.5.0",
-  "pub_date": "2026-06-16T08:43:56Z",
+  "version": "1.6.0",
+  "notes": "Sonidata Embed v1.6.0",
+  "pub_date": "2026-09-25T18:50:28Z",
   "platforms": {
     "darwin-universal": {
-      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.5.0_universal.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMXVVSlRld1c3bHFHcU4ycjNiSDRYY0pHcEp1MktueVJpcksrU2FJYTAvdDJGWWVpcWFLb2FZOHFDUU4zencwOGw3QkNCeGE0NkViR2dWdWp6YkRZSHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgxNTk5NDM2CWZpbGU6U29uaWRhdGFfRW1iZWRfMS41LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKYWJWMTNOYzQ0cHpVY2Yzek9OcENNOXF0NkdXUXRZTGZkemtvU1J4ajZIam04VlQxdFA0aS9ydFVsbmI0a1pFeHNWaEpmczlkQS9icWZMNFFjaDBGQnc9PQo="
+      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.6.0_universal.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMWcyYkVBZjBMbTlKRjZHS3AxeVpzRnV3NlNiV2o4TjhLQ2x4SWJJNGI2Vjh3VzlvSHR4ZnNGQVhoMm9TZzVsaEE1c1NRSjV6eGNIM2xnOXNMbDhqa2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwMzYyMjI1CWZpbGU6U29uaWRhdGFfRW1iZWRfMS42LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKaWxNOUVtV0EwcnpYRTkyWmlCbzN0VWtnTEdleGNKbmgwNDJCNVIrdW1YM0FHRC9pUDUrOVpZSjhEaWZHL2dDMXJEbVhYMUs1Yk1zZGN1RWFOMWg0Q0E9PQo="
     },
     "darwin-aarch64": {
-      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.5.0_universal.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMXVVSlRld1c3bHFHcU4ycjNiSDRYY0pHcEp1MktueVJpcksrU2FJYTAvdDJGWWVpcWFLb2FZOHFDUU4zencwOGw3QkNCeGE0NkViR2dWdWp6YkRZSHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgxNTk5NDM2CWZpbGU6U29uaWRhdGFfRW1iZWRfMS41LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKYWJWMTNOYzQ0cHpVY2Yzek9OcENNOXF0NkdXUXRZTGZkemtvU1J4ajZIam04VlQxdFA0aS9ydFVsbmI0a1pFeHNWaEpmczlkQS9icWZMNFFjaDBGQnc9PQo="
+      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.6.0_universal.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMWcyYkVBZjBMbTlKRjZHS3AxeVpzRnV3NlNiV2o4TjhLQ2x4SWJJNGI2Vjh3VzlvSHR4ZnNGQVhoMm9TZzVsaEE1c1NRSjV6eGNIM2xnOXNMbDhqa2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwMzYyMjI1CWZpbGU6U29uaWRhdGFfRW1iZWRfMS42LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKaWxNOUVtV0EwcnpYRTkyWmlCbzN0VWtnTEdleGNKbmgwNDJCNVIrdW1YM0FHRC9pUDUrOVpZSjhEaWZHL2dDMXJEbVhYMUs1Yk1zZGN1RWFOMWg0Q0E9PQo="
     },
     "darwin-x86_64": {
-      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.5.0_universal.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMXVVSlRld1c3bHFHcU4ycjNiSDRYY0pHcEp1MktueVJpcksrU2FJYTAvdDJGWWVpcWFLb2FZOHFDUU4zencwOGw3QkNCeGE0NkViR2dWdWp6YkRZSHdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzgxNTk5NDM2CWZpbGU6U29uaWRhdGFfRW1iZWRfMS41LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKYWJWMTNOYzQ0cHpVY2Yzek9OcENNOXF0NkdXUXRZTGZkemtvU1J4ajZIam04VlQxdFA0aS9ydFVsbmI0a1pFeHNWaEpmczlkQS9icWZMNFFjaDBGQnc9PQo="
+      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.6.0_universal.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTRUpWUzE3ZEhvMWcyYkVBZjBMbTlKRjZHS3AxeVpzRnV3NlNiV2o4TjhLQ2x4SWJJNGI2Vjh3VzlvSHR4ZnNGQVhoMm9TZzVsaEE1c1NRSjV6eGNIM2xnOXNMbDhqa2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwMzYyMjI1CWZpbGU6U29uaWRhdGFfRW1iZWRfMS42LjBfdW5pdmVyc2FsLmFwcC50YXIuZ3oKaWxNOUVtV0EwcnpYRTkyWmlCbzN0VWtnTEdleGNKbmgwNDJCNVIrdW1YM0FHRC9pUDUrOVpZSjhEaWZHL2dDMXJEbVhYMUs1Yk1zZGN1RWFOMWg0Q0E9PQo="
     },
     "windows-x86_64": {
-      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.5.0_x64-setup.nsis.zip",
+      "url": "https://gastibarroule.com/downloads/Sonidata_Embed_1.6.0_x64-setup.nsis.zip",
       "signature": "PENDING_WINDOWS_BUILD"
     }
   }
