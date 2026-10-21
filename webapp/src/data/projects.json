@@ -1,5 +1,22 @@
 [
   {
+    "title": "Eurotrash",
+    "slug": "eurotrash",
+    "role": "Dialogue Editor",
+    "year": "2026",
+    "poster": "/posters/eurotrash.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=5Ojig6snubk",
+    "images": [
+      "/galleries/eurotrash/eurotrash-still-01.jpg",
+      "/galleries/eurotrash/eurotrash-still-02.jpg",
+      "/galleries/eurotrash/eurotrash-still-03.jpg",
+      "/galleries/eurotrash/eurotrash-still-04.jpg"
+    ],
+    "content": "A writer sets off on a road trip through Switzerland with his drunk and terminally ill mother, after realizing his wealthy family members are the very worst kind of people.\n\nDirector: Frauke Finsterwalder\n\nProducers: Tobias Walker, Philipp Worm\nCo-Producers: Danny Krausz, Florian Krügel, Anne Walser\nProduction Management: Michael Imboden (Switzerland), Ole Nicolaisen\nProduction Coordinators: Tobias Beck, Siri Stattelmann, Kristina Wiedenmann\nProduction Assistant: Marie Luna Weber\nProduction Companies: Walker + Worm Film, C-Films AG, Dor Film\n\nSound Department:\nGregor Bonse – Re-Recording Mixer / Supervising Sound Editor\nGaston Ibarroule – Dialogue Editor\nMartin Langenbach – Foley Artist\nChristoph Oertel – Foley Mixer\nPaul Rischer – Sound Designer\nTom Wenger – ADR Recordist",
+    "category": "",
+    "featured": true
+  },
+  {
     "title": "The Empress: Season 3 (Netflix Series)",
     "slug": "the-empress-season-3-netflix-series",
     "role": "Dialogue Editor",
